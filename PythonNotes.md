@@ -157,5 +157,21 @@ while True:
   print('This is break')
  else:
   print('Invalid Option')
+```
 
+### While Loop -- Guess a number
+```
+def guess_number(n):
+    pass
+ 
+   while True:
+        usernum = int(input('Guess a Number:\n'))
+       if usernum > n: 
+            print('Too High, guess again.')
+        elif usernum < n:
+            print('Too Low, guess again')
+        else:              
+            print('WIN')
+            break
+guess_number(23)
 ```
