@@ -1,5 +1,13 @@
 # Python Notes 
 
+## Functions
+```
+print()
+type()
+.split()
+.join()
+.append()
+```
 chmod 777 script
 
 ## set enviroment - #!/usr/bin/env python3 
