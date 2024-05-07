@@ -5,7 +5,7 @@
 
 ## Functions
 ```
-print()
+print() <<< .format (used together typically)
 type()
 .split()
 .join()
@@ -63,15 +63,19 @@ print('{} {}').format(a,b))
 Hello, World!
 ```
 
+PI = {:.2f}'.format(3.14159265359)
+PI = 3.14'
+
+
 ## Split and Join -- creates a list (indicated by the parenthesis)
 ```
 split
 
->>> 'user:passwd'.split(':')
+'user:passwd'.split(':')
 ['user', 'passwd']
 
 join
->>> ':' .join(passwd)
+':' .join(passwd)
 'user:passswd:/bin/bash'
 ```
 
