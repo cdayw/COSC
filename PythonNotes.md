@@ -100,3 +100,20 @@ print(blank)
 
   >>>>   ['last', 'domain', 'com']
 ```
+
+#Example of List , Tuple Join
+```
+print(list('hello'))
+world = list('hello')
+print(world)
+print(tuple(world))
+print(''.join(world))
+```
+
+# User Input()
+### Example 
+```
+usr = input('Who is that Pokemon?: \n')
+print('You chose {}.'.format(usr))
+```
+
