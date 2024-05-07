@@ -135,3 +135,11 @@ num = 7
 if 0 <= num <= 10:
  print(num)
 ```
+## While Counting Loop
+```
+num = 0
+while num < 10:
+  print(num)
+  num += 1
+```
+
