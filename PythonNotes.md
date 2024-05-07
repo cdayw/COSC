@@ -42,8 +42,9 @@ Slicing [-1] - gives last element in list / [-2] - gives second to last element
 
 ## Append
 var.append('STRING')
+
+## Vim Settings - .vimrc
 ```
-## .vimrc
 vim .vimrc
 syntax enable
 set tabstop=4
@@ -53,7 +54,7 @@ set number
 filetype indent on 
 set autoindent
 ```
-## .format - Brace expansion
+## .format 
 ```
 a = 'Hello,'
 b = 'World!'
