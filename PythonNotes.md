@@ -116,4 +116,15 @@ print(''.join(world))
 usr = input('Who is that Pokemon?: \n')
 print('You chose {}.'.format(usr))
 ```
-
+### FizzBuzz Exercise - Functions and User Input
+```
+num = int(input('Enter a number:\n'))
+if num % 5 == 0 and num % 3 == 0:
+    print('fizzbuzz')
+elif num % 3 == 0:
+    print('fizz')
+elif num % 5 == 0
+    print('buzz')
+else:
+    print(num)
+```
