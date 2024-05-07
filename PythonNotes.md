@@ -142,4 +142,20 @@ while num < 10:
   print(num)
   num += 1
 ```
+### While Loop -- Pass, Continue, Break
+```
+while True:
+ usr = input('Type pass, continue, or break:\n').lower
+ if usr == 'pass':
+  pass
+  print('This is pass')
+ elif usr == 'continue':
+  continue
+  print('This is Continue')
+ elif usr == 'break':
+  break
+  print('This is break')
+ else:
+  print('Invalid Option')
 
+```
