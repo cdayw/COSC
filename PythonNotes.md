@@ -128,3 +128,10 @@ elif num % 5 == 0:
 else:
     print(num)
 ```
+
+## Comparison Operators -- 
+```
+num = 7
+if 0 <= num <= 10:
+ print(num)
+```
