@@ -1,5 +1,8 @@
 # Python Notes 
 
+## set enviroment  
+#!/usr/bin/env python3 
+
 ## Functions
 ```
 print()
@@ -8,9 +11,6 @@ type()
 .join()
 .append()
 ```
-chmod 777 script
-
-## set enviroment - #!/usr/bin/env python3 
 
 create a variable - a = "Hello"
 
@@ -53,7 +53,7 @@ set number
 filetype indent on 
 set autoindent
 ```
-## .format
+## .format - Brace expansion
 ```
 a = 'Hello,'
 b = 'World!'
