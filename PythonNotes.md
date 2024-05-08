@@ -233,5 +233,22 @@ def function(x,y):
    print(y[index])
 function(4,list)
 ```
+## *args -- do not use star when referencing args
+```
+def q1(*args):
+ print(args)
+ prints(type(args))
+```
+### adding with *args and using format
+```
+def q1(*args):
+    sums = 0
+    for i in args:
+            sums += i
+    print('{} added together is {}'.format(args,sums))
+q1(1,2,3,4,5)
+
+```
+
 party = {'first':{'Gengar':'ghost'}}
 print(party)
