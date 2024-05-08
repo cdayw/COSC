@@ -175,3 +175,22 @@ def guess_number(n):
             break
 guess_number(23)
 ```
+## FOR loops --- counting loop
+```
+num = [1,2,3,4,5]
+for i in num:
+ print(i)
+```
+## Nested FOR loop -- Deck 
+```
+def makedeck():
+ deck = []
+ suits = ['\u2660' , '\u2665' , '\u2666' , '\u2663'
+ ranks = ['A',2,3,4,5,6,7,8,9,10,'J','Q','K']
+ for suit in suits:
+  for rank in ranks:
+   deck.append('{}{}'.format(rank,suit))
+  print(deck)
+
+makedeck()
+```
