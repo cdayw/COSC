@@ -322,29 +322,3 @@ def reverse_words(text):
     return newSentence
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-party = {'first':{'Gengar':'ghost'}}
-print(party)
