@@ -249,6 +249,97 @@ def q1(*args):
 q1(1,2,3,4,5)
 
 ```
+## FILE IO
+```
+with open("test.txt", 'r') as fp:
+ pass
+
+'w' write
+'r' read
+
+with open("test.txt", 'w') as fp:
+fp.write('First line \n')
+   lines = ['Second Line \n', 'Third line\n', 'Fourth line\n', 'Last line\n']
+   fp.writelines(lines)
+^WRITES
+
+with open("test.txt") as infile:
+ infile.read(5)
+OUTPUT = 'First' << the first fives characters
+
+with open("test.txt") as brock:
+  brock.readlines()
+OUTPUT  = ['First line \n', 'Second Line \n', 'Third line\n', 'Fourth line\n', 'Last line\n']
+```
+
+## Total number of characters in file and save to var
+```
+num = 0 
+with open("travel_plans.txt") as fp:
+    num = (len(fp.read()))
+```
+## Total number of words and assign to var
+```
+num_words = 0
+with open("emotion_words.txt") as fp:
+   
+    num_words = fp.read()
+    num_words = len(num_words.split())
+```
+## Total number of lines and assign to var
+```
+num_lines = 0 
+with open("school_prompt.txt") as fp:
+        num_lines = len(fp.readlines())
+```
+## Assigning First 30 Chars to var
+```
+beginning_chars = ""
+with open("school_prompt.txt") as fp:
+    beginning_chars = fp.read(30)
+```
+## Assign third word of every line to list 
+```
+three = []
+with open("school_prompt.txt") as fp:
+    for line in fp:
+        three.append(line.split()[2])
+```
+## Assign first word of every line to list
+```
+emotions = []
+with open("emotion_words.txt") as fp:
+    for line in fp:
+        emotions.append(line.split()[0])
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 party = {'first':{'Gengar':'ghost'}}
 print(party)
