@@ -194,3 +194,26 @@ def makedeck():
 makedeck()
 
 ```
+## Range 
+```
+range(10)
+range(0,10)
+list(range(10))
+```
+OUTPUT > [0,1,2,3,4,5,6,7,8,9]
+
+## [Start:Stop:Step] -- Counting Backwards
+```
+ten = list(range(1,10))
+ten[::-1]
+```
+## ord / chr
+```
+ord('a')
+OUTPUT = 97
+
+chr(97)
+OUTPUT = a
+```
+party = {'first':{'Gengar':'ghost'}}
+print(party)
