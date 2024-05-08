@@ -326,3 +326,12 @@ def reverse_words(text):
 ```
 return string[::-1]
 ```
+## Multiply/Double Integers in a list > [1,2,3]
+```
+def maps(array):
+    result = []
+    for i in array:
+        result.append(i * 2)
+    return result
+```
+OUTPUT > [2,4,6]
