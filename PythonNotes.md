@@ -215,5 +215,23 @@ OUTPUT = 97
 chr(97)
 OUTPUT = a
 ```
+## Print Items in list 
+```
+for index in range(len(<LIST>)):
+ print(<LIST>[index])
+```
+```
+for index in range(len(<LIST>)):
+ if index == 1"
+ print(<LIST>[index])
+```
+list = [apple, banna, pear, peach, grape]
+```
+def function(x,y):
+ for index in range(len(y)):
+  if index == x:
+   print(y[index])
+function(4,list)
+```
 party = {'first':{'Gengar':'ghost'}}
 print(party)
