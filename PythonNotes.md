@@ -312,9 +312,8 @@ with open("emotion_words.txt") as fp:
     for line in fp:
         emotions.append(line.split()[0])
 ```
-
-
-
+## Reversing words 
+```
 
 
 
