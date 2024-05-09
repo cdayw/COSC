@@ -446,12 +446,22 @@ negative, return False.
              return True
 ```
 # PRACTICE v2
-##Given a string of multiple words separated by single spaces,
-##return a new string with the sentence reversed. The words
-##themselves should remain as they are.
+Given a string of multiple words separated by single spaces,
+return a new string with the sentence reversed. The words
+themselves should remain as they are.
 ```
 my = sentence.split(' ') 
 almost = my[::-1] 
 return ' '.join(almost))
 ```
-
+Given a positive integer, return its string representation with
+commas seperating groups of 3 digits. For example, given 65535
+the returned string should be '65,535'.
+```
+if n > 0:
+    return"{:,}".format(n)
+```
+Given two lists of integers, return a sorted list that contains all integers from both lists in descending order. For example, given [3,4,9] and [8,1,5] the returned list should be [9,8,5,4,3,1]. The returned list may contain duplicates. ''' pass
+```
+return sorted(lst0+lst1, reverse=True)
+```
