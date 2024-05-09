@@ -397,3 +397,6 @@ containing a single word from the input string in order.
           (mylist.append(x))
       return tuple(mylist)
 ```
+```
+
+```
