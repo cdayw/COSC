@@ -1,6 +1,4 @@
 # Python Notes 
-
-## set enviroment  
 #!/usr/bin/env python3 
 
 ## Functions
