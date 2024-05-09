@@ -336,7 +336,7 @@ def maps(array):
 ```
 OUTPUT > [2,4,6]
 
-## Practice
+# PRACTICE v1
 
 TLO: 112-SCRPY002, LSA 3,4
 Given the floatstr, which is a comma separated string of
@@ -444,5 +444,14 @@ negative, return False.
              return False
          else:
              return True
+```
+# PRACTICE v2
+##Given a string of multiple words separated by single spaces,
+##return a new string with the sentence reversed. The words
+##themselves should remain as they are.
+```
+my = sentence.split(' ') 
+almost = my[::-1] 
+return ' '.join(almost))
 ```
 
