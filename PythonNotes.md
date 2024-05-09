@@ -337,22 +337,22 @@ def maps(array):
 OUTPUT > [2,4,6]
 
 ## Practice
-```
+
 TLO: 112-SCRPY002, LSA 3,4
 Given the floatstr, which is a comma separated string of
 floats, return a list with each of the floats in the
 argument as elements in the list.
+```
   lst = []
   for i in floatstr.split(','):
     lst.append(float(i))
   return lst
 ```
-```
 TLO: 112-SCRPY006, LSA 3
 TLO: 112-SCRPY007, LSA 4
 Given the variable length argument list, return the average
 of all the arguments as a float
-
+```
       sums = 0
       count = 0
       for n in args:
@@ -361,22 +361,21 @@ of all the arguments as a float
       return float(sums) / count
       pass
 ```
-```
 TLO: 112-SCRPY004, LSA 3
 Given a list (lst) and a number of items (n), return a new 
 list containing the last n entries in lst.
-
+```
       print(lst)
       mylst = lst[-n:]
       return mylst
       pass
 
 ```
-```
 TLO: 112-SCRPY004, LSA 1,2
 TLO: 112-SCRPY006, LSA 3
 Given an input string, return a list containing the ordinal numbers of 
 each character in the string in the order found in the input string.
+```
       mylist = []
       lst = list(strng)
       print(lst)
@@ -385,18 +384,65 @@ each character in the string in the order found in the input string.
       return mylist
       pass
 ```
-```
 TLO: 112-SCRPY002, LSA 1,3
 TLO: 112-SCRPY004, LSA 2
 Given an input string, return a tuple with each element in the tuple
 containing a single word from the input string in order.
+```
+return tuple(strng.split())
+```
+TLO: 112-SCRPY007, LSA 2
+Given a dictionary (catalog) whose keys are product names and values are product prices per unit and a list of tuples (order) of product names and quantities, compute and return the total value of the order.
+```
+total = 0
+for i in order:
+    total += catalog[i[0]]*i[1]
+return total
+```
+TLO: 112-SCRPY005, LSA 1
+Given a filename, open the file and return the length of the first line 
+in the file excluding the line terminator.
+```
+with open(filename) as fp:
+    return (len(fp.readline())-1)
+```
+TLO: 112-SCRPY003, LSA 1
+TLO: 112-SCRPY004, LSA 1,2
+TLO: 112-SCRPY005, LSA 1
+Given a filename and a list, write each entry from the list to the file
+on separate lines until a case-insensitive entry of "stop" is found in 
+the file on separate lines.
+```
+ with open(filename, 'w') as fp:
+         for item in lst:
+             if item.upper() == 'STOP':
+                 break
+             else:
+                 fp.write('{}\n'.format(item))
+```
+TLO: 112-SCRPY003, LSA 1
+Given the military time in the argument miltime, return a string 
+containing the greeting of the day.
+```
+     if miltime >= 301 and miltime < 1200:
+         return "Good Morning"
+     elif miltime >= 1200 and miltime < 1600:
+         return "Good Afternoon"
+     elif miltime >= 1600 and miltime < 2100:
+         return "Good Evening"
+     else:
+         return "Good Night"
+```
+TLO: 112-SCRPY003, LSA 1
+TLO: 112-SCRPY004, LSA 1
+Given the argument numlist as a list of numbers, return True if all 
+numbers in the list are NOT negative. If any numbers in the list are
+negative, return False.
+```
+    for i in numlist:
+         if i < 0:
+             return False
+         else:
+             return True
+```
 
-      mylist = []
-      a = words.split(" ")
-      for x in a:
-          (mylist.append(x))
-      return tuple(mylist)
-```
-```
-
-```
