@@ -335,3 +335,65 @@ def maps(array):
     return result
 ```
 OUTPUT > [2,4,6]
+
+## Practice
+```
+TLO: 112-SCRPY002, LSA 3,4
+Given the floatstr, which is a comma separated string of
+floats, return a list with each of the floats in the
+argument as elements in the list.
+lst = []
+ for i in floatstr.split(','):
+  lst.append(float(i))
+ return lst
+```
+```
+TLO: 112-SCRPY006, LSA 3
+TLO: 112-SCRPY007, LSA 4
+Given the variable length argument list, return the average
+of all the arguments as a float
+
+      sums = 0
+      count = 0
+      for n in args:
+          sums += n
+          count += 1
+      return float(sums) / count
+      pass
+```
+```
+TLO: 112-SCRPY004, LSA 3
+Given a list (lst) and a number of items (n), return a new 
+list containing the last n entries in lst.
+
+      print(lst)
+      mylst = lst[-n:]
+      return mylst
+      pass
+
+```
+```
+TLO: 112-SCRPY004, LSA 1,2
+TLO: 112-SCRPY006, LSA 3
+Given an input string, return a list containing the ordinal numbers of 
+each character in the string in the order found in the input string.
+      mylist = []
+      lst = list(strng)
+      print(lst)
+      for x in lst:
+          mylist.append(ord(x))
+      return mylist
+      pass
+```
+```
+TLO: 112-SCRPY002, LSA 1,3
+TLO: 112-SCRPY004, LSA 2
+Given an input string, return a tuple with each element in the tuple
+containing a single word from the input string in order.
+
+      mylist = []
+      a = words.split(" ")
+      for x in a:
+          (mylist.append(x))
+      return tuple(mylist)
+```
