@@ -342,10 +342,10 @@ TLO: 112-SCRPY002, LSA 3,4
 Given the floatstr, which is a comma separated string of
 floats, return a list with each of the floats in the
 argument as elements in the list.
-lst = []
- for i in floatstr.split(','):
-  lst.append(float(i))
- return lst
+  lst = []
+  for i in floatstr.split(','):
+    lst.append(float(i))
+  return lst
 ```
 ```
 TLO: 112-SCRPY006, LSA 3
