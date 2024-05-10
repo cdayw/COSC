@@ -270,6 +270,7 @@ with open("test.txt") as brock:
   brock.readlines()
 OUTPUT  = ['First line \n', 'Second Line \n', 'Third line\n', 'Fourth line\n', 'Last line\n']
 ```
+###
 
 ## Total number of characters in file and save to var
 ```
@@ -303,6 +304,27 @@ three = []
 with open("school_prompt.txt") as fp:
     for line in fp:
         three.append(line.split()[2])
+```
+## Counting to 5
+```
+count = 0
+while count <10:
+    count += 1
+    print("The count is: {}".format(count))    
+    if count == 5:
+        print(“Count is 5”)
+        break
+``````
+## Print Duplicate values from a list 
+```
+size = len(lst)
+repeated = []
+for i in range(size):
+    k = i + 1
+    for j in range(k, size):
+        if lst[i] == lst[j] and lst[i] not in repeated:
+            repeated.append(lst[i])
+print(repeated)
 ```
 ## Assign first word of every line to list
 ```
@@ -450,7 +472,7 @@ themselves should remain as they are.
 ```
 my = sentence.split(' ') 
 almost = my[::-1] 
-return ' '.join(almost))
+return ' '.join(almost)
 ```
 Given a positive integer, return its string representation with
 commas seperating groups of 3 digits. For example, given 65535
@@ -463,3 +485,66 @@ Given two lists of integers, return a sorted list that contains all integers fro
 ```
 return sorted(lst0+lst1, reverse=True)
 ```
+Given 3 scores in the range [0-100] inclusive, return 'GO' if
+the average score is greater than 50. Otherwise return 'NOGO'.
+```
+sumz = (s1 + s2 + s3)/3 
+if sumz > 50: 
+    return 'GO'
+else: 
+    return 'NOGO'
+```
+Given an integer and limit, return a list of even multiples of the
+integer up to and including the limit. For example, if integer==3 and
+limit==30, the returned list should be [0,6,12,18,24,30]. Note, 0 is
+a multiple of any integer except 0 itself.
+```
+multiples = [] 
+for i in range(0, limit+1): 
+    if (i%integer==0) and (i%2==0): 
+        multiples.append(i) 
+return multiples
+```
+Given two filenames, return a list whose elements consist of line numbers
+for which the two files differ. The first line is considered line 0.
+```
+with open (f0) as fp0:
+        with open(f1) as fp1:
+            file0 = fp0.readlines()
+            file1 = fp1.readlines()
+for i in file0:
+        if i != file1[linenum]:
+            diffs.append(linenum)
+        linenum += 1
+
+return diffs
+```
+Return the first duplicate value in the given list.
+```
+def find_first_duplicate(nums):
+    num_set = set()
+    no_duplicate = -1
+
+    for i in range(len(nums)):
+
+        if nums[i] in num_set:
+            return nums[i]
+        else:
+            num_set.add(nums[i])
+
+    return no_duplicate
+
+```
+Given a sentence as a string with words being separated by a single space, return the length of the shortest word.
+```
+return len(min(strng.split(), key=len))
+```
+ Given an alphanumeric string, return the character whose ascii value is that of the integer represenation of all of the digits in the string concatenated in the order in which they appear. For example, given 'hell9oworld7', the returned character should be 'a' which has the ascii value of 97. 
+```
+chars = [] 
+    for i in strng: 
+        if i.isnumeric():
+            chars.append(i)
+    return chr(int(''.join(chars)))
+```
+Given a list of positive integers sorted in ascending order, return the first non-consecutive value. If all values are consecutive, return None. For example, given [1,2,3,4,6,7], the returned value should be 6. 
