@@ -272,6 +272,11 @@ INTOCT = int(lastoct)
 if INTOCT <= 160:
     print('{} is within IP range'.format(myIP))
 ```
+### or
+```
+myIP = ‘192.168.28.50’
+if int (myIP.split('.')[-1]) <= 62:
+```
 ## FILE IO
 ```
 with open("test.txt", 'r') as fp:
