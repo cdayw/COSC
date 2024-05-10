@@ -34,6 +34,10 @@ for i in a2:
         Alpha.append(i)
 return ''.join(sorted(Alpha))
 ```
+## sorted strings combined from distinct letters in list(s)
+```
+return "".join(sorted([c for c in set(s1 + s2)]))
+```
 
 ## creating lists/indexes/tuple
 
@@ -258,7 +262,15 @@ def q1(*args):
             sums += i
     print('{} added together is {}'.format(args,sums))
 q1(1,2,3,4,5)
-
+```
+## Testing IP range
+```
+myIP = '192.168.0.50'
+octs = myIP.split('.')
+lastoct = (str(octs[3]))
+INTOCT = int(lastoct)
+if INTOCT <= 160:
+    print('{} is within IP range'.format(myIP))
 ```
 ## FILE IO
 ```
