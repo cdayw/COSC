@@ -1,7 +1,7 @@
 # Python Notes 
 #!/usr/bin/env python3 
 
-## Functions
+## Functions.
 ```
 print() <<< .format (used together typically)
 type()
