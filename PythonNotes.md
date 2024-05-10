@@ -22,6 +22,18 @@ bool
 int 
 float 
 ```
+## Take all unique letters from 2 strings and output a sorted string to the console
+```
+def longest(a1, a2):
+Alpha = []
+for i in a1:
+    if i not in Alpha:
+        Alpha.append(i)
+for i in a2:
+    if i not in Alpha:
+        Alpha.append(i)
+return ''.join(sorted(Alpha))
+```
 
 ## creating lists/indexes/tuple
 
@@ -355,6 +367,15 @@ def maps(array):
     return result
 ```
 OUTPUT > [2,4,6]
+
+##  returns a list with the strings filtered out (keeps positive integers)
+```
+    result = []
+    for x in lst:
+        if isinstance(x, int):
+            result.append(x)
+    return result
+```
 
 # PRACTICE v1
 
