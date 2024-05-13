@@ -1,1 +1,3 @@
-## Check MAN pages - man <command>
+# Bash Notes
+
+### Check MAN pages - man "command"
