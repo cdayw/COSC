@@ -141,4 +141,5 @@ grep -E -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' StoryHiddenIPs | sor
 ### Using ONLY the awk command, write a BASH one-liner script that extracts ONLY the names of all the system and user accounts that are not UIDs 0-3.
 ```
 awk -F: '($3 > 3 && $NF == "/bin/bash")''{print $1}' $HOME/passwd > $HOME/SED/names.txt
+awk -F: '$3 > 3 && $NF == "/bin/bash" {print $1}' $HOME/passwd > $HOME/SED/names.txt
 ```
