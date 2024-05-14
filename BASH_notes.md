@@ -190,3 +190,13 @@ echo
 md5sum $B
 echo
 echo $B
+```
+###  Write a Bash script using "Command Substitution" to replace all passwords, using openssl, from the file $HOME/PASS/shadow.txt with the MD5 encrypted password: Password1234, with salt: bad4u
+```
+a=$(openssl passwd -1 -salt bad4u Password1234)
+awk -F: -v "awk_var=$a" 'BEGIN {OFS=":"} {$2=awk_var} {print $0}' $HOME/PASS/shadow.txt
+```
+### Using ONLY sed, write all lines from $HOME/passwd into $HOME/PASS/passwd.txt that do not end with either /bin/sh or /bin/false
+```
+sed -e '/\/bin\/sh$/d' -e '/\/bin\/false$/d' $HOME/passwd > $HOME/PASS/passwd.txt
+```
