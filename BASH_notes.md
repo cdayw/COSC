@@ -103,14 +103,35 @@ find / -inum 4026532575 -printf "%f\n" 2>/dev/null \;
 ```
 ### CUT - Used to obtain sections of a file
 ```
-cut -d:-f1 filename     (-d: > delimiter by : , cuts on the colon )
+cut -d:-f1 filename      (-d: > delimiter by : , cuts on the colon )
 cut -d -f1 -s filename   (-s > 
 cut -d: -f2-4 filename   (-f2-4 > shows fields 2 through 4)
-```
- 
+``` 
 ### Using only the ls -l and cut Commands, write a BASH script that shows all filenames with extensions ie: 1.txt, etc., but no directories, in $HOME/CUT.
 Write those to a text file called names in $HOME/CUT directory.
 Omit the names filename from your output.
 ```
 ls -l $HOME/CUT | cut -d. -f1- -s | cut -d: -f2- -s | cut -d" " -f2 > $HOME/CUT/names
+```
+### AWK > similar to cut more functionality 
+```
+awk -F: '{print $1}'         (-F: > is Field delimiter splir on colon : ,  print $1 > print field 1)
+awk -F: '{print $0}'         ($0 prints everything involving : delimiter)
+awk -F: '{print $1,$3}'      (Prints fields 1 and 3)
+awk -F: 'BEGIN {OFS='#'} {print $1,$3}' /etc/passwd             (OFS = Output field seperator prints # within empty space)
+awk -F: '($3 == 0) '{print $1}' /etc/passwd                     (Prints field 1 if field 3 = 0 OUTPUTS "root")
+awk -F: '{print $NF}' /etc/passwd                               ($NF prints last field)
+awk -F: '($3 >= 150){print $1,$6,$3}'                           (if $3 greater than or equal to 150 print fields 1,6,3)
+```
+
+### sort > sorts based on ascii table 
+```
+cat /etc/password | sort   
+cat /etc/password | awk -F: '{print$3}' | sort -n   (sorts numerically)
+cat /etc/password | awk -F: '{print$3}' | sort -nr  (numerically reversed)
+cat /etc/password | awk -F: '{print$3}' | sort -t   (specify field seperator)
+cat /etc/password | awk -F: '{print$3}' | sort -u   (uniquely)
+ps aux | sort -k 1                                  (-k  = column)    (sort processes by kolumn 1)
+ps aux | sort -k 2 -n                               (sort process in kolumn 2 numerically)
+
 ```
