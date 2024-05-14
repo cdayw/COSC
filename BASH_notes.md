@@ -153,3 +153,11 @@ elif [[ ! -f /etc/passwd ]]; then
   echo "does not exist"
 fi
 ```
+### IF math statements
+```
+if [[ 3129 == $(( 15645/5 )) ]]; then
+  echo "math checks out"
+elif [[ 3129 != $(( 15645/5)) ]]; then
+  echo "math no good"
+fi
+```
