@@ -147,7 +147,7 @@ awk -F: '$3 > 3 && $NF == "/bin/bash" {print $1}' $HOME/passwd > $HOME/SED/names
 ````
 #!/bin/bash
 
-if [[-f /etc/passwd ]]; tjem
+if [[-f /etc/passwd ]]; them
   echo "file exists"
 elif [[ ! -f /etc/passwd ]]; then
   echo "does not exist"
