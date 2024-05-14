@@ -155,6 +155,8 @@ fi
 ```
 ### IF math statements
 ```
+#!/bin/bash
+
 if [[ 3129 == $(( 15645/5 )) ]]; then
   echo "math checks out"
 elif [[ 3129 != $(( 15645/5)) ]]; then
