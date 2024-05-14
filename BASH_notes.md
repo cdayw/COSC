@@ -181,7 +181,7 @@ sed -e 's/chicken/hamburger/g' pizza.txt
 ### Command Substitution 
 ```
 #!/bin/bash
-A=$(cat tail /etc/passwd)
+A=$(tail /etc/passwd)
 echo $A
 
 B=$(find /usr/bin -name passwd)
