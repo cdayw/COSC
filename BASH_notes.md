@@ -119,7 +119,7 @@ awk -F: '{print $1}'         (-F: > is Field delimiter splir on colon : ,  print
 awk -F: '{print $0}'         ($0 prints everything involving : delimiter)
 awk -F: '{print $1,$3}'      (Prints fields 1 and 3)
 awk -F: 'BEGIN {OFS='#'} {print $1,$3}' /etc/passwd             (OFS = Output field seperator prints # within empty space)
-awk -F: '($3 == 0) '{print $1}' /etc/passwd                     (Prints field 1 if field 3 = 0 OUTPUTS "root")
+awk -F: '($3 == 0)' '{print $1}' /etc/passwd                     (Prints field 1 if field 3 = 0 OUTPUTS "root")
 awk -F: '{print $NF}' /etc/passwd                               ($NF prints last field)
 awk -F: '($3 >= 150){print $1,$6,$3}'                           (if $3 greater than or equal to 150 print fields 1,6,3)
 ```
@@ -133,5 +133,12 @@ cat /etc/password | awk -F: '{print$3}' | sort -t   (specify field seperator)
 cat /etc/password | awk -F: '{print$3}' | sort -u   (uniquely)
 ps aux | sort -k 1                                  (-k  = column)    (sort processes by kolumn 1)
 ps aux | sort -k 2 -n                               (sort process in kolumn 2 numerically)
-
+```
+### greps ONLY the IP addresses in the text file provided in the current directory); sort them uniquely by number of times they appear.
+```
+grep -E -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' StoryHiddenIPs | sort | uniq -c | sort -nr
+```
+### Using ONLY the awk command, write a BASH one-liner script that extracts ONLY the names of all the system and user accounts that are not UIDs 0-3.
+```
+awk -F: '($3 > 3 && $NF == "/bin/bash")''{print $1}' $HOME/passwd > $HOME/SED/names.txt
 ```
