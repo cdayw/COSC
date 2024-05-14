@@ -79,6 +79,7 @@ grep -v root           (inverted search - find everything except for root)
 cat /etc/passwd | grep /bin/bash (read file and grep all users with interactive shell)
 grep -i                (case insens)
 grep 'CPU\|BIOS' | grep -v 'usable\|reserved'   (grep two things)
+egrep "CPU|BIOS" | egrep -iv "unusable\reserved" 
 ```
 ### ps  - processes
 ```
