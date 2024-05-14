@@ -16,7 +16,7 @@ ls ~/*.log > returns things in current/home dir ending with .log
 ```
 ### create a file
 ```
-touch -t yyyymmddm.ss
+touch -t YYMMDDhhmm.ss
 ```
 ### mkdir - directory
 ```
