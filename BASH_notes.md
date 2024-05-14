@@ -144,7 +144,7 @@ awk -F: '($3 > 3 && $NF == "/bin/bash")''{print $1}' $HOME/passwd > $HOME/SED/na
 awk -F: '$3 > 3 && $NF == "/bin/bash" {print $1}' $HOME/passwd > $HOME/SED/names.txt
 ```
 ### IF statements - if , elif , fi  
-````
+```
 #!/bin/bash
 
 if [[-f /etc/passwd ]]; them
