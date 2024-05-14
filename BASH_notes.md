@@ -165,3 +165,28 @@ elif [[ 3129 != $(( 15645/5)) ]]; then
   echo "math no good"
 fi
 ```
+### SED
+```
+sed -e  (-e expression for patterns)
+s is substitution start pattern
+g is for global (lowercase)
+d (lowercase) deletes
+$ means end of line
+
+sed -e 's/chicken/hamburger/g' -e 's/pepperoni/sausage/' pizza.txt
+sed 's 's/chicken/hamburger/g' pizza.txt
+sed -e '/chicken/d' pizza.txt
+sed -e 's/chicken/hamburger/g' pizza.txt
+````
+### Command Substitution 
+```
+#!/bin/bash
+A=$(cat tail /etc/passwd)
+echo $A
+
+B=$(find /usr/bin -name passwd)
+echo $B
+echo
+md5sum $B
+echo
+echo $B
