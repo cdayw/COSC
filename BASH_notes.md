@@ -143,3 +143,13 @@ grep -E -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' StoryHiddenIPs | sor
 awk -F: '($3 > 3 && $NF == "/bin/bash")''{print $1}' $HOME/passwd > $HOME/SED/names.txt
 awk -F: '$3 > 3 && $NF == "/bin/bash" {print $1}' $HOME/passwd > $HOME/SED/names.txt
 ```
+### IF statements - if , elif , fi  
+````
+#!/bin/bash
+
+if [[-f /etc/passwd ]]; tjem
+  echo "file exists"
+elif [[ ! -f /etc/passwd ]]; then
+  echo "does not exist"
+fi
+```
