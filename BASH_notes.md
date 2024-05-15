@@ -215,3 +215,25 @@ else
   echo "no tax at commissary"
 fi
 ```
+### Using find, find all files under the $HOME directory with a .bin extension ONLY.
+Once the file(s) and their path(s) have been found, remove the file name from the absolute path output
+```
+find $HOME -name *.bin -printf "%h\n" 2>/dev/null | sort -u
+```
+### 
+  Write a script which will copy the last entry/line in the passwd-like file specified by the $1 positional parameter
+    Modify the copied line to change:
+        User name to the value specified by $2 positional parameter
+        Used id and group id to the value specified by $3 positional parameter
+        Home directory to a directory matching the user name specified by $2 positional parameter under the /home directory
+        The default shell to `/bin/bash'
+    Append the modified line to the end of the file
+
+```
+name=$2
+ugid=$3
+file=$1
+base=$(tail -1 $file)
+
+echo $base | awk -F: -v "var2=$name" -v "var3=$ugid" 'BEGIN {OFS=":"} {$1=var2} {$3=var3} {$4=var3} {$6="/home/"var2} {$NF="/bin/bash"} {print $0}' >> $file
+```
