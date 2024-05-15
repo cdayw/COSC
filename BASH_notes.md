@@ -202,3 +202,16 @@ awk -v hh=$HASH '{OFS":"}{$2=hh;print}' $HOME/PASS/shadow.txt
 ```
 sed -e '/\/bin\/sh$/d' -e '/\/bin\/false$/d' $HOME/passwd > $HOME/PASS/passwd.txt
 ```
+### Simple IF 
+```
+contents=$(cat simple)
+if [[ $contents == "tacos "]]; then
+  echo "are good on tuesdays"
+elif [[ $contents == "costco is amazing" ]]; then
+  echo "will save you money"
+elif [[ $contents == "chicken bake" ]]; then
+  echo "tasty but will make you fat"
+else
+  echo "no tax at commissary"
+fi
+```
