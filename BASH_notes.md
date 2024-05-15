@@ -237,3 +237,13 @@ base=$(tail -1 $file)
 
 echo $base | awk -F: -v "var2=$name" -v "var3=$ugid" 'BEGIN {OFS=":"} {$1=var2} {$3=var3} {$4=var3} {$6="/home/"var2} {$NF="/bin/bash"} {print $0}' >> $file
 ```
+### 
+Find all executable files under the following four directories:
+/bin
+/sbin
+/usr/bin
+/usr/sbin
+Sort the filenames with absolute path, and get the md5sum of the 10th file from the top of the list.
+```
+md5sum $(find /bin /sbin /usr/bin /usr/sbin -executable -type f | sort -u | head | tail -1) | cut -d" " -f1
+```
