@@ -324,3 +324,15 @@ echo "abcdef" | md5sum | cut -d" " -f1 > $HOME/ZIP/file3
 zip -j $HOME/ZIP/file.zip $HOME/ZIP/file{1,2,3}
 tar -czf $HOME/ZIP/file.tar.gz -C $HOME/ZIP file.zip
 ```
+### TAR
+```
+Switch 	Expansive Options 	Description
+-c, 	–create 	create a new archive
+-d, 	–diff, –compare 	find differences between archive and file system
+-r, 	–append 	append files to the end of an archive
+-t, 	–list 	list the contents of an archive
+-u, 	–update 	only append files newer than copy in archive
+-x, 	–extract, –get 	extract files from an archive
+-j, 	–bzip2 	filter the archive through bzip2
+-z, 	–gzip, –gunzip, –ungzip 	filter the archive through gzip
+```
