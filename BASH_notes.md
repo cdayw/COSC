@@ -247,3 +247,65 @@ Sort the filenames with absolute path, and get the md5sum of the 10th file from 
 ```
 md5sum $(find /bin /sbin /usr/bin /usr/sbin -executable -type f | sort -u | head | tail -1) | cut -d" " -f1
 ```
+###
+Write a script which will find and hash the contents 3 levels deep from each of these directories: /bin /etc /var
+    Your script should:
+        Exclude named pipes. These can break your script.
+        Redirect STDOUT and STDERR to separate files.
+        Determine the count of files hashed in the file with hashes.
+        Determine the count of unsuccessfully hashed directories.
+        Have both counts output to the screen with an appropriate title for each count.
+```
+mkdir $HOME/HASHES
+find /bin /etc/ var -maxdepth 3 ! -type p -exec md5sum {} > $HOME/ASHES/success 2>$HOME/HASHES/fail \;
+A=$(wc -l $HOME/HASHES/success) | awk '{print $1}')
+B=$(grep -c "Is a Directory" $HOME/HASHES/fail)
+if [[ "$A" ]];
+  then
+    `echo "Successfully Hashed Files: $A";
+    echo Unsuccessfully Hashed Directories: $B;
+  else
+    echo "oops";-maxdepth 3
+fi
+
+OR
+
+find $DIRS -maxdepth 3 ! -type p -exec md5sum {} \; >STDOUT.del 2>STDERR.del
+GoodCount=$(cat STDOUT.del | wc -l)
+BadCount=$(egrep "Is a" STDERR.del | wc -l)
+echo "Successfully Hashed Files: $GoodCount"
+echo "Unsuccessfully Hashed Directories: $BadCount"
+rm *.del
+```
+###
+using any BASH command complete the following:
+Sort the /etc/passwd file numerically by the GID field.
+For the 10th entry in the sorted passwd file, get an md5 hash of that entry’s home directory.
+Output ONLY the MD5 hash of the directory's name to standard output.
+```
+awk -F: '{print $4 , $0}' /etc/passwd | sort -n | head | tail -1 | awk -F: '{print $6}' | md5sum | cut -d" " -f1
+```
+###
+Design a script that detects the existence of directory: $HOME/.ssh
+Upon successful detection, copies any and all files from within the directory $HOME/.ssh to directory $HOME/SSH and produce no output. You will need to create $HOME/SSH.
+Upon un-successful detection, displays the error message "Run ssh-keygen" to the user.
+```
+if [[ -d $HOME/.ssh ]]; then
+    mkdir $HOME/SSH
+    cp $HOME/.ssh/* $HOME/SSH/ 
+else
+    echo "Run ssh-keygen"
+fi
+```
+### Write a script that determines your default gateway ip address. Assign that address to a variable using command substitution
+```
+A=$(route | grep 'default.*[[:digit:]]' | awk '{print $2}')
+B=$(which ping)
+C=" 0% packet loss"
+D=$($B -c 6 $A | grep -Eo "$C")
+if [[ "$C" == "$D" ]]; then
+    echo "successful"
+else 
+    echo "failure"
+fi
+```
