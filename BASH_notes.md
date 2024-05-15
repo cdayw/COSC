@@ -195,6 +195,8 @@ echo $B
 ```
 a=$(openssl passwd -1 -salt bad4u Password1234)
 awk -F: -v "awk_var=$a" 'BEGIN {OFS=":"} {$2=awk_var} {print $0}' $HOME/PASS/shadow.txt
+OR
+awk -v hh=$HASH '{OFS":"}{$2=hh;print}' $HOME/PASS/shadow.txt
 ```
 ### Using ONLY sed, write all lines from $HOME/passwd into $HOME/PASS/passwd.txt that do not end with either /bin/sh or /bin/false
 ```
