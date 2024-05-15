@@ -5,7 +5,18 @@ https://linuxhandbook.com
 ```
 man
 ```
-
+### 10
+```
+AWK
+CUT
+SED
+FIND
+TAR -CZF
+GREP
+MAX DEPTH
+TOUCH
+RMDIR
+```
 ### ls (list)
 ```
 ( Hidden files denoted by '.' > .cache )
