@@ -360,25 +360,29 @@ sed -e 's/cat/dog/g' -e 's/Navy/Army/g' $1 > $2
 ### Create a script that will print to standard output all user names from the /etc/passwd file
 ```
 awk -F: '{print $1}' /etc/passwd | sort -r
+OR
+cut -d':' -f1 /etc/passwd
 ```
 ### Print to standard output all usernames from the file path specified by the parameter filename sorted ascending numerically by user id
 ```
 awk -F: '{print $3, $0}' $1 | sort -n | awk -F" " '{print $2}' | awk -F: '{print $1}'
+OR
+sort -n -t: -k3 fakepasswd.txt | cut -d":" -f1
 ```
 ### Create a script that will perform the following actions:
 Print to standard output the total number of files in the directory specified by dirname.
-    If the directory does not exist, print 'Invalid Directory'
-    The count excludes the '.' and '..' pseudo-directories
+If the directory does not exist, print 'Invalid Directory'
+The count excludes the '.' and '..' pseudo-directories
 ```
 dirname=$1
-  ls -1 $1 | wc -l
+ls -1 $1 | wc -l
 ```
 ### Create a script that will perform the following actions:
 Delete all files contained in the directory specified by dirdel
   Also delete the directory specified by dirdel
 ```
 dirdel=$1
-rm -rf $1 | rmdir $1
+rm -rf $1 
 ```
 ### Create a file specified by the name newfile.
 Set the file modified date to the value specified in filedate and time to '1730'. NOTE: filedate contains only a valid date in YYYYMMDD format, not a time
@@ -387,6 +391,10 @@ newfile=$1
 filedate=$2
 D=$2"1730.00"
 touch -m -t $D $1
+OR
+touch -t "$filedate"1730 $newfile
+OR
+touch $1 -t $21730
 ```
 ### 
 If contents are 0 to 9, print "single digit" to standard output.
