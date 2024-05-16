@@ -347,3 +347,79 @@ Switch 	Expansive Options 	Description
 -j, 	–bzip2 	filter the archive through bzip2
 -z, 	–gzip, –gunzip, –ungzip 	filter the archive through gzip
 ```
+# PRACTICE
+### Replace every instance of 'cat' in "infile" with 'dog'.
+Replace every instance of 'Navy' in "infile" with 'Army'.
+Replacements are case-sensitive.
+Write the output to the file specifed by the variable 'outfile'
+```
+infile=$1
+outfile=$2
+sed -e 's/cat/dog/g' -e 's/Navy/Army/g' $1 > $2
+```
+### Create a script that will print to standard output all user names from the /etc/passwd file
+```
+awk -F: '{print $1}' /etc/passwd | sort -r
+```
+### Print to standard output all usernames from the file path specified by the parameter filename sorted ascending numerically by user id
+```
+awk -F: '{print $3, $0}' $1 | sort -n | awk -F" " '{print $2}' | awk -F: '{print $1}'
+```
+### Create a script that will perform the following actions:
+Print to standard output the total number of files in the directory specified by dirname.
+    If the directory does not exist, print 'Invalid Directory'
+    The count excludes the '.' and '..' pseudo-directories
+```
+dirname=$1
+  ls -1 $1 | wc -l
+```
+### Create a script that will perform the following actions:
+Delete all files contained in the directory specified by dirdel
+  Also delete the directory specified by dirdel
+```
+dirdel=$1
+rm -rf $1 | rmdir $1
+```
+### Create a file specified by the name newfile.
+Set the file modified date to the value specified in filedate and time to '1730'. NOTE: filedate contains only a valid date in YYYYMMDD format, not a time
+```
+newfile=$1
+filedate=$2
+D=$2"1730.00"
+touch -m -t $D $1
+```
+### 
+If contents are 0 to 9, print "single digit" to standard output.
+If contents are 10 to 99, print "double digit" to standard output.
+If contents are 100 to 999, print "triple digit" to standard output.
+Otherwise, print "Error" to standard output
+```
+  fname=$1
+  cont=$(cat $1)
+    if [[ $cont -lt 10 ]] ; then
+        echo "single digit"
+    elif [[ $cont -gt 10 && $cont -lt 99 ]] ; then 
+        echo "double digit"
+    elif [[ $cont -gt 100 && $cont -lt 999 ]] ; then
+        echo "triple digit"
+    else 
+        echo "Error"
+    fi
+```
+### Copy all lines from the file specified by src variable to the file specified by dst variable which DO NOT contain the text specified by match variable
+```
+  src=$1
+  dst=$2
+  match=$3
+  grep -v $3 $1 > $2
+```
+### Terminate the process that has the randomly assigned name specified by procname variable. procname does not contain path information
+```
+procname=$1
+pkill $1
+```
+### Create a sorted full-path list of all files in the directory dirpath that were modified within the previous day. Directories should not be included in the output. Print the list to the screen, one item per line
+```
+dirpath=$1
+find $1 -type f -mtime -1 | sort
+```
