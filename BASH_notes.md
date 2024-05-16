@@ -297,7 +297,7 @@ Output ONLY the MD5 hash of the directory's name to standard output.
 awk -F: '{print $4 , $0}' /etc/passwd | sort -n | head | tail -1 | awk -F: '{print $6}' | md5sum | cut -d" " -f1
 ```
 ###
-Design a script that detects the existence of directory: $HOME/.ssh
+D,esign a script that detects the existence of directory: $HOME/.ssh
 Upon successful detection, copies any and all files from within the directory $HOME/.ssh to directory $HOME/SSH and produce no output. You will need to create $HOME/SSH.
 Upon un-successful detection, displays the error message "Run ssh-keygen" to the user.
 ```
