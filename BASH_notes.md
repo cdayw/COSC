@@ -1,4 +1,4 @@
-# Bash Notes
+.# Bash Notes
 https://linuxhandbook.com
 
 ### Check MAN pages - man "command"
@@ -430,4 +430,10 @@ pkill $1
 ```
 dirpath=$1
 find $1 -type f -mtime -1 | sort
+```
+### /+
+```
+find .type -f -exec tar -czf archive.tar.gz {} +
+grep -E 'apple|banana' file.txt | grep -Ev 'orange'
+grep -E '(^apple|banana$)' file.txt   
 ```
