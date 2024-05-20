@@ -117,7 +117,9 @@ Write-Host "$var1 * $var2 = $prod"
 
 Replace the variables in text with their values in the following format:
 Write-Host "$var1 / $var2 = $quo"
-
-
-
+```
+### Creating an Array
+```
+$array = "gal", "dir", "echo", "?", "%", "ft"
+$array | ForEach-Object{Get-Alias $_}
 ```
