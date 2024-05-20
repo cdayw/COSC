@@ -1,4 +1,4 @@
-.# Bash Notes
+# Bash Notes
 https://linuxhandbook.com
 
 ### Check MAN pages - man "command"
