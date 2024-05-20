@@ -107,16 +107,16 @@ Create a variable called "quo" that holds the quotient of var1 and var2.
 $quo = $var1 / $var2
 
 Replace the variables in text with their values in the following format:
-Write-Host "$var1 + $var2 = $sum"
+"$var1 + $var2 = $sum"
 
 Replace the variables in text with their values in the following format:
-Write-Host "$var1 - $var2 = $sub"
+"$var1 - $var2 = $sub"
 
 Replace the variables in text with their values in the following format:
-Write-Host "$var1 * $var2 = $prod"
+"$var1 * $var2 = $prod"
 
 Replace the variables in text with their values in the following format:
-Write-Host "$var1 / $var2 = $quo"
+"$var1 / $var2 = $quo"
 ```
 ### Creating an Array
 ```
