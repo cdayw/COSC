@@ -88,6 +88,9 @@ Set-Alias gh -Value Get-Help
 ```
 ### Variables 
 ```
+'$var1' > $var1  (Literally prints string $var1)
+"$var1" > 10     (prints whatever is assigned to var1)
+
 Create a variable called "var1" that holds a random number between 25-50.
 $var1 = Get-random -Minimum 25 -Maximum 51
 
@@ -122,4 +125,36 @@ Replace the variables in text with their values in the following format:
 ```
 $array = "gal", "dir", "echo", "?", "%", "ft"
 $array | ForEach-Object{Get-Alias $_}
+
+$var = "HELLO WORLD"
+[array]$var[0..5]
+H
+E
+L
+L
+O
+```
+## More Variables + & or Invoke-Command
+```
+$myblock = { Get-Service | Format-Table Name, Status }
+&myblock or invoke-command $myblock         >       Will Run commands inside of {}
+
+$b = {1+1}
+&$b or invoke-command $b     >   2
+```
+## Sort-Object
+```
+Get-ChildItem | Sort-Object       >       Sorts Alphabetically
+Get-ChildItem "C:\Users\student"| Sort-Object -Property Length -Descending  > Sorts Alphabetically based on length
+```
+### Group-Object
+```
+Get-Service | Group-Object status
+Get-Process | Group-Object {$_.name}    >   sorts process alphabetically by name
+Get-Process | Group-Object {$_.name.Substring(0,4)}   > same as above only shows four letters
+Get-Process | Group-Object {$_.name.Substring(0,4).ToUpper()}    > same as above but shows uppercase
+Get-Process | Group-Object {$_.name.Substring(0,1).ToUpper()} | ForEach-Object{($_.name + " ") * 1; "======"; $_.Group}
+ ^    Groups Processes by first letter in process name and lists them
+
+
 ```
