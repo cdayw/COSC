@@ -155,6 +155,86 @@ Get-Process | Group-Object {$_.name.Substring(0,4)}   > same as above only shows
 Get-Process | Group-Object {$_.name.Substring(0,4).ToUpper()}    > same as above but shows uppercase
 Get-Process | Group-Object {$_.name.Substring(0,1).ToUpper()} | ForEach-Object{($_.name + " ") * 1; "======"; $_.Group}
  ^    Groups Processes by first letter in process name and lists them
+```
+## Reverse Array from Random number range
+```
+$var1 = Get-Random (-20..0)
+$var2 = Get-Random (0..20)
+$array = [array]($var1..$var2)
+Write-Host $array
+[Array]::Reverse($array);
+Write-Host $array
+```
+## From above script, Gives number of elements in Array
+```
+$array.Length
+$reversed = $array[($array.Length-1)..0]
+```
+### Display the start time of the earliest and latest running processes
+```
+Get-Process | Where-Object{$_.StartTime} | Measure-Object -Property StartTime -Minimum -Maximum | Select-Object -Property Minimum, Maximum
+```
+### Get day of the wekk
+```
+Get-Date | select DayOfWeek
+```
+### Installed Hotfixed
+```
+Get-HotFix
+```
+## Display Hotfixes by Installed Date and ID 
+```
+Get-HotFix | Where-Object{$_.InstalledOn} | Sort-Object -Property InstalledOn | Select-Object -Property InstalledOn, HotFixID
+```
+## Sort by Description, Including Description HOTFIXID and Date
+```
+Get-HotFix | Where-Object{$_.InstalledOn} | Sort-Object -Property Description | Select-Object -Property Description, InstalledOn, HotFixID 
+```
+## Find and extract the model number from the provided lines of text. If there isn’t a model number then display to the user that a model number wasn’t found
+```
+$line1 = "Do you have model number: MT5437 for john.doe@sharklasers.com?"
+$line2 = "What model number for john.doe@sharklasers.com?"
 
+$pattern = "MT\d+"
 
+foreach ($line in $line1, $line2){
+if ($line -match $pattern){
+    $matched = $Matches[0]
+    $mod = Select-String $matched -Pattern "model number:*"
+    Write-Output "$mod was found"
+
+}
+    else{
+    Write-Host "serial not found in $line2"
+    }
+}
+
+OR
+
+$pattern = '[A-Z]{2}[0-9]{4}'
+
+$line1,$line2 | ForEach-Object {
+    if($_ -match $pattern){
+    Write-Host $Matches[0]": $_"
+    }
+    else{
+    Write-Host "no matches found on: $_"
+    }
+}
+
+```
+##  Use an array to iterate and open the following; Notepad, MS Edge, MSpaint. Query the processes, Kill the processes from PowerShell
+```
+
+```
+## IF Statements
+```
+$x = 5
+if ($x -lt 5) {
+  Write-host "Less than 5"
+} elseif ($x -eq 5) {
+  Write-Host "It is 5"
+} else {
+  Write-Host "Greater then 5"
+}
 ```
