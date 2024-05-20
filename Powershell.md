@@ -92,7 +92,7 @@ Create a variable called "var1" that holds a random number between 25-50.
 $var1 = Get-random -Minimum 25 -Maximum 51
 
 Create a variable called "var2" that holds a random number between 1-10.
-$var2 = Get-random -Minimum 1 -Maximum 10
+$var2 = Get-random -Minimum 1 -Maximum 11
 
 Create a variable called "sum" that holds the sum of var1 and var2.
 $sum = $var1 + $var2
