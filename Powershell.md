@@ -281,8 +281,7 @@ foreach($fish in $BB){
 }
 ```
 ## Using -match and regex to extract specific elements out of an Array
-. -> wildcard in regex
-* -> quantifier for wildcard in regex
+. -> wildcard in regex  /  '*' asterisk is quantifier in regex
 ```
 $BB = "Mr. Krabs","Sandy","Larry the Lobster","SpOngebOb","Patrick","Gary"
 
