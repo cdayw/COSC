@@ -264,7 +264,7 @@ foreach($fish in $BB){
         }
 }
 ```
-## Using -like to extract different elements out of an Array 
+## Using -like to extract specific elements out of an Array 
 ```
 $BB = "Mr. Krabs","Sandy","Larry the Lobster","SpOngebOb","Patrick","Gary"
 
@@ -273,6 +273,22 @@ foreach($fish in $BB){
         "$fish is the best fry cook"
         }
     elseif($fish -like '*Lob*'){
+        "$fish has the most gainz"
+        }
+    else{
+    "$fish is cool"
+    }
+}
+```
+## Using -match and regex to extrax specific elements out of an Array
+```
+$BB = "Mr. Krabs","Sandy","Larry the Lobster","SpOngebOb","Patrick","Gary"
+
+foreach($fish in $BB){
+    if($fish -match '^S.*b$*'){
+        "$fish is the best fry cook"
+        }
+    elseif($fish -match '^L.*r$'){
         "$fish has the most gainz"
         }
     else{
