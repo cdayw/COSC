@@ -387,3 +387,29 @@ $empty += 1
 $empty += $sum
 $empty += 'cat'
 ```
+# Elements provided on the pipeline {$_}
+"begin, process, end. "begin and end are optional"
+```
+function cool-printer{ 
+process{$_}
+}
+1,2,3,4,5 | cool-printer
+> 1
+> 2
+> 3
+> 4
+> 5
+```
+# Elements provided on pipeline cont.
+```
+function Get-Sum{
+    begin{$sum = 0}
+
+    process{$sum += $_}
+ 
+    end{$sum}
+
+}
+1,2,3,4,5 | Get-Sum
+> 15
+```
