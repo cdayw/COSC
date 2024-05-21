@@ -399,8 +399,22 @@ process{$_}
 > 3
 > 4
 > 5
+
+OR
+
+
+funcion Print-Input{
+Process{Write-Output "$PSItem"}
+}
 ```
 # Elements provided on pipeline cont.
+## Print Input from elements provided
+```
+function Print-Input{
+Process{Write-Output "$PSItem"}
+}
+```
+## Sum with Elements provided
 ```
 function Get-Sum{
     begin{$sum = 0}
@@ -412,4 +426,45 @@ function Get-Sum{
 }
 1,2,3,4,5 | Get-Sum
 > 15
+```
+## Print each element provided and sum
+```
+function Print-Input{
+$sum = 0 
+foreach($num in $input){
+$num
+$sum += $num}
+$sum
+}
+
+1,2,3,4 | Print-Input
+> 1
+> 2
+> 3
+> 4
+> 10
+```
+## Do/While/until
+```
+$num = 4
+do { 
+    $num
+    $num ++
+ }while($true)
+```
+counts forever
+```
+$num = 4
+do { 
+    $num
+    $num ++
+ }while($true)
+```
+counts to until 3
+```
+$num = 0
+do { 
+    $num
+    $num ++
+ }until($num -gt 3)
 ```
