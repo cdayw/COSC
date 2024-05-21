@@ -452,7 +452,7 @@ do {
     $num ++
  }while($true)
 ```
-counts forever
+## counts forever
 ```
 $num = 4
 do { 
@@ -460,7 +460,7 @@ do {
     $num ++
  }while($true)
 ```
-counts to until 3
+## counts to 3
 ```
 $num = 0
 do { 
