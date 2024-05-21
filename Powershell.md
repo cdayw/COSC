@@ -280,7 +280,7 @@ foreach($fish in $BB){
     }
 }
 ```
-## Using -match and regex to extrax specific elements out of an Array
+## Using -match and regex to extract specific elements out of an Array
 ```
 $BB = "Mr. Krabs","Sandy","Larry the Lobster","SpOngebOb","Patrick","Gary"
 
