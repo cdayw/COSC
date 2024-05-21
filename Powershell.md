@@ -297,3 +297,12 @@ foreach($fish in $BB){
     }
 }
 ```
+## Counting to 5 
+```
+$num = 0
+
+while($num -lt 5){
+    $num 
+    $num++ 
+}
+```
