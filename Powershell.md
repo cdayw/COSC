@@ -238,3 +238,9 @@ if ($x -lt 5) {
   Write-Host "Greater then 5"
 }
 ```
+## Multiply integers in an array by two
+```
+$nums = 1,2,3,4,5
+$nums.GetType()
+$nums | ForEach-Object{$_ * 2}
+```
