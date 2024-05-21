@@ -248,3 +248,35 @@ OR
 
 foreach($i in $nums){$i * 2}
 ```
+## Change all elements in array to upper
+```
+$BB = "Mr. Krabs","Sandy","SpOngebOb","Patrick","Gary"
+
+foreach($fish in $BB){$fish.toUpper()}
+```
+## Using -like to extract an element out of an Array
+```
+$BB = "Mr. Krabs","Sandy","SpOngebOb","Patrick","Gary"
+
+foreach($fish in $BB){
+    if($fish -like 'SPONGE*'){
+        "$fish is the best fry cook"
+        }
+}
+```
+## Using -like to extract different elements out of an Array 
+```
+$BB = "Mr. Krabs","Sandy","Larry the Lobster","SpOngebOb","Patrick","Gary"
+
+foreach($fish in $BB){
+    if($fish -like 'SPONGE*'){
+        "$fish is the best fry cook"
+        }
+    elseif($fish -like '*Lob*'){
+        "$fish has the most gainz"
+        }
+    else{
+    "$fish is cool"
+    }
+}
+```
