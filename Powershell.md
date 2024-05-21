@@ -306,3 +306,21 @@ while($num -lt 5){
     $num++ 
 }
 ```
+## Magic Number game with random number
+```
+$num = 0
+$magic = Get-random(0..200)
+
+while($True){
+    $num = Read-Host -Prompt "Pick a number between 0 and 200" 
+    if ($num -lt $magic){
+    "Too low, Try again"
+    } 
+    elseif($num -gt $magic){
+    "Too high, Try again"
+    }
+    else{
+    "Winner $magic"; break
+    }
+}
+```
