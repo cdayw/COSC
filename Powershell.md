@@ -347,3 +347,43 @@ while($True){
 ```
 Get-Proccess | Where-Object{$_.name -like "*MS*"}
 ```
+## Split and Join 
+```
+<SPLIT>
+foreach($oct in ('8.8.8.8' -split '\.')){     #\ escapes the .#
+    if ([int]$oct -lt 0 -and [int]$oct -gt 255){
+        "$oct is not valid octet"
+        }
+    else {"$oct is valid"}
+}
+
+<JOIN> #joins elements in an array
+'cat','dog' -join ""
+>catdog
+```
+## starswith and endswith (true/false)
+```
+'cat'.startswith('c')
+'dog'.endswith('g')
+```
+## empty array
+```
+$empty = @()
+```
+## jagged array
+```
+$empty = (1,2,3,(4,5,6,(7,8,9)))
+
+$empty[3][3][0]
+> 7
+```
+## append to an array
+```
+$sum = 0
+$sum += 1
+
+$empty = @()
+$empty += 1
+$empty += $sum
+$empty += 'cat'
+```
