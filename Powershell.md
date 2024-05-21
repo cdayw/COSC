@@ -324,3 +324,8 @@ while($True){
     }
 }
 ```
+## Find processes that contain MS
+```
+Get-Proccess | Where-Object{$_.name -like "*MS*"}
+```
+```
