@@ -225,6 +225,25 @@ $line1,$line2 | ForEach-Object {
 ```
 ##  Use an array to iterate and open the following; Notepad, MS Edge, MSpaint. Query the processes, Kill the processes from PowerShell
 ```
+$procs = "notepad","MSEdge","mspaint"
+
+$procs | ForEach-Object { Start-Process $_ }
+
+
+$file = "$pwd\procs.txt"
+foreach($proc in $procs){
+    Get-Process | Where-Object{$_.Name -like $proc} | `
+    ForEach-Object{Add-Content $file $_.Id} }
+Get-Content .\procs.txt | ForEach-Object{Stop-Process $_}
+
+Foreach($proc in $procs){
+     Get-Process | Where-Object{$_.Name -like $proc} | `
+     Format-Table -Property id, name, starttime, totalprocessortime, `
+     VirtualMemorySize, WorkingSet64
+     }
+
+$procs | ForEach-Object{Get-Process $_ | Select id, name, starttime, totalprocessortime, `
+     VirtualMemorySize, WorkingSet64 | sort}
 
 ```
 ## IF Statements
@@ -327,5 +346,4 @@ while($True){
 ## Find processes that contain MS
 ```
 Get-Proccess | Where-Object{$_.name -like "*MS*"}
-```
 ```
