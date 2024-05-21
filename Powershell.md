@@ -243,4 +243,8 @@ if ($x -lt 5) {
 $nums = 1,2,3,4,5
 $nums.GetType()
 $nums | ForEach-Object{$_ * 2}
+
+OR
+
+foreach($i in $nums){$i * 2}
 ```
