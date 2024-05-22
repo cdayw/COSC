@@ -499,6 +499,10 @@ $vals = @()
 ## Return the line of text from the file given by the `$filename argument that corresponds to the line number given by `$whichline. The first line in the file corresponds to line number 0.
 ```
 Get-Content $filename | select-object -Index($whichline)
+
+OR
+
+return (Get-Content $filename)[$whicline]
 ```
 ## Return the sum of all elements provided on the pipeline
 ```
