@@ -526,6 +526,9 @@ foreach($oct in $addr -split '\.'){
             return $true}
         else{return $false}
        }
+OR
+
+[bool]($addr -as [ipaddress])
 ```
 ## Return `$true if the contents of the file given in the $filepath argument have changed since $lasthash was computed. $lasthash is the previously computed SHA256 hash (as a string) of the contents of the file.
 ```
