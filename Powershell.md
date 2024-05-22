@@ -487,16 +487,14 @@ $a = 0
 ```
 ## In a loop, prompt the user to enter positive integers one at time. Stop when the user enters a -1. Return the maximum positive value that was entered.
 ```
-$a = 0
-       while($true){
-            $x = Read-Host
-            if($x -eq -1){
-                break
-            }
-            elseif ($x -gt $a){               
-                return $x[-1]
-                }
-            }
+$vals = @()
+   do {
+       $val = Read-Host
+       if ([int]$val -ne -1){
+           $vals += $val
+       }
+    }until([int]$val -eq -1)
+    return ($vals | Measure-Object -Maximum).Maximum
 ```
 ## Return the line of text from the file given by the `$filename argument that corresponds to the line number given by `$whichline. The first line in the file corresponds to line number 0.
 ```
