@@ -468,3 +468,73 @@ do {
     $num ++
  }until($num -gt 3)
 ```
+# Practice Test
+## Return the product of the arguments
+```
+$prod = $var1 * $var2 * $var3 *$var4
+    return $prod
+```
+## Search the 2 dimensional array for the first occurance of key at column index 0 and return the value at column index 9 of the same row. Return -1 if the key is not found
+```
+$a = 0
+    foreach ($i in $arr){
+        if($i[0] -eq $key){
+        return $i[9]}
+    }
+    if($a -eq 0){
+        return -1
+    }
+```
+## In a loop, prompt the user to enter positive integers one at time. Stop when the user enters a -1. Return the maximum positive value that was entered.
+```
+$a = 0
+       while($true){
+            $x = Read-Host
+            if($x -eq -1){
+                break
+            }
+            elseif ($x -gt $a){               
+                return $x[-1]
+                }
+            }
+```
+## Return the line of text from the file given by the `$filename argument that corresponds to the line number given by `$whichline. The first line in the file corresponds to line number 0.
+```
+Get-Content $filename | select-object -Index($whichline)
+```
+## Return the sum of all elements provided on the pipeline
+```
+$sum = 0
+       foreach($num in $input){
+            $sum += $num}
+       return $sum    
+```
+## Return only those commands whose noun is process
+```
+Get-Command -noun 'process'
+```
+## Return the string 'PowerShell is ' followed by the adjective given by the `$adjective argument
+```
+return "Powershell is $adjective"
+```
+## Return `$true when the given argument is a valid IPv4 address, otherwise return `$false. For the purpose of this function, regard
+addresses where all octets are in the range 0-255 inclusive to be valid.
+```
+foreach($oct in $addr -split '\.'){
+        if ([int]$oct -gt 0 -and [int]$oct -lt 255){
+            return $true}
+        else{return $false}
+       }
+```
+## Return `$true if the contents of the file given in the `$filepath argument have changed since `$lasthash was
+computed. `$lasthash is the previously computed SHA256 hash (as a string) of the contents of the file.
+```
+$x = (Get-FileHash $filepath).hash
+       if($x -ne $lasthash){
+            return $true
+        }
+        else{
+            return $false
+        }
+         
+```
