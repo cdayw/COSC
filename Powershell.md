@@ -511,12 +511,11 @@ $sum = 0
 ```
 Get-Command -noun 'process'
 ```
-## Return the string 'PowerShell is ' followed by the adjective given by the `$adjective argument
+## Return the string 'PowerShell is ' followed by the adjective given by the $adjective argument
 ```
 return "Powershell is $adjective"
 ```
-## Return `$true when the given argument is a valid IPv4 address, otherwise return `$false. For the purpose of this function, regard
-addresses where all octets are in the range 0-255 inclusive to be valid.
+## Return `$true when the given argument is a valid IPv4 address, otherwise return $false. For the purpose of this function, regard addresses where all octets are in the range 0-255 inclusive to be valid.
 ```
 foreach($oct in $addr -split '\.'){
         if ([int]$oct -gt 0 -and [int]$oct -lt 255){
@@ -524,8 +523,7 @@ foreach($oct in $addr -split '\.'){
         else{return $false}
        }
 ```
-## Return `$true if the contents of the file given in the `$filepath argument have changed since `$lasthash was
-computed. `$lasthash is the previously computed SHA256 hash (as a string) of the contents of the file.
+## Return `$true if the contents of the file given in the $filepath argument have changed since $lasthash was computed. $lasthash is the previously computed SHA256 hash (as a string) of the contents of the file.
 ```
 $x = (Get-FileHash $filepath).hash
        if($x -ne $lasthash){
