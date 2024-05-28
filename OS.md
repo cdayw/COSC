@@ -43,3 +43,23 @@ Get-Ciminstance -Class Win32_Service | Where-Object name -like PROCESSNAME | Fl 
 ```
 Get-Content words2.txt | measure-object -word
 ```
+## Count Number of files in a directory 
+```
+gci | measure-object -line
+```
+## Compare two text files and find differences
+```
+compare-object (get-content .\new.txt) (Get-Content .\old.txt)
+```
+## Get number of methods of Get-Process command and count each line to get total
+```
+Get-Process | Get-member -MemberType Method | Measure-Object -Line
+```
+## Count Number of Files in a directory
+```
+gci | Measure-Object -Line
+```
+## Count the number of words, case-insensitive, with either a or z in a word, in the words.txt file
+```
+Get-Content words.txt | Select-String -Pattern a,z | Measure-Object -Line
+```
