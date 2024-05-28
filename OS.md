@@ -7,7 +7,10 @@ OS_ACT  10.50.22.197:8000
 xfreerdp /u:student /v:10.50.36.172 -dynamic-resolution +glyph-cache +clipboard
 ```
 ## DAY 1 - POWERSHELL 
-
+```
+01 : windows_powershell : start7917
+02 : windows_powershell_profiles : start9943 
+```
 ### Profiles - Method to set Persistence
 ```
 $Profile
@@ -29,4 +32,14 @@ notepad c:\MyWork.txt                            # View the contents of the crea
 ## See Perms
 ```
 Get-PSSessionConfiguration                        # Displays permissions
+```
+
+## Get a Process information/description 
+```
+Get-Ciminstance -Class Win32_Service | Where-Object name -like PROCESSNAME | Fl *
+```
+
+## Count Number of words in a txt file
+```
+Get-Content words2.txt | measure-object -word
 ```
