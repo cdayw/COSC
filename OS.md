@@ -63,3 +63,14 @@ gci | Measure-Object -Line
 ```
 Get-Content words.txt | Select-String -Pattern a,z | Measure-Object -Line
 ```
+## Use a PowerShell loop to unzip the Omega file 1,000 times and read what is inside.
+```
+$a = 1001
+PS C:\Users\CTF\Documents> DO {$a-- 
+>> Expand-Archive -Path C:\Users\CTF\Documents\Omega$a.zip -DestinationPath C:\Users\CTF\Documents
+>> }Until ($a -eq 0)
+```
+## Count the number of words in words.txt that meet the following criteria: a twice, and have A-G immediately after
+```
+gci .\words.txt | Select-String -Pattern 'a{2,}[a-g]' | Measure-Object -Wor
+```
