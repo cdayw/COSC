@@ -6,7 +6,7 @@ Stack  10.50.36.172
 OS_ACT  10.50.22.197:8000
 xfreerdp /u:student /v:10.50.36.172 -dynamic-resolution +glyph-cache +clipboard
 ```
-## DAY 1 - POWERSHELL 
+# DAY 1 - WINDOWS POWERSHELL 
 ```
 01 : windows_powershell : start7917
 02 : windows_powershell_profiles : start9943 
@@ -15,7 +15,7 @@ xfreerdp /u:student /v:10.50.36.172 -dynamic-resolution +glyph-cache +clipboard
 ```
 $Profile
 
-All Users, All Hosts         $PsHome\Profile.ps1 (Takes Precedence)
+All Users, All Hosts         $PsHome\Profile.ps1 (Takes Precedence #Runs on Startup)
 All Users, Current Host      $PsHome\Microsoft.PowerShell_profile.ps1
 Current User, All Hosts      $Home\[My]Documents\Profile.ps1
 Current User, Current Host   $Home\[My ]Documents\WindowsPowerShell\Profile.ps1
@@ -72,5 +72,10 @@ PS C:\Users\CTF\Documents> DO {$a--
 ```
 ## Count the number of words in words.txt that meet the following criteria: a twice, and have A-G immediately after
 ```
-gci .\words.txt | Select-String -Pattern 'a{2,}[a-g]' | Measure-Object -Wor
+gci .\words.txt | Select-String -Pattern 'a{2,}[a-g]' | Measure-Object -Word
+```
+## View primary powershell profile
+```
+cat $PsHome\Profile.ps1 
+
 ```
