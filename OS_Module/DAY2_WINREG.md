@@ -21,6 +21,7 @@ HKU\.DEFAULT            Default, default.LOG, default.sav
 HKU\SID                 NTUSER.DAT
 HKU\SID_CLASSES         UsrClass.dat, UsrClass.dat.LOG
 ```
+## Powershell to get mapped drives
 ```
-
+Get-PSDrive
 ```
