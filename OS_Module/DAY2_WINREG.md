@@ -65,3 +65,15 @@ Get-Acl
 ```
 gci C:\readme -Recurse -Force -ErrorAction SilentlyContinue
 ```
+## Find Hidden Files and Identify ADS
+```
+gci -path C:\Users\CTF\Documents -force -recurse
+gi .\nothing_here -Stream *
+gc .\nothing_here:hidden
+```
+## Find any file with fortune in name, Identiy ADS and read
+```
+gci C:\*fortune* -force -recurse -ErrorAction SilentlyContinue
+gi '.\The Fortune Cookie' -stream *
+gc '.\The Fortune Cookie' -Stream none
+```
