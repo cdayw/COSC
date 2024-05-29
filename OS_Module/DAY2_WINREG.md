@@ -37,3 +37,23 @@ Get-ChildItem HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\
 ```
 Get-WmiObject win32_account | select-object name,sid | fl
 ```
+## What is the value inside of the registry subkey that loads a single time when the "student" user logs on?
+```
+get-item registry::HKEY_USERS\S-1-5-21-2881336348-3190591231-4063445930-1003\Software\Microsoft\Windows\CurrentVersion\Runonce
+```
+## Run Once everytime Machine is powered on
+```
+gi registry::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce 
+```
+## Figure out the manufacturer's name of the only USB drive that was plugged into this machine.
+```
+get-item registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR
+```
+## What suspicious user profile, found in the registry, has connected to this machine?
+```
+gci ‘HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList’
+```
+## What suspicious wireless network, found in the registry, has this system connected to?
+```
+gci registry::"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Networklist\Profiles"
+```
