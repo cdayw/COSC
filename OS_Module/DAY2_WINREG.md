@@ -25,3 +25,15 @@ HKU\SID_CLASSES         UsrClass.dat, UsrClass.dat.LOG
 ```
 Get-PSDrive
 ```
+## Get-Item - Reads the value of the inputted object
+```
+Get-item HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+```
+## Get-ChildItem - Reads sub keys from the input value
+```
+Get-ChildItem HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\
+```
+## Get SIDS in powershell
+```
+Get-WmiObject win32_useraccount | select-object sid  
+```
