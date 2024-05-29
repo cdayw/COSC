@@ -57,3 +57,11 @@ gci ‘HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList’
 ```
 gci registry::"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Networklist\Profiles"
 ```
+## Get File Permissions 
+```
+Get-Acl
+```
+## Find a file and ignore errors
+```
+gci C:\readme -Recurse -Force -ErrorAction SilentlyContinue
+```
