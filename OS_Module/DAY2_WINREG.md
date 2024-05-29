@@ -33,7 +33,7 @@ Get-item HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
 ```
 Get-ChildItem HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\
 ```
-## Get SIDS in powershell
+## Get USER/SIDS in powershell
 ```
-Get-WmiObject win32_useraccount | select-object sid  
+Get-WmiObject win32_account | select-object name,sid | fl
 ```
