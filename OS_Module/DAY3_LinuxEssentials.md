@@ -75,3 +75,7 @@ find  /media/Bibliotheca/* -type f -perm /g=rwx -exec ls -l {} \;
 find  /media/Bibliotheca/* -type f -group guardsmen -exec ls -l {} \;
 sudo -u gaunt ./filename
 ```
+## Locate the file in /media/Bibliotheca that Quixos has sole modification rights on.
+```
+find  /media/Bibliotheca/* -type f -user quixos -perm /u=w -exec ls -l {} \;
+```
