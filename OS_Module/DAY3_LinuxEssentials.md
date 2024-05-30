@@ -51,3 +51,27 @@ cat /etc/passwd | cut -d: -f5
 ```
 sudo cat /etc/group | grep -i lodge | cut -d: -f4 |
 ```
+## Find user with unique login shell
+```
+sudo cat /etc/passwd | cut -d: -f1,7 | grep -v nologin
+```
+## Verify user group permissions/existence of groups
+```
+groups
+groups <username>
+```
+## Locate the file within /media/Bibliotheca that is modifiable by the only user that is part of the chapter group, but not part of the lodge group.
+```
+cat /etc/group | grep -i lodge
+cat /etc/group | grep -i chapter
+find  /media/Bibliotheca/* -type f -user <username> -perm /u=w
+```
+## Identify the file within /media/Bibliotheca where the owning group has more rights than the owning user.
+```
+find  /media/Bibliotheca/* -type f -perm /g=rwx -exec ls -l {} \;
+```
+## Execute the file owned by the guardsmen group in /media/Bibliotheca, as the owning user.
+```
+find  /media/Bibliotheca/* -type f -group guardsmen -exec ls -l {} \;
+sudo -u gaunt ./filename
+```
