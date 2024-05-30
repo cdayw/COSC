@@ -47,3 +47,7 @@ find /home/* -type f -exec wc -l {} + 2>/dev/null | sort -rn
 ```
 cat /etc/passwd | cut -d: -f5
 ```
+## Get Users in lodge group
+```
+sudo cat /etc/group | grep -i lodge | cut -d: -f4 |
+```
