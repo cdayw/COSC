@@ -79,3 +79,19 @@ sudo -u gaunt ./filename
 ```
 find  /media/Bibliotheca/* -type f -user quixos -perm /u=w -exec ls -l {} \;
 ```
+## Locate the file in /media/Bibliotheca that Quixos has sole modification rights on.
+```
+find  /media/Bibliotheca -name '.*' -type f -exec ls -l {} \;
+```
+## Using the commands ls and grep, identify the number of directories in /etc/ that end in .d
+```
+ls -l /etc | egrep "\.d$"
+```
+## Use regular expressions to match patterns similar to valid and invalid IP addresses.
+```
+grep -E -o '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' numbers | wc -l
+```
+## Use Regex to find valid ips
+```
+grep -E '^(([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\.){3}([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])$' numbers | wc -l
+```
