@@ -77,3 +77,13 @@ gci C:\*fortune* -force -recurse -ErrorAction SilentlyContinue
 gi '.\The Fortune Cookie' -stream *
 gc '.\The Fortune Cookie' -Stream none
 ```
+
+# BIOS OR UEFI
+```
+bcdedit | findstr /i winload 
+```
+## Delete Safeboot value
+```
+bcdedit /deletevalue safeboot 
+```
+# IMPORTANT** CHECK SERVICES FOR PERSISTENCE services.msc
