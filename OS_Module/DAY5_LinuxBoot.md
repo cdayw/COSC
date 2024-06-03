@@ -109,3 +109,30 @@ dd if=/home/bombadil/mbroken bs=1 skip=392 count=4 | md5sum
 ```
 cat /etc/inittab | grep def
 ```
+## Identify the file that init is symbolically-linked to, on the SystemD init machine
+```
+cd /sbin
+ls -lisa | grep init
+```
+## What is the default target on the SystemD machine and where is it actually located?
+```
+ls -lisa /lib/systemd/system/default.target
+```
+## Display configuration file for Default/Graphical target file
+```
+cat /lib/systemd/system/default.target | tail -n 8
+OR
+ls -l /etc/systemd/system/graphical.target.wants/
+```
+## How many wants dependencies does SystemD actually recognize for the default.target
+```
+systemctl show -p Wants graphical.target
+```
+## What is the full path to the binary used for standard message logging?
+```
+find / -name *syslogd* 2>/dev/null
+```
+## Identify the Linux Kernel being loaded by the Grub, by examining its configuration.
+```
+cat /boot/grub/grub.cfg | grep vmlinuz
+```
