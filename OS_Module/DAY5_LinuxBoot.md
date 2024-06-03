@@ -3,12 +3,16 @@
 ## BOOT PROCESS
 ```
 BIOS              UEFI
+ |		   |
 MBR               GPT
+ |		   |
 GRUB              GRUB.efi
-      LINUX KERNEL
-          init
-Sysv INIT         Systemd init 
-/sbin/init        /lib/systemd/systemd 
+   \ LINUX KERNEL /
+	init
+      /      \	
+Sysv INIT      Systemd init
+    |		     | 
+/sbin/init     /lib/systemd/systemd 
 ^** CHECK FOR PERSISTENCE**^
 ```
 ### 4 PARTITION ENTRIES
