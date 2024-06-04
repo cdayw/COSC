@@ -79,3 +79,20 @@ netstat
 -o   Displays the owning process ID (PID) associated with each connection
 -b   Displays the executable involved in creating each connection (must have admin rights)
 ```
+# Baseline/Abnormalites
+### System Processes run from C:\Windows\System32
+### Third party processes will run elsewhere. Ex: Chrome runs from C:\Program Files
+### System process with a high PID (System processes will be started first = Low PID)
+
+# UAC
+```
+Multiple color-coded consent prompts
+
+    Red - Application or publisher blocked by group policy
+
+    Blue & gold - Administrative application
+
+    Blue - Trusted and Authenticode signed application
+
+    Yellow - Unsigned or signed but not trusted application
+```
