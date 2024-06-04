@@ -96,3 +96,4 @@ Multiple color-coded consent prompts
 
     Yellow - Unsigned or signed but not trusted application
 ```
+
