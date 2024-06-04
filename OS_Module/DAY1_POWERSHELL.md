@@ -5,10 +5,7 @@ Stack  10.50.36.172
 OS_ACT  10.50.22.197:8000
 xfreerdp /u:student /v:10.50.36.172 -dynamic-resolution +glyph-cache +clipboard
 ```
-# DAY 1 - WINDOWS POWERSHELL 
-```
-01 : windows_powershell : start7917
-02 : windows_powershell_profiles : start9943 
+
 ```
 ### Profiles - Method to set Persistence
 ```
