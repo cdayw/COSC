@@ -96,4 +96,39 @@ Multiple color-coded consent prompts
 
     Yellow - Unsigned or signed but not trusted application
 ```
+### Recursively Search for a registry key in a HIVE
+```
+reg query HKCU /s /f SERVICE
+```
 
+# SYSINTERNALS
+## Process Monitor
+```
+Process Monitor is an advanced monitoring tool for Windows that shows real-time File System, Registry and Process/Thread activity. It combines the features of two legacy Sysinternals utilities, Filemon and Regmon
+
+Registry - Anything from creating, reading, deleting, or querying keys
+
+File System - File creation, writing, deleting, etc and this includes both local and      network drives
+
+Network - This only shows source and destination TCP/UDP traffic
+
+Process - These events are for processes and threads where a process starts, a thread starts or exits, etc. Probably better in ProcExp
+
+Profiling - Checks the amount of processor time and memory use of each process
+```
+## AutoRuns
+```
+Autoruns shows applications automatically started on during system boot or login as well as the Registry and file system locations for auto-start configurations. Examples: AppInit, Winlogon, Scheduled Tasks, Services, Logon, etc.
+```
+## Search Registry for path and name of malware
+```
+Regedit.exe
+```
+## Find which process is sending the SYN_SENT flag
+```
+Use TCPView in SysInternals
+Highlighted items that are colors notate special meanings
+Pink - Means no publisher information was found or the digital signature doesn’t exist or match.
+Green - Used when comparing previous set of Autorun data to indicate an item wasn’t there last time.
+Yellow - The startup entry is there, but the file or job it points to doesn’t exist anymore
+```
