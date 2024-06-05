@@ -185,4 +185,7 @@ ConsentPromptBehaviorAdmin    REG_DWORD    0x5
 ```
 EnableLUA    REG_DWORD    0x1337
 ```
-##
+## What command-line (cmd) command will show service information?
+```
+sc query
+```
