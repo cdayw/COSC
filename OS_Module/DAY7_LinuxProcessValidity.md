@@ -123,4 +123,5 @@ lrwxrwxrwx 1 root    root    0 Aug 27 14:22 exe -> /usr/sbin/sshd
 ** crontjobs - ls -lisa /etc/cron.*
 ** Check for sus process - ps -elf, HTOP, TOP
 ** Check for files that reference .txt within -  grep -Rnw / -e "*.txt" 2>/dev/null
+** Check startup scripts, profiles, ~/.bash_profile, ~/.bash_login, ~/.profile, /etc/profile
 ```
