@@ -132,3 +132,57 @@ Pink - Means no publisher information was found or the digital signature doesn�
 Green - Used when comparing previous set of Autorun data to indicate an item wasn’t there last time.
 Yellow - The startup entry is there, but the file or job it points to doesn’t exist anymore
 ```
+## What permissions are on an executable
+```
+Find Location/Directory of exe
+Use accesschk on file
+accesschk C:\PATH\MALWARE.exe -accepteula
+```
+## Get Path from handle on an executable
+```
+Find path/pid or use name of exe
+RUN AS ADMIN
+handle malware.exe -accepteula
+```
+## LoadOrder
+```
+Windows Firewall sevice mpssvc
+Use LoadOrder to see Group
+```
+## See what dll is associated with a process
+```
+open Procexp as ADMIN
+Find Process and view properties
+View threads and somethingdll.dll should be in there
+```
+## View Public profile for Windows Defender Firewall
+```
+netsh advfirewall show publicprofile logging
+```
+## Determine what opened sus port 6666
+```
+Using tcp view discovered powershell.exe opened port 6666
+An executable/ps script opened the port
+use process explorer filtering for powershell.exe
+View Command line in properties or hover over name of powershell.exe
+```
+## What Sysinternals tool will allow you to view a file's manifest?
+```
+SigCheck
+```
+```
+./sigcheck -m C:\windows\regedit.exe
+```
+## Reg Query to see UAC 
+```
+reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+```
+## Provide the name of the UAC [Registry subkey] property that determines what level UAC is set to for admin privileges
+```
+ConsentPromptBehaviorAdmin    REG_DWORD    0x5
+```
+## Determine which UAC subkey property shows whether UAC is enabled or not.
+```
+EnableLUA    REG_DWORD    0x1337
+```
+##
