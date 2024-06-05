@@ -91,3 +91,36 @@ List all the proc directories.
 ls -l /proc/
 sudo ls -l /proc/14139
 ```
+## Locate the strange open port on the SysV system
+```
+sudo lsof -i
+sudo lsof -i :6969
+```
+## See what file/executable is related to a specific PID
+```
+ps -p <PID> -f
+```
+## Navigating Proc Directory to find a symbolically linked file via pid
+```
+List all the proc directories.
+ls -l /proc/
+
+Grab the PID of a process.
+ps -elf | grep sshd
+
+List contents for that PID directory.
+sudo ls -l /proc/14139
+
+
+lrwxrwxrwx 1 root    root    0 Aug 27 14:22 exe -> /usr/sbin/sshd
+```
+# CHECK /ETC/INNITTAB FOR PERSISTENCE ** 
+# CHECK CRONJOBS FOR PERSISTENCE
+
+## FIND EVIL ** FIND PERSISTENCE
+```
+**view system timers - systemctl list-timers
+** crontjobs - ls -lisa /etc/cron.*
+** Check for sus process - ps -elf, HTOP, TOP
+** Check for files that reference .txt within -  grep -Rnw / -e "*.txt" 2>/dev/null
+```
