@@ -37,7 +37,7 @@ The real user ID is who you really are (the one who owns the process). It also d
 View kthreadd processes
 ps --ppid 2 -lf | head
 ```
-## Check status/start/stop/restart a service on sys
+## Check status/start/stop/restart a service on sysV
 ```
 service <servicename> status/start/stop/restart
 ```
