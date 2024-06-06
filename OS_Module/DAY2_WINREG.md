@@ -21,6 +21,10 @@ HKU\.DEFAULT            Default, default.LOG, default.sav
 HKU\SID                 NTUSER.DAT
 HKU\SID_CLASSES         UsrClass.dat, UsrClass.dat.LOG
 ```
+```
+Presently, the path for the registry for Service DLL is:
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Service_Name\Parameters\ServiceDll
+```
 ## Powershell to get mapped drives
 ```
 Get-PSDrive
