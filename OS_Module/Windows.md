@@ -381,6 +381,25 @@ sc query
 ## BAM entries for every user on the system
 ```
 Get-Item HKLM:\SYSTEM\CurrentControlSet\Services\bam\state\UserSettings\*
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings #On 1809 and Newer
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\bam\UserSettings #On 1803 and below
+
+Windows 11 (22H2)    10.0.22621
+Windows 11 (21H2)    10.0.22000
+Windows 10 (22H2)    10.0.19045
+Windows 10 (21H2)    10.0.19044
+Windows 10 (21H1)    10.0.19043
+Windows 10 (20H2)    10.0.19042
+Windows 10 (2004)    10.0.1904
+Windows 10 (1909)    10.0.18363
+Windows 10 (1903)    10.0.18362
+Windows 10 (1809)    10.0.17763
+Windows 10 (1803)    10.0.17134
+Windows 10 (1709)    10.0.16299
+Windows 10 (1703)    10.0.15063
+Windows 10 (1607)    10.0.14393
 ```
 ## Single User on the System
 ```
@@ -464,4 +483,19 @@ gci C:\ -Filter  BAD_INTENTIONS.EXE-8F2806FC.pf -ErrorAction SilentlyContinue -R
 ## Search Contents of files in Recycle Bin.
 ```
 gci -recurse -force  'C:\$Recycle.Bin' | Select-String "string content" | fl 
+```
+## Jump List
+```
+The data stored in the Automatic Destinations folder will each have a unique file prepended with the AppID of the associated application
+
+Programs/Items that were recently used
+Get-Childitem -Recurse C:\Users\*\AppData\Roaming\Microsoft\Windows\Recent -ErrorAction Continue | select FullName, LastAccessTime
+
+Get-Childitem -Recurse $env:USERPROFILE\AppData\Roaming\Microsoft\Windows\Recent -ErrorAction SilentlyContinue | select FullName,LastAccessTime
+
+Make sure sysinternals is mounted or unzipped
+- Gci C:\users\student\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations | % {z:\strings.exe -accepteula $_} >> c:\recentdocs.txt
+
+Find important ms in Automatic destination
+gci -recurse -force  C:\Users\student\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination* | gc
 ```
