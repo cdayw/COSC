@@ -392,9 +392,14 @@ Get-Itemproperty 'HKLM:\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings
 Find the Contents of the Recycle Bin
 Get-Childitem 'C:\$RECYCLE.BIN' -Recurse -Verbose -Force | select FullName
 
-    SID - determines which user deleted it
+SID - determines which user deleted it
 
-    Timestamp - When it was deleted
+Timestamp - When it was deleted
+
+$RXXXXXX - content of deleted files
+
+$IXXXXXX - original PATH and name
+
 
 (Hidden System Folder)
 C:\$Recycle.bin
@@ -432,4 +437,26 @@ Win7/8/10: %USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default\history
 Z:\strings.exe 'C:\users\andy.dwyer\AppData\Local\Google\Chrome\User Data\Default\History' -accepteula
 
 **** Alternatively the Select-String cmdlet can be used if Sysinternals is not available. 
+```
+## Powershell Artifacts 
+```
+powershell history of cmds
+Get-History
+
+C\Users\**username**\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+Use Get-Content to access the the history
+Get-Content "C:\users\$env:**username**\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt"
+```
+## Get LastAccess time of file
+```
+Hosts File - C:\Windows\System32\drivers\etc
+gci | select-object LastAccessTime,Name
+```
+## When reading logs, you may notice ... at the end of the line where the message is truncated. What format-table switch/argument will display the entire output?
+```
+Format-Table -Wrap
+```
+## Find File and get creation time
+```
+gci C:\ -Filter  BAD_INTENTIONS.EXE-8F2806FC.pf -ErrorAction SilentlyContinue -Recurse | select-object CreationTime
 ```
