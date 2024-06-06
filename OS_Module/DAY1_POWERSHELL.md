@@ -10,7 +10,7 @@ xfreerdp /u:student /v:10.50.36.172 -dynamic-resolution +glyph-cache +clipboard
 ### Profiles - Method to set Persistence
 ```
 $Profile
-
+```
 All Users, All Hosts         $PsHome\Profile.ps1 (Takes Precedence #Runs on Startup)
 All Users, Current Host      $PsHome\Microsoft.PowerShell_profile.ps1
 Current User, All Hosts      $Home\[My]Documents\Profile.ps1
@@ -73,6 +73,20 @@ gci .\words.txt | Select-String -Pattern 'a{2,}[a-g]' | Measure-Object -Word
 ## View primary powershell profile
 ```
 cat $PsHome\Profile.ps1 
-
 ```
-
+## Get User and SID
+```
+Get-LocalUser | select Name,SID
+```
+## UserAssist
+```
+The UserAssist registry key tracks the GUI-based programs that were ran by a particular user
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\{GUID}\Count\
+*** they are encoded in ROT13
+CEBFF5CD-ACE2-4F4F-9178-9926F41749EA A list of applications, files, links, and other objects that have been accessed
+F4E57C4B-2036-45F0-A9AB-443BCFE33D9F Lists the Shortcut Links used to start programs
+```
+```
+Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\{CEBFF5CD-ACE2-4F4F-9178-9926F41749EA}\Count"
+Output shows the Executable files encoded with ROT13. Copy/ Paste the output into a decdoer site like Rot13 or CyberChef
+```
