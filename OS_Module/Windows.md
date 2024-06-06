@@ -1,3 +1,5 @@
+# WINDOWS
+*** https://hadess.io/the-art-of-windows-persistence/
 ## INFO
 ```
 CODA-M-24-503
@@ -394,11 +396,40 @@ Get-Childitem 'C:\$RECYCLE.BIN' -Recurse -Verbose -Force | select FullName
 
     Timestamp - When it was deleted
 
-    $RXXXXXX - content of deleted files
-
-    $IXXXXXX - original PATH and name
-
-
 (Hidden System Folder)
 C:\$Recycle.bin
+```
+## Prefetch
+```
+Prefetch files are created by the windows operating system when an application is run from a specific location for the first time.
+
+Location 
+Win7/8/10
+C:\Windows\Prefetch
+```
+## Recent Files
+```
+Registry Key that will track the last files and folders opened and is used to populate data in “Recent” menus of the Start menu. 
+Tracks last 150 files or folders opened.
+
+Location
+HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
+HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt
+
+Get-Item 'Registry::\HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.*'
+Get-Item 'Registry::\HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt'
+
+Converting a Single Value from Hex to Unicode
+:Unicode.GetString((gp "REGISTRY::HKEY_USERS\*\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt")."0")
+```
+## Browser Artifacts 
+```
+Win7/8/10: %USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default\history
+
+"C:\Users\andy.dwyer\AppData\Local\Google\Chrome\User Data\Default\"
+**  The location is different for every browser.
+
+Z:\strings.exe 'C:\users\andy.dwyer\AppData\Local\Google\Chrome\User Data\Default\History' -accepteula
+
+**** Alternatively the Select-String cmdlet can be used if Sysinternals is not available. 
 ```
