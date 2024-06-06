@@ -189,3 +189,7 @@ EnableLUA    REG_DWORD    0x1337
 ```
 sc query
 ```
+## Powershell query service info
+```
+sc.exe showsid  *** Shows SID of service
+```
