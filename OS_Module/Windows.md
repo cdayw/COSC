@@ -460,3 +460,8 @@ Format-Table -Wrap
 ```
 gci C:\ -Filter  BAD_INTENTIONS.EXE-8F2806FC.pf -ErrorAction SilentlyContinue -Recurse | select-object CreationTime
 ```
+## Recover the flag from the Recycle Bin. Enter the name of the recycle bin file that contained the contents of the flag, and the contents of the deleted file. Include the file extension in your answer.
+## Search Contents of files in Recycle Bin.
+```
+gci -recurse -force  'C:\$Recycle.Bin' | Select-String "string content" | fl 
+```
