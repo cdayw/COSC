@@ -1,4 +1,5 @@
 # Linux Essentials 
+https://hadess.io/the-art-of-linux-persistence/
 
 ## Linux Filesystem
 ```
