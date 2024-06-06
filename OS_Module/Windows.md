@@ -375,3 +375,30 @@ EnableLUA    REG_DWORD    0x1337
 ```
 sc query
 ```
+# BAM
+## BAM entries for every user on the system
+```
+Get-Item HKLM:\SYSTEM\CurrentControlSet\Services\bam\state\UserSettings\*
+```
+## Single User on the System
+```
+wmic useraccount  get caption,sid | more
+Get-Itemproperty 'HKLM:\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\S-1-5-21-1584283910-3275287195-1754958050-1005'
+```
+## Recycle bin artifacts
+```
+Find the Contents of the Recycle Bin
+Get-Childitem 'C:\$RECYCLE.BIN' -Recurse -Verbose -Force | select FullName
+
+    SID - determines which user deleted it
+
+    Timestamp - When it was deleted
+
+    $RXXXXXX - content of deleted files
+
+    $IXXXXXX - original PATH and name
+
+
+(Hidden System Folder)
+C:\$Recycle.bin
+```
