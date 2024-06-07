@@ -96,3 +96,272 @@ grep -E -o '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' numbers | wc -l
 ```
 grep -E '^(([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\.){3}([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])$' numbers | wc -l
 ```
+# DAY 5 LINUX BOOT
+
+## BOOT PROCESS
+```
+BIOS              UEFI
+ |		   |
+MBR               GPT
+ |		   |
+GRUB              GRUB.efi
+   \ LINUX KERNEL /
+	init
+      /      \	
+Sysv INIT      Systemd init
+    |		     | 
+/sbin/init     /lib/systemd/systemd 
+^** CHECK FOR PERSISTENCE**^
+```
+### 4 PARTITION ENTRIES
+### Hexadecimal 256,16,1
+### 4 Bits represents a single Hex char
+
+## Locate Hard drive and partition in linux
+```
+lsblk
+```
+## Examining the contents of the MBR with xxd
+```
+sudo xxd -l 512 -g 1 /dev/vda
+```
+## Making a copy of the MBR with dd 
+```
+dd if=/dev/vda of=MBRcopy bs=512 count=1
+```
+## GRUB
+```
+On BIOS Systems using MBR
+Stage 1 : boot.img located in the first 440 bytes of the MBR loads…​
+
+Stage 1.5 : core.img located in the MBR between the bootstrap and first partition. It loads…​
+
+Stage 2 : /boot/grub/i386-pc/normal.mod which loads the grub menu and then reads
+/boot/grub/grub.cfg Which displays a list of Linux kernels available to load on the system
+````
+````
+Stage 1 : grubx64.efi Located on an EFI partition or in /boot loads…​
+
+Stage 2 : /boot/grub/x86_64-efi/normal.mod /boot/grub/grub.cfg Which displays a list of Linux kernels available to load on the system
+````
+## Looking at Grub.cfg to find kernel 
+```
+cat /boot/grub/grub.cfg
+
+** 
+	This entry in /boot/grub/grub.cfg should be around line 107
+```
+## View inittab on SysV
+```
+cat /etc/inittab
+ls -l /etc/rc*.d/ ** View specific rc 1,2,3,4,5,6
+```
+### Systemd target units are a set of value=data pairs to create processes in a set order on the system. But, they are simple to understand at a functional level by understanding the value=data fields within each
+```
+cat /lib/systemd/system/default.target | tail -n 8
+```
+### Service units create processes when called by target units. They, much like target units, have value=data pairs that determine what the unit does
+```
+cat /etc/systemd/system/display-manager.service | tail -n 13
+```
+### The /etc/environment file is part of PAM(Pluggable Authentication Modules) 6.6.1 used to authenticate users in Linux. That is why it isn’t a bash script like everything else. Executables not located in the path can not be executed by typing in the name of the executable, unless it is located in the same directory. Instead, the absolute or relative path to the executable must be given. ** CHECK FOR PERSISTENCE
+```
+cat /etc/environment
+```
+## /etc/profile file ** CHECK FOR PERSISTIENCE
+```
+cat /etc/profile
+
+/etc/profile is a script that executes whenever a user logs into an interactive shell on Linux. its functionality depends entirely on the version of Linux being used. Ubuntu Linux uses it to set the BASH shell prompt by executing /etc/bash.bashrc and execute any script named *.sh in /etc/profile.d.
+
+Unlike /etc/environment it executes every time a user logs in interactively; therefore, when the file is modified logging out then in again will apply the changes
+```
+## The .bash_profile and .bashrc files
+
+## Values contain in hex positions 0x0000001 - 0x00000008
+```
+1B 2B 3B 4B 5B 6B 7B 8B 9B
+eb 63 90 8e d0 31 e4 8e d8
+0  1  2  3  4  5  6  7  8
+```
+## Hash first partition of MBR
+```
+dd if=/home/bombadil/mbroken bs=1 skip=446 count=16 | md5sum
+** BS = blocksize
+** Skip = skip # of bytes
+** Count = Count # of bytes
+
+0x0000 (0)      Bootstrap Code Area       446 Bytes
+0x01BE (446)    Partition #1              16 Bytes
+0x01CE (462)    Partition #2              16 Bytes
+0x01DE (478)    Partition #3              16 Bytes
+0x01EE (494)    Partition #4              16 Bytes
+0x01FF (510)    0x55 BOOT SIG             2 Bytes
+```
+## OUTPUT HASH of GRUB from MBR
+```
+Find where GRUB BEGINS
+xxd -l 393 -g 1 /home/bombadil/mbroken
+** -l stop after length number
+** -g number of octects per group
+
+dd if=/home/bombadil/mbroken bs=1 skip=392 count=4 | md5sum
+```
+## Get Default run level of machine
+```
+cat /etc/inittab | grep def
+```
+## Identify the file that init is symbolically-linked to, on the SystemD init machine
+```
+cd /sbin
+ls -lisa | grep init
+```
+## What is the default target on the SystemD machine and where is it actually located?
+```
+ls -lisa /lib/systemd/system/default.target
+```
+## Display configuration file for Default/Graphical target file
+```
+cat /lib/systemd/system/default.target | tail -n 8
+OR
+ls -l /etc/systemd/system/graphical.target.wants/
+```
+## How many wants dependencies does SystemD actually recognize for the default.target
+```
+systemctl show -p Wants graphical.target
+```
+## What is the full path to the binary used for standard message logging?
+```
+find / -name *syslogd* 2>/dev/null
+```
+## Identify the Linux Kernel being loaded by the Grub, by examining its configuration.
+```
+cat /boot/grub/grub.cfg | grep vmlinuz
+```
+# DAY7_LinuxProcessValidity
+
+## htop
+```
+htop is a utility used to display various information about Linux processes dynamically, 
+but in a more human friendly way
+```
+## Kernel Processes
+```
+init (/sbin/init) has a process ID of 1; and its parent, the Kernel has a PID of 0. The kernel starts /sbin/init which is the parent/grandparent of all user mode processes.
+
+Modern Linux kernels/distros also have [kthreadd] which is a kernel thread daemon which is second after init so it will have a PID of 2 and will also have no parent.
+
+All kernel processes are fork()ed from [kthreadd] and all user processes are fork()ed from /sbin/init or direct ancestor
+
+Kernel processes are typically used to manage hardware, are directly handled by the kernel, have their own memory space, and have a high priority
+
+Can be identified by the name enclosed in square brackets [ ] (using the ps -f option). kthreadd -spawned processes will have a PPID of 2
+
+    For user-space processes /sbin/init ( PID = 1 )
+
+    For kernel-space processes [kthreadd] ( PID = 2 )
+```
+
+## Process Ownership
+### Effective User ID (EUID)
+```
+Effective user ID (EUID) defines the access rights for a process. In layman’s term it describes the user whose file access permissions are used by the process.
+```
+### Real User ID (RUID)
+```
+The real user ID is who you really are (the one who owns the process). It also defines the user that can interact with the running process—most significantly, which user can kill and send signals to a process.
+```
+
+## Process Enum
+```
+View kthreadd processes
+ps --ppid 2 -lf | head
+```
+## Check status/start/stop/restart a service on sysV
+```
+service <servicename> status/start/stop/restart
+```
+## List all unit files that systemd has listed as active
+```
+systemctl list-units
+```
+## List all units that systemd has loaded or attempted to load into memory, including those that are not currently active, add the --all switch:
+```
+systemctl list-units --all
+```
+## Check status of a service
+```
+systemctl status <servicename.service>
+```
+# CRON JOBS ** Check for persistence
+```
+The cron daemon checks the directories /var/spool/cron, /etc/cron.d and the file /etc/crontab, once a minute and executes any commands specified that match the time.
+/var/spool/cron     /etc/cron.d        /etc/crontab
+```
+## crontab commands
+```
+crontab -u [user] file This command will load the crontab data from the specified file
+crontab -l -u [user] This command will display/list user’s crontab contents
+crontab -r -u [user] This Command will remove user’s crontab contents
+crontab -e -u [user] This command will edit user’s crontab contents
+```
+## crontab 
+## minute hour day month week
+```
+  ┌───────────── minute (0 - 59)
+  │ ┌───────────── hour (0 - 23)
+  │ │ ┌───────────── day of the month (1 - 31)
+  │ │ │ ┌───────────── month (1 - 12)
+  │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+  │ │ │ │ │                           7 is also Sunday on some systems)
+  │ │ │ │ │
+  │ │ │ │ │
+  * * * * * <Time/Day to execute    "Command to Execute"
+```
+## Processes
+### Viewing File Descriptors
+```
+List all open files being used by every process.
+sudo lsof | tail -30
+
+List all open files for a specific process
+sudo lsof -c sshd
+
+List all the proc directories.
+ls -l /proc/
+sudo ls -l /proc/14139
+```
+## Locate the strange open port on the SysV system
+```
+sudo lsof -i
+sudo lsof -i :6969
+```
+## See what file/executable is related to a specific PID
+```
+ps -p <PID> -f
+```
+## Navigating Proc Directory to find a symbolically linked file via pid
+```
+List all the proc directories.
+ls -l /proc/
+
+Grab the PID of a process.
+ps -elf | grep sshd
+
+List contents for that PID directory.
+sudo ls -l /proc/14139
+
+
+lrwxrwxrwx 1 root    root    0 Aug 27 14:22 exe -> /usr/sbin/sshd
+```
+# CHECK /ETC/INNITTAB FOR PERSISTENCE ** 
+# CHECK CRONJOBS FOR PERSISTENCE
+
+## FIND EVIL ** FIND PERSISTENCE
+```
+**view system timers - systemctl list-timers
+** crontjobs - ls -lisa /etc/cron.*
+** Check for sus process - ps -elf, HTOP, TOP
+** Check for files that reference .txt within -  grep -Rnw / -e "*.txt" 2>/dev/null
+** Check startup scripts, profiles, ~/.bash_profile, ~/.bash_login, ~/.profile, /etc/profile
+```
