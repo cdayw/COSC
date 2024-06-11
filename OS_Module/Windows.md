@@ -499,3 +499,12 @@ Make sure sysinternals is mounted or unzipped
 Find important ms in Automatic destination
 gci -recurse -force  C:\Users\student\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination* | gc
 ```
+## Enumerate ADUSers
+```
+Get-ADUser -filter {PasswordNeverExpires -eq "True"}  -properties * | Select-Object name
+Search-ADAccount -PasswordNeverExpires
+```
+## Find how many total users are in a AD group
+```
+Get-ADGroupMember -Identity "Domain Admins" -Recursive | Measure-Object Name
+```
