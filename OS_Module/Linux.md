@@ -1,6 +1,6 @@
 # Linux Essentials 
 https://hadess.io/the-art-of-linux-persistence/
-
+escalate to root - sudo find /etc/passwd -exec /bin/sh \;
 ## Linux Filesystem
 ```
 The root directory of the file system /
