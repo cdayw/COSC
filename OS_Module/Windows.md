@@ -508,3 +508,9 @@ Search-ADAccount -PasswordNeverExpires
 ```
 Get-ADGroupMember -Identity "Domain Admins" -Recursive | Measure-Object Name
 ```
+## Sysinternals tools mount 
+```
+net use * \\sysinternals.com\tools
+procexp
+autoruns
+```
