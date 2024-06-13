@@ -513,4 +513,51 @@ Get-ADGroupMember -Identity "Domain Admins" -Recursive | Measure-Object Name
 net use * \\sysinternals.com\tools
 procexp
 autoruns
+TCPview
+```
+
+# TEST REVIEW 
+## Persistence that starts up on reboot and survives reboot
+```
+Scheduled Tasks survives reboot - Schtasks
+Powershell Profiles check all four /  $HOME means your home dir
+All Users, All Hosts                $PsHome\Profile.ps1
+All Users, Current Host            $PsHome\Microsoft.PowerShell_profile.ps1
+Current User, All Hosts            $Home\[My]Documents\Profile.ps1
+Current User, Current Host        $Home\[My ]Documents\WindowsPowerShell\Profile.ps1
+
+Test-Path -Path $profile.currentUsercurrentHost
+Test-Path -Path $profile.currentUserAllHosts
+Test-Path -Path $profile.AllUsersAllHosts
+Test-Path -Path $profile.AllUserscurrentHost
+
+WinReg
+HKLM - Local Machine
+HKU - All Users
+HKCU - Current User
+Check Run Keys
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+Runonce - Runs once *
+Run - Runs everytime.
+HKLM\SYSTEM\CurrentControlSet\services
+Services.msc *** SERVICES GUI
+Check for sus ports
+
+SysInternal Tools
+Pay Attention to weird executables that shouldnt be running on a "Government System"
+procexp
+autoruns
+TCPviews
+
+Handles
+accesschk C:\PATH\MALWARE.exe ***-accepteula***
+
+Services
+Pay attention to Schtasks starting Services  
+Get-Ciminstance Win32_service | Select Name, Processid, Pathname | more
+Get-service
+Get-Service | Where-Object {$_.Status -eq "Running"}
+
+Windows Boot
 ```
