@@ -177,6 +177,7 @@ cat /etc/profile
 Unlike /etc/environment it executes every time a user logs in interactively; therefore, when the file is modified logging out then in again will apply the changes
 ```
 ## The .bash_profile and .bashrc files
+sudo cat <profile>
 
 ## Values contain in hex positions 0x0000001 - 0x00000008
 ```
@@ -412,3 +413,36 @@ jq . conn.log | grep orig_h | sort -u | wc -l
 ```
 jq -r 'select(.resp_bytes > 40)' conn.log | grep resp_bytes | wc -l
 ```
+
+# Test Review
+```
+Peristence **
+Linux has profiles, bachrc_.
+Check cronjobs
+Pay ATTENTION to Privileges** 
+Execute means you can move into it, if it does not have execute bit set on the directory you can still look into it via "ls -l" or "sudo"
+SUID bit allows you to run something temporarily as the the owner
+Sticky bit is typically used for share directories
+Zombie is program that is waiting for the parent
+Orphan is a child process whose parent has exited 
+Daemons can be used as a method of persistence
+Systemctl status <service>
+
+Linux Log
+var/log/messages
+/etc/rsyslog.conf
+Use "strings" to evaluate system binaries/binaries
+
+Running Processes - HTOP
+Pay attention to process names, PIDs
+Duplicate Process Names
+High PIDs or even PPID for "system" level processes  ** Meant to have low PID/PPID
+
+Run levels and /etc/inittab
+cat /etc/inittab
+ls -l /etc/rc*.d/
+
+Check Profiles
+cat /etc/profile
+The .bash_profile and .bashrc files
+sudo cat <profile>
