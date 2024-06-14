@@ -559,4 +559,4 @@ Get-Ciminstance Win32_service | Select Name, Processid, Pathname | more
 Get-service
 Get-Service | Where-Object {$_.Status -eq "Running"}
 
-
+Windows Stack 10.50.37.238
