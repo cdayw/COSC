@@ -561,3 +561,4 @@ Get-Service | Where-Object {$_.Status -eq "Running"}
 
 Windows Stack 10.50.37.238
 #4 Malware_Config.exe
+#5 Trigger_Malw4r3
