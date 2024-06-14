@@ -558,6 +558,3 @@ Pay attention to Schtasks starting Services
 Get-Ciminstance Win32_service | Select Name, Processid, Pathname | more
 Get-service
 Get-Service | Where-Object {$_.Status -eq "Running"}
-
-Windows Stack 10.50.37.238
-Fl@g=Cr0nolog1c4l
