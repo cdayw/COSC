@@ -449,4 +449,4 @@ sudo cat <profile>
 find / -name "flag.txt" 2>/dev/null
 
 Linux Stack 10.50.41.154
-Last One Profil3_H1jacker
+Fl@g=Cr0nolog1c4l
