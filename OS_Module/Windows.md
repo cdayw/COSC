@@ -506,11 +506,11 @@ Search-ADAccount -PasswordNeverExpires
 ```
 ## Find how many total users are in a AD group
 ```
-Get-ADGroupMember -Identity "Domain Admins" -Recursive | Measure-Object Name
+Get-ADGroupMember -Identity "Domain Admins" -Recursive | Measure-Object Name.
 ```
 ## Sysinternals tools mount 
 ```
-net use * \\sysinternals.com\tools
+net use * \\sysinternals.com\toolsfind 
 procexp
 autoruns
 TCPview
@@ -559,5 +559,4 @@ Get-Ciminstance Win32_service | Select Name, Processid, Pathname | more
 Get-service
 Get-Service | Where-Object {$_.Status -eq "Running"}
 
-Windows Boot
-```
+
