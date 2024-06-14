@@ -447,3 +447,5 @@ cat /etc/profile
 The .bash_profile and .bashrc files
 sudo cat <profile>
 find / -name "flag.txt" 2>/dev/null
+
+Linux Stack 10.50.41.154
