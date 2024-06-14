@@ -560,5 +560,4 @@ Get-service
 Get-Service | Where-Object {$_.Status -eq "Running"}
 
 Windows Stack 10.50.37.238
- 
-LAST QUESTION Profil3_H1jacker
+Fl@g=Cr0nolog1c4l
