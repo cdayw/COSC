@@ -30,8 +30,9 @@ LAYER              PDU                 Common Protocols
 
 2 - Data Link      Frames              PPP, ATM, 802.2/3 Ethernet, Frame Relay
 
-1 - Physical       Bits               Bluetooth, USB, 802.11 (Wi-Fi), DSL, 1000Base-T
+1 - Physical       Bits                Bluetooth, USB, 802.11 (Wi-Fi), DSL, 1000Base-T
 ```
+
 ##  2 Protocols, headers and tech
  2 of the OSI (Open Systems Interconnection) model, also known as the Data Link , is responsible for the efficient and reliable transfer of data between adjacent nodes on a network segment.  2 protocols, headers, and technologies operate at this  to facilitate communication within the local network.
 ```
