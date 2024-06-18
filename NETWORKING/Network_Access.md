@@ -159,3 +159,105 @@ These BPDUs are used to:
     Identify the Designated port for each segment
 
 
+
+To mitigate STP attack you can:
+
+    Enable portfast to have a port immediately come up to the forwarding state.
+
+        Globally by using spanning-tree portfast default
+
+        By interface using spanning-tree portfast
+
+    Enable BPDU guard to prevent BPDUs from beign allowed on a switchport.
+
+        On each access port interface use spanning-tree bpduguard enable
+
+        Must not use this command on any trunk or switch to switch connections.
+```
+
+## Port Security
+The purpose of configuring port security technologies is to limit, restrict, and protect network access. Configuring port security can be done on active access ports to limit the number of users or MAC addresses allowed to access onto the network.
+```
+MAC Address Limit
+MAC Address Learning
+
+Violation Actions:
+    protect - Drops any frames with an unknown source addresses.
+
+    restrict - Same as protect except it additionally creates a violation counter report.
+
+    shutdown - Places the interface into an "error-disabled" state immediately and sends an SNMP trap notification. This is typically the default mode.
+```
+## Layer 2 Attack Mitigations
+```
+Shutdown unused ports - Bare minimum to secure access ports is to simply shut down any and all inactive ports.
+
+Switchport Port Security - Can be used to limit the number of MAC addresses that can be dynamically learned on a port or static MAC addresses can be assigned to one. Violation modes of shut down can be used to secure the port should a violation occur.
+
+IP Source Guard - Mitigates the effects of IP address spoofing attacks on the Ethernet LAN. With IP source guard enabled, the source IP address in the packet sent from an untrusted access interface is validated against the DHCP snooping database. If the packet cannot be validated, it is discarded.
+
+Manually assign STP Root - Manually assign the Spanning Tree Protocol (STP) root bridge allows for a deterministic root bridge election rather than the bridge with the lowest bridge priority. This allows the central most switch to be the root that will best allow traffic to flow in an efficent manner.
+
+BPDU Guard - BPDU Guard is a feature used in network switches to enhance network security by protecting against unintentional loops and rogue devices. It works by automatically shutting down a port if it receives Bridge Protocol Data Units (BPDUs), which are indicative of spanning tree protocol (STP) activity.
+
+DHCP Snooping - DHCP Snooping is a security feature commonly found in network switches that helps prevent rogue or unauthorized DHCP servers from distributing incorrect or malicious IP configuration information to network clients. It operates by monitoring and controlling DHCP messages exchanged between DHCP clients and servers. Configuration is done on ports that are connected to (or leading to) the DHCP server.
+
+802.1x - The 802.1x standard defines a client-server-based access control and authentication protocol that prevents unauthorized clients from connecting to a LAN through ports until they are properly authenticated. The authentication server authenticates each client connected to a switchport before making available any services offered by the switch or the LAN.
+
+Dynamic ARP inspection (DAI) - Prevents Address Resolution Protocol (ARP) spoofing or “man-in-the-middle” attacks. ARP requests and replies are compared against entries in the DHCP snooping database, and filtering decisions are made on the basis of the results of those comparisons.
+
+Static CAM entries - Static CAM (Content Addressable Memory) entries refer to manually configured entries in the CAM table of Ethernet switches. These entries map specific MAC addresses to specific switch ports and are used to optimize network performance and facilitate specific network configurations.
+
+Static ARP entries - Static ARP (Address Resolution Protocol) entries are manually configured mappings between IP addresses and MAC addresses in the ARP table of network devices. These entries are used to ensure stable communication between specific devices on the network.
+
+Disable DTP negotiations - To disable Dynamic Trunking Protocol (DTP) negotiations on a Cisco switch interface, you need to manually configure the interface as an access port or set it to operate in a specific trunking mode, such as "trunk" or "nonegotiate."
+
+Manually assign Access/Trunk ports - By default, switch ports can be either a trunk or access port depending on the device connected to the port and dynamic negotiations that take place. Manually assigning ports as either trunk or access ports provides greater control and ensures that the network operates as intended.
+```
+
+# IP Networking
+## Classful IPv4 Addressing
+```
+CLASS A    0 to 127      /8
+CLASS B    128 to 191    /16
+CLASS C    192 to 223    /24
+CLASS D    224 to 239    Multicast
+CLASS E    240 to 255    Exper.
+```
+## IPv4 Types/Scopes
+```
+APIPA 169.254.0.0/24
+Types
+Unicast IPs are a "one to one" communication between two nodes.
+
+Multicast IPs are used for a "one to many" communications concept throughout a network. Multicast addresses are used by routing protocols, video streaming, and other various systems that have need to communication in a group. These addresses fall within the Class D address range.
+
+Broadcast A broadcast address is the last IP in every network subnet range. It is used to communicate to all nodes on the same network.
+
+Scopes
+Public IP ranges are assigned by IANA throughout the world. These addresses are typically any Class A, B, or C address that is not otherwised reserved. For more information on public addressing visit https://www.iana.org/numbers.
+
+Private These IPs are not globally routable across the Internet and are available for use by all for internal LANs. These addresses must be translated to a public address for traversal across the internet.
+    Class A scope 10.0.0.0/8 - 10.0.0.0 thru 10.255.255.255
+
+    Class B scope 172.16.0.0/12 - 172.16.0.0 thru 172.31.255.255
+
+    Class C scope 192.168.0.0/16 - 192.168.0.0 thru 192.168.255.255
+
+Loopback address also called localhost. This is an internal address (127.0.0.1) linked back to the host machine. Can not be assigned to a device NIC. Can only be used to allow the system to address itself.
+    Scope 127.0.0.0/8 - 127.0.0.0 thru 127.255.255.255
+
+Link-Local is used for direct node to node communications on the same physical or logical link, not a routable range. This range is used for Microsoft’s Automatic Private IP Addressing (APIPA). This is used to allow DHCP configured clients to resolve an IP address even if no DHCP servers are available. Systems will auto generate an address in this range if it fails to get an IP address from the DHCP server. These addresses allow devices to communicate with each other on the same network but not across any routed boundries.
+    Scope 169.254.0.0/16 - 169.254.0.0 thru 169.254.255.255
+
+Multicast
+    224.0.0.0/24 - Link-Local - multicast for host on the same network segment. Cannot traverse routed bounderies.
+
+    239.255.0.0/16 - Local - scope is able to be controlled by an organization.
+
+    239.192.0.0/14 - Organizational-local - routable within an organizations network.
+
+    224.0.1.0-238.255.255.255 - Global - able to be routed across the internet.
+```
+# Fragmentation Offset
+## Fragment Offset = (MTU - (IHL x 4)) / 8
