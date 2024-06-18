@@ -5,6 +5,7 @@ Miro Whiteboard - https://miro.com/app/board/o9J_klSqCSY=/
 CTFD1 - http://networking-ctfd-1.server.vta:8000/resources
 Jump Box - 10.50.37.63
 ```
+# Network Access
 ## Internet Standard Organizations 
 ```
 Internet Engineering Task Force (IETF): The IETF is a large open international community of network designers, operators, vendors, and researchers who are concerned with the evolution and operation of the Internet. It focuses on the development of protocols and standards, with working groups dedicated to specific areas such as routing, security, and web technologies.
@@ -31,17 +32,17 @@ LAYER              PDU                 Common Protocols
 
 1 - Physical       Bits               Bluetooth, USB, 802.11 (Wi-Fi), DSL, 1000Base-T
 ```
-## Layer 2 Protocols, headers and tech
-Layer 2 of the OSI (Open Systems Interconnection) model, also known as the Data Link Layer, is responsible for the efficient and reliable transfer of data between adjacent nodes on a network segment. Layer 2 protocols, headers, and technologies operate at this layer to facilitate communication within the local network.
+##  2 Protocols, headers and tech
+ 2 of the OSI (Open Systems Interconnection) model, also known as the Data Link , is responsible for the efficient and reliable transfer of data between adjacent nodes on a network segment.  2 protocols, headers, and technologies operate at this  to facilitate communication within the local network.
 ```
-Sub Layers
+Sub s
 
 Media Access Control (MAC):
-    The MAC sub-layer is responsible for controlling access to the physical transmission medium.
+    The MAC sub- is responsible for controlling access to the physical transmission medium.
     Handles the transmission and reception of data frames over the physical medium, including addressing, framing, and error checking.
 
 Logical Link Control (LLC):
-    The LLC sub-layer is responsible for establishing, maintaining, and terminating logical links between network devices.
+    The LLC sub- is responsible for establishing, maintaining, and terminating logical links between network devices.
     Provides services such as error detection and flow control to ensure reliable data transmission over the physical medium.
     Follows the IEEE 802.2 standard.
     Manages communication between devices over a single link of the network that includes error checking and data flow.
@@ -83,7 +84,7 @@ Source MAC Addresses (6 bytes)
     It is worth noting that this is pretty much the only time that the destination address comes before the source. 
     The source address will come first in most other headers that we deal with in this course.
 
-Ethertype (2 bytes) Used to indicate the next protocol encapsulated in the frame. This is provided by the LLC sub-layer.
+Ethertype (2 bytes) Used to indicate the next protocol encapsulated in the frame. This is provided by the LLC sub-.
     Common Ethertypes controlled by IANA.org:
         0x0800 - IPv4
         0x0806 - ARP
@@ -95,7 +96,7 @@ Ethertype (2 bytes) Used to indicate the next protocol encapsulated in the frame
         0x8892 - PROFINET Protoc
 
 Data / Payload (46-1500 bytes)
-    Consists of the encapsulated upper layer headers and data payload which may be 46-1500 bytes.
+    Consists of the encapsulated upper  headers and data payload which may be 46-1500 bytes.
 
 FCS/CRC (Frame Check Sequence / Cyclical Redundancy Check) (4 bytes)
 ```
@@ -116,7 +117,7 @@ Standard VLAN Tagging (IEEE 802.1Q):
 
 QinQ VLAN Tagging:
 
-    QinQ extends VLAN tagging by adding another layer of VLAN tags, effectively allowing VLAN tagging within VLAN tagging.
+    QinQ extends VLAN tagging by adding another  of VLAN tags, effectively allowing VLAN tagging within VLAN tagging.
 
     In a QinQ scenario, the original Ethernet frame is encapsulated within another VLAN tag, creating a "tagged outer frame" with its own VLAN ID.
 
@@ -132,16 +133,16 @@ Client - can only adopt VLAN information in VTP messages. Can forward VTP messag
 Transparent - only forwards VTP messages but does not adopt any of the information.
 ```
 ## DTP Dynamic Trunking Protocol
-Dynamic Trunking Protocol (DTP) is a Cisco proprietary Layer 2 protocol. Its purpose is to dynamically negotiate trunking on a link between two switches running VLANS
+Dynamic Trunking Protocol (DTP) is a Cisco proprietary  2 protocol. Its purpose is to dynamically negotiate trunking on a link between two switches running VLANS
 
 ## CDP FDP LLDP
 ```
-Cisco Discovery Protocol (CDP) is a Layer 2, Cisco proprietary protocol used to share information with other directly connected Cisco devices.
+Cisco Discovery Protocol (CDP) is a  2, Cisco proprietary protocol used to share information with other directly connected Cisco devices.
 
-Foundry Discovery Protocol (FDP) is a proprietary data link layer protocol, originally developed by Foundry Networks, which was bought by Brocade. Similar to CDP, FDP enables Brocade devices to advertise to other directly connect Brocade devices on the network.
+Foundry Discovery Protocol (FDP) is a proprietary data link  protocol, originally developed by Foundry Networks, which was bought by Brocade. Similar to CDP, FDP enables Brocade devices to advertise to other directly connect Brocade devices on the network.
 
 
-Link Layer Discovery Protocol (LLDP) was designed by IEEE 802.1AB to be a vendor-neutral neighbor discovery protocol similar to CDP. LLDP also operates at layer 2 and shares similar information as does CDP with directly connected devices that support LLDP.
+Link  Discovery Protocol (LLDP) was designed by IEEE 802.1AB to be a vendor-neutral neighbor discovery protocol similar to CDP. LLDP also operates at layer 2 and shares similar information as does CDP with directly connected devices that support LLDP.
 
 ** ALL of it is in Clear Text , Enabled by Default **
 ```
@@ -308,7 +309,67 @@ Multicast addresses
         ffxe::/8 - global - spans all hosts on the internet and is unbounded.
 
         ffxf::/8 - reserved
+```
+## IGP vs EGP
+```
+    Interior Gateway Protocols (IGP):
+
+        Routing protocols that are used within an Autonomous System (AS).
+
+        Referred to as intra-AS routing.
+
+        Organizations and service providers IGPs on their internal networks.
+
+        IGPs include RIP, EIGRP, OSPF, and IS-IS.
 
 
+    Exterior Gateway Protocols (EGP):
 
+        Used primarily for routing between autonomous systems.
+
+        Referred to as inter-AS routing.
+
+        Service providers and large companies will interconnect their AS using an EGP.
+
+        The Border Gateway Protocol (BGP) is the only currently viable EGP and is the official routing protocol used by the Internet.
+```
+## Routing vs Routed
+```
+Routed protocols allows data to be routed. These protocols provide an addressing scheme and sub-netting.
+
+Routing Protocols are used by routers to communicate routing information with each other. Unless all routes are manually entered into the router, the router needs to learn from other routers about the networks that they know. 
+Routing        Routed
+______________________
+RIP            IP
+EIGRP          IPX
+OSPF           AppleTalk
+BGP            NetWare
+```
+## Routing Protocol vulnerabilities
+```
+Distributed Denial of Service (DDOS) - Attackers send more packets to the router than they can handle or process. This will cause the router to drop packets if proper QoS is not implemented.
+
+Packet Mistreating Attacks (PMA) - Similar to DOS attacks, packet mistreating injects packets with malicious codes designed to confuse and disrupt the router and network.
+
+Routing Table Poisoning (RTP) - Attackers can send specially crafted routing protocol packets to the router to poison the router’s tables. Enabling authentication can help mitigate this attack.
+
+Hit and Run DDOS (HAR) - DDOS attack on a specific network or router.
+
+Persistent Attacks (PA) - similar to hit and run, in which they both look to inject frequent harmful data packages into the router and network, helping the hackers gain control. The attacker can redirect traffic as they want, send       wrong routing updates, or simply delete the configuration of that router.
+```
+
+# Transport to Application Layer
+The Transport layer (Layer 4) is responsible for the transfer of data, ensuring that data is error-free and in order.
+
+## Port Ranges
+````
+0-1023         Well-Known(System)
+1024-49151     Registered(User)
+49152-65535    Dyanamic(Private)
+
+Well-known (System) port numbers (0-1023), which are assigned by IANA are responsible for maintaining the official assignments of port numbers for specific uses. 
+
+Registered (User) port numbers (1024-49151) can be registered with IANA for a specific service by a requesting entity. This range is loosely controled by IANA. Some operating systems may use this range as dynamically assigned source ports.
+
+Dynamic (Private) port numbers (49152-65535) can not be registered with IANA. These ports are for use as temporary, private, or/and for automatic allocation of ephemeral ports. This range is not controlled in any way by IANA for any protocols and services.
 ```
