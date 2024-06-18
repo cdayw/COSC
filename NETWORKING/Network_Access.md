@@ -261,3 +261,54 @@ Multicast
 ```
 # Fragmentation Offset
 ## Fragment Offset = (MTU - (IHL x 4)) / 8
+
+## IPv6 address types
+```
+Unicast Addresses IPs are a "one to one" communication between two nodes.
+
+Multicast Addresses Used for one to many communications and routing protocols.
+
+Anycast Addresses These addresses can fall within the Global, Unique-Local, or Link-Local address scopes. They differ from unicast in that more than one device can be configured with the same address. These are typically used to address several network gateways. Each gateway can be configured with the same anycast address. Any of these devices can supply the service request for the client. These can also be used for servers when trying to load balance a particular service.
+```
+## IPv6 Scopes
+```
+Loopback Address IPv6 address used by a node on a vitural interface to send packets to itself. This is the same as the 127.0.0.1 is for IPv4.
+    Scope is ::1/128
+
+Global Unicast Addresses IPv6 addressess that are routable over the Internet.
+    Scope is 2000::/3 - 2000:: thru 3fff::
+
+    2001:0000:/32 - reserved for Teredo tunneling
+
+    2001:20::/28 - reserved for ORCHIDv2
+
+    2002::/16 - reserved for 6to4 tunneling
+
+Unique-Local Addresses IPv6 addresses the are routable locally within a site, not globally routable across the Internet. These perform a similar function as the RFC 1918 private IPv4 addresses and will require NAT to translate the address to a Global Unicast address for communication over the Internet.
+
+    Scope is fc00::/7 - fc00:: thru fdff::
+
+Multicast addresses
+    Scope ff00::/8 - ff00:: thru ffff::
+
+        ffx0::/8 - reserved
+
+        ffx1::/8 - interface-local - spans only a single interface on a host. Used for loopback multicast.
+
+        ffx2::/8 - link-local - spans the local network. Does not traverse network bounderies. Comparable to 224.0.0.0/24 for IPv4.
+
+        ffx3::/8 - realm-local - spans farther than link-local but under determination of the administrator. Should not bound farther than those below.
+
+        ffx4::/8 - admin-local - smallest scope that can be administratively configured.
+
+        ffx5::/8 - site-local - spans a single site of an organization.
+
+        ffx8::/8 - organization-local - spans to all sites in a single organization.
+
+        ffxe::/8 - global - spans all hosts on the internet and is unbounded.
+
+        ffxf::/8 - reserved
+
+
+
+```
