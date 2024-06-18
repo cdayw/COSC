@@ -363,7 +363,7 @@ Persistent Attacks (PA) - similar to hit and run, in which they both look to inj
 The Transport layer (Layer 4) is responsible for the transfer of data, ensuring that data is error-free and in order.
 
 ## Port Ranges
-````
+```
 0-1023         Well-Known(System)
 1024-49151     Registered(User)
 49152-65535    Dyanamic(Private)
@@ -374,3 +374,162 @@ Registered (User) port numbers (1024-49151) can be registered with IANA for a sp
 
 Dynamic (Private) port numbers (49152-65535) can not be registered with IANA. These ports are for use as temporary, private, or/and for automatic allocation of ephemeral ports. This range is not controlled in any way by IANA for any protocols and services.
 ```
+
+## VPN
+Virtual Private Networks (VPN) allows connections through a network that is not accessible to everyone else. This "private" connection makes is look like a direct connection, when in fact it is not. VPNs work by encapsulating an IP packet into another IP packet for traversal across a (generally) public network. The outer IP packet headers used for the traversal is then removed and the original packet headers are then used for further routing decisions
+```
+Remote Access VPN
+
+Site-to-Site VPN (aka router-to-router VPN)
+
+Client-to-Site VPN (aka endpoint-to-site VPN)
+```
+```
+L2TP
+Layer Two Tunneling Protocol (L2TP) serves as an extension of the Point-to-Point Tunneling Protocol (PPTP) commonly employed by internet service providers (ISPs) to establish virtual private networks (VPNs). The primary objective of L2TP is to enable secure data transmission through the creation of tunnels. To uphold security and privacy standards, L2TP necessitates the use of an encryption protocol within the established tunnel.
+
+PPTP
+Point-to-Point Tunneling Protocol (PPTP) stands as a foundational networking protocol that empowers the secure deployment of Virtual Private Networks (VPNs) over the Internet. Conceived by Microsoft and collaborative contributors, PPTP is intricately designed to forge a private and encrypted communication conduit between clients and servers, guaranteeing the secure transmission of data
+
+L2F
+Cisco Proprietary
+
+IP Security (IPSec)
+Psec (Internet Protocol Security) is a suite of protocols used to secure IP communications by providing encryption, authentication, and integrity protection at the network layer (Layer 3) of the OSI model. It is widely used to establish Virtual Private Networks (VPNs) and secure data transmission over IP networks, including the internet.
+
+OpenVPN
+OpenVPN is an open-source VPN (Virtual Private Network) software that provides secure communication over the internet by creating encrypted tunnels between devices or networks. It is widely used for remote access VPNs, site-to-site VPNs, and other secure networking applications.
+OpenVPN requires special software that implements the OpenVPN protocol. There are client and server versions. The client software runs on your device (computer, phone, etc.) and the server software runs on the VPN provider’s server. This software creates the encrypted tunnel and manages the data transmission.
+It’s known for being very secure due to strong encryption algorithms and multiple authentication methods. OpenVPN uses the OpenSSL library to provide encryption of both the data and control channels.
+```
+## SOCKS
+SOCKS (Socket Secure) is a protocol that facilitates communication between clients and servers through a proxy server.
+```
+Initiates connections through a proxy
+
+Uses various Client / Server exchange messages
+
+Client can provide authentication to server
+
+Client can request connections from server
+
+Defined in RFC 1928
+```
+
+## SOCKS4
+```
+No Authentication, meaning that it does not require clients to authenticate themselves before connecting to the proxy server.
+
+Only IPv4
+
+Only TCP support. No UDP support. ** MEANING UDP SCAN OR ANYTHING UDP WILL NOT WORK
+
+No Proxy binding. Client’s IP is not relayed to destination.
+```
+
+## SOCKS5
+```
+Support for Authentication, allowing clients to authenticate themselves using various methods, such as username/password, GSS-API (Generic Security Services Application Program Interface), or digital certificates.
+
+IPv4 and IPv6 support
+
+TCP and UDP support
+
+Supports Proxy binding. Client’s IP is relayed to destination
+```
+## NETBIOS
+Network Basic Input/Output System,This suite offers a collection of services along with an application programming interface (API), facilitating network communication across local area networks (LANs)
+TCP 139, UDP 137/138
+```
+Windows:
+nbtstat -A <IP Address>
+
+Linux:
+nbtscan -r <IP Address>
+```
+## SMB/CIFS
+SMB/CIFS (TCP 139/445 AND UDP 137/138)
+```
+The Server Message Block (SMB) protocol serves as a communication protocol predominantly utilized by Microsoft Windows-equipped computers. Its primary function is to facilitate the sharing of files, printers, serial ports, and various communications among network nodes. For user authentication, SMB employs either the NTLM or Kerberos protocols
+
+smbclient -L <IP Address>
+```
+## SSH Architecture
+```
+Server
+Known as sshd in most linux SSH implementations, this allows incoming SSH connections and handles authentication and authorization.
+
+Clients
+This is the program that connects to the SSH server for a request, examples include scp and ssh
+
+Sessions ** PRIVATE KEY NEVER SHARED
+The client and server conversation that begins after successful mutual authentication.
+
+Keys
+There are several keys that are used in SSH:
+
+    User Key - Asymmetric Public key created used to identify the user to a server (generated by the user)
+
+    Host Key - Asymmetric Public key created to identify a server to a user (generated by an administrator)
+
+    Session Key - Symmetric Key created by the client and the server that protects the communication for a particular session
+```
+
+** IMPORTANT - Keep track of the ports you use for tunneling
+
+## SSH Files
+Known-Hosts Database ~/.ssh/know_hosts
+
+## Config Files
+```
+/etc/ssh/ssh_config
+/etc/ssh/sshd_config
+```
+## DHCPv4
+UDP 67/68
+Dynamic Host Configuration Protocol (DHCP) is an internet standard used to assign IP address parameters across an enterprise. This prevent administrators from having to manually assign IP configuration on each host individually.
+```
+(D.O.R.A) PROCESS
+Discover
+OFFER
+Request
+Acknowledge
+```
+
+## NTP - Network Time Protocol
+UDP 123 The Network Time Protocol (NTP) is a networking protocol for clock synchronization between computer systems over packet-switched, variable-latency data networks. NTP is intended to synchronize all participating computers to within a few milliseconds of Coordinated Universal Time (UTC)
+
+
+# AAA Services
+
+## TACACS+ Terminal Access Controller Access-Control System Plus
+TCP 49 SIMPLE/EXTENDED
+The Terminal Access Controller Access-Control System Plus (TACACS+) is a network security protocol used for centralized authentication, authorization, and accounting (AAA) services in network devices such as routers, switches, and firewalls. Developed by Cisco Systems, TACACS+ provides a robust framework for controlling access to network resources and enforcing security policies
+
+## RADIUS Remote Authentication Dial-In User Service
+UDP1645/1646 and 1812/1823
+Remote Authentication Dial-In User Service (RADIUS) is a open standard networking protocol used for centralized authentication, authorization, and accounting (AAA) services in network environments. It enables devices like network access servers (NAS), VPN gateways, and wireless access points to authenticate users and authorize their access to network resources.
+
+## DIAMETER 
+TCP 3868
+Diameter is a networking protocol used for Authentication, Authorization, and Accounting (AAA) functions in network systems, primarily in telecommunications networks. It is an evolution of the older RADIUS (Remote Authentication Dial-In User Service) protocol, providing enhanced features and capabilities
+
+## SNMP Simple Network Management Protocol
+UDP 161/162
+Simple Network Management Protocol (SNMP) is an Internet Standard protocol for collecting and organizing information about managed devices on IP networks. Devices that typically support SNMP include cable modems, routers, switches, servers, workstations, printers, and more.
+
+## RTP Real-Time Transport Protocol
+(ANY UDP PORT OVER 1023)
+RTP (Real-time Transport Protocol) is primarily used for streaming real-time media over IP networks. It is a protocol specifically designed for transmitting audio and video data in a way that supports time-sensitive applications, such as voice and video communication, streaming media, and live broadcasts.
+
+## RDP Remote Desktop Protocol
+TCP 3389
+The protocol is widely supported across most Windows, Unix, Linux, and macOS operating systems. Other proprietary options were developed to provide remote desktop support but the administrator typically must install the client software on each device before being able to remotely access devices with these 3rd party tools
+
+## Kerberos 
+UDP 88
+Kerberos is a network authentication protocol that ensures secure authentication for client-server applications. It was created by MIT as a network authentication protocol using secret-key cryptography. It relies on a trusted Key Distribution Center (KDC) server. Used by Active Directory
+
+## LDAP Ligthweight Directory Access Protocol
+TCP 389 and 636
+he Lightweight Directory Access Protocol (LDAP) is an application protocol used for accessing and managing distributed directory information services. LDAP provides a standardized method for querying, modifying, and authenticating against directory services, such as Active Directory and OpenLDAP. DAPS (LDAP over SSL/TLS) is a secure communication protocol used to encrypt LDAP traffic between LDAP clients and servers. It provides a layer of security to LDAP authentication and directory access by encrypting data exchanged over the network, protecting it from eavesdropping and tampering.
