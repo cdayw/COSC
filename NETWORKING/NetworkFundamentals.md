@@ -536,3 +536,19 @@ The Lightweight Directory Access Protocol (LDAP) is an application protocol used
 
 ## CDP Protocol
 Use Cisco Discovery Protocol to get Router Info
+
+## BPF Filters
+```
+capture all packets with a ttl of 64 and less, utilizing the IPv4 or IPv6 Headers?
+tcpdump -n 'ip[8]<=64 || ip6[7]<=64'
+
+capture all IPv4 packets with at least the Dont Fragment bit set
+tcpdump -n 'ip[6] & 64=64'
+
+capture traffic with a Source Port higher than 1024, utilizing the correct Transport Layer Headers?
+tcpdump -n 'tcp[0:2] > 1024 || udp[0:2] > 1024'
+
+capture all Packets with UDP protocol being set, utilizing the IPv4 or IPv6 Headers?
+tcpdump -n 'ip[9] = 0x11 || ip6[6] = 0x11'
+
+```
