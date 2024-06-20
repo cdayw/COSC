@@ -12,7 +12,7 @@ Internet Engineering Task Force (IETF): The IETF is a large open international c
 
 Internet Assigned Numbers Authority (IANA): IANA is responsible for the global coordination of the DNS root, IP addressing, internet numbers, and other Internet protocol resources. While not primarily a standards development organization, IANA’s role in managing critical Internet resources is vital to the functioning of the Internet.
 
-Institute of Electrical and Electronics Engineers (IEEE): While the IEEE is a broader organization covering various fields of technology, it plays a significant role in developing standards for networking and communication technologies. The IEEE 802 working groups, for example, have developed standards for LANs and wireless networks.
+Institute of Electrical and Electronics Engineers (IEEE): While the IEEE is a broader organization covering various fields of technology, it plays a significant role in developing standards for networking and communication technologies. The IEEE 802 working groups, for example, have developed standards for LANs and wireless networks..
 ```
 # OSI Model
 ```
