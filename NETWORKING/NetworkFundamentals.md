@@ -581,7 +581,24 @@ tcpdump -n 'ip[6] & 0x80 = 0x80'
 capture any packets contain the CHAOS protocol with ipv4 header
 tcpdump -n 'ip[9] = 16'
 
+capture all IPv4 packets with the DSCP field of 37
+** Use Programming Calc to shift bits between on and off
+Ex:
+0010 0101 = 37
+Shift 'ON' bits two to left and turn off previously set 'ON' bits
+1001 0100 = 148
 
+capture all IPv4 packets targeting just the beginning of potential traceroutes as it's entering your network. This can be from a Windows or Linux machine using their default settings
+tcpdump -n 'ip[8] = 1&&(ip[9] = 0x01 || ip[9] = 0x11)'
+
+capture all packets where the URG flag is not set and URG pointer has a value
+tcpdump -n 'tcp[13]&32!=32&&tcp[18:2]>0'
+
+capture a TCP null scan to the host 10.10.10.10
+tcpdump -n 'ip[16:4] = 0x0a0a0a0a && tcp[13] = 0'
+
+capture an attacker using vlan hopping to move from vlan 1 to vlan 10
+tcpdump -n 'ether[12:4]&0xffff0fff=0x81000001&&ether[16:4]&0xffff0fff=0x8100000A'
 
 
 
