@@ -551,4 +551,38 @@ tcpdump -n 'tcp[0:2] > 1024 || udp[0:2] > 1024'
 capture all Packets with UDP protocol being set, utilizing the IPv4 or IPv6 Headers?
 tcpdump -n 'ip[9] = 0x11 || ip6[6] = 0x11'
 
+capture only packets with the ACK/RST or ACK/FIN flag set, utilizing the correct Transport Layer Header?
+tcpdump -n 'tcp[13] = 0x14 || tcp[13] = 0x11'
+
+capture all packets with an IP ID field of 213?
+tcpdump -n 'ip[4:2] = 213'
+
+capture all packets relating to DNS
+tcpdump -n  'tcp[0:2] = 53 || udp[0:2] = 53 || tcp[2:2] = 53 || udp[2:2] = 53'
+
+capture the initial packets from a client trying to initiate a TCP connection
+tcpdump -n 'tcp[13] = 0x02'
+
+capture the response packets from a server with closed TCP ports
+tcpdump -n 'tcp[13] = 0x04'
+
+capture all TCP and UDP packets sent to the well known ports
+tcpdump -n 'tcp[2:2]<=1023 || udp[2:2]<=1023'
+
+capture all HTTP traffic
+tcpdump -n 'tcp[0:2] = 80 || tcp [2:2] = 80'
+
+capute all ARP traffic
+tcpdump -n 'ether[12:2] = 0x0806'
+
+capture if "Evil Bit" (RES bit) is set 
+tcpdump -n 'ip[6] & 0x80 = 0x80'
+
+capture any packets contain the CHAOS protocol with ipv4 header
+tcpdump -n 'ip[9] = 16'
+
+
+
+
+
 ```
