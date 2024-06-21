@@ -34,8 +34,9 @@ Use BPF to find telnet passwords if available
 nmap -Pn IPADDR -T4 -p 21-23,80
   quick scan ports 21-23,80
   specific ports based on hints/clues found
-  Well Known port range
-  ** which tcpdump wireshark nmap telnet get curl ping
+  Well Known port range 0-1023
+  Chunks of 2000 or first 10000 ports
+  HAIL MARY scan all 65535 ports
 ```
 ## Passive Recon Methodology
 ```
@@ -52,8 +53,8 @@ Neighbors:
   ip neigh
 
 Files of interest:
-  find / -iname flag*
-  find / -iname hint*
+  find / -iname flag* 2>/dev/null
+  find / -iname hint* 2>/dev/null
 
 OTHER LISTENING PORTS:
   ss -ntlp
