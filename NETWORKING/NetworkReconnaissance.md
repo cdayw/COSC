@@ -3,6 +3,7 @@ https://osintframework.com/
 https://www.shodan.io/
 https://web-check.xyz/
 https://dorksearch.com/
+duckduckgo ip lookup****
 ## Commands
 ```
 hostname
@@ -239,4 +240,30 @@ VyOS: show ip route ** Descriptions are admin comments annotate on map
     File search
 find / -iname hint* 2> /dev/null
 find / -iname flag* 2> /dev/null
+```
+
+# Active Internal
+```
+Ping Scanning ** CHANGE first three octects inbetween **x.x.x**
+for i in {1..254}; do (ping -c 1 **172.16.82**.$i | grep "bytes from" &) ; done
+sudo nmap -sP 172.16.82.96/27
+```
+
+# MAP CHECKLIST
+```
+    Device type (Router/host)
+
+    System Host-names
+
+    Interface names (eth0, eth1, etc)
+
+    IP address and CIDRs for all interfaces
+
+    TCP and UDP ports
+
+    MAC Address
+
+    OS type/version
+
+    Known credentials
 ```
