@@ -61,6 +61,16 @@ OTHER LISTENING PORTS:
 
 Available Tools
   **which tcpdump wireshark nmap telnet get curl ping
-
-
 ```
+
+## Reconnaissance Stages
+```
+    Passive External
+
+    Active External
+
+    Passive Internal
+
+    Active Internal
+```
+![image](https://github.com/cdayw/COSC/assets/169062872/e4ba6ee6-a51b-42dc-892b-ad64e2621fab)
