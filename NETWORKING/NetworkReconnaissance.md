@@ -139,7 +139,10 @@ test against pcap - ** sudo p0f -r test.pcap
 
     -PE - ICMP Ping
 
-    -Pn - No Ping **USE THIS ** Faster, no need for ping ** 
+    -Pn - No Ping **USE THIS ** Faster, no need for ping **
+
+    nmap -Pn -T4 172.16.101.30/27 -p 21-23,80 --open
+    ** SHOWS ONLY OPEN AND UP HOSTS ** TRUE OPEN.
 ```
 
 ## Netcat - Scanning
@@ -266,4 +269,12 @@ sudo nmap -sP 172.16.82.96/27
     OS type/version
 
     Known credentials
+```
+## Open Image file in linux
+```
+mimeopen -d hint-01.png 
+```
+## Get Port Information
+```
+nc -u 172.16.182.110 1984       **-u = udp
 ```
