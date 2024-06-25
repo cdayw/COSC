@@ -85,6 +85,7 @@ Client (receive file):
 nc 172.16.82.106 9001 > newfile.txt
 ```
 ## Netcat Relay - LISTENER - LISTENER **
+![image](https://github.com/cdayw/COSC/assets/169062872/c9a22c9b-4f63-4a80-91c5-69d931c9c71a)
 ```
 SEND  RELAY  RECEIVE
  IH -> BH1 <-BPH1
@@ -108,8 +109,8 @@ nc 192.168.1.1 3333 > newsecret.txt
         ^Blue_Host private IP facing BPH1
 ```
 
-
 ## Netcat Relay - Client to Client **
+![image](https://github.com/cdayw/COSC/assets/169062872/b22e22a6-b4bb-4ea8-8dc5-5e6afec1ad79)
 ```
 On Internet_Host (send):
 nc -lvp 1111 < secret.txt
@@ -122,6 +123,8 @@ mknod mypipe p
 nc 10.10.0.40 1111 < mypipe | nc 192.168.1.10 3333 > mypipe
 ```
 ## Netcat Relay - Client - Listener
+![image](https://github.com/cdayw/COSC/assets/169062872/abd77453-d445-4e4a-b4a9-e5896dd9c6f7)
+
 ```
     On Internet_Host (send):
 
@@ -137,6 +140,8 @@ $ mknod mypipe p
 $ nc 10.10.0.40 1111 < mypipe | nc -lvp 3333 > mypipe
 ```
 ## Netcat Relay - Listener - Client
+![image](https://github.com/cdayw/COSC/assets/169062872/4c0f01b3-e9a9-475a-9855-d6be599cb306)
+
 ```
     On Internet_Host (send):
 
