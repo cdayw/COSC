@@ -141,7 +141,7 @@ $ nc 10.10.0.40 1111 < mypipe | nc -lvp 3333 > mypipe
 ```
 ## Netcat Relay - Listener - Client
 ![image](https://github.com/cdayw/COSC/assets/169062872/4c0f01b3-e9a9-475a-9855-d6be599cb306)
-
+CLIENT is already set up on BPH1
 ```
     On Internet_Host (send):
 
