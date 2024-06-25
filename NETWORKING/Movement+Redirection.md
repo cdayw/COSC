@@ -59,3 +59,95 @@ scp -P 1111 student@localhost:secretstuff.txt /home/student
 ```
 scp -P 1111 secretstuff.txt student@localhost:/home/student
 ```
+# SCP Syntax through a Dynamic Port forward
+```
+Create a Dynamic Port Forward to target device
+ssh student@172.16.82.106 -D 9050 -NT
+
+Download a file from a remote directory to a local directory
+proxychains scp student@localhost:secretstuff.txt .
+```
+## Netcat file/data transfer
+```
+NETCAT: Client to Listener file transfer
+Listener (receive file):
+nc -lvp 9001 > newfile.txt
+
+Client (sends file):
+nc 172.16.82.106 9001 < file.txt
+```
+```
+NETCAT: Listener to Client file transfer
+Listener (sends file):
+nc -lvp 9001 < file.txt
+
+Client (receive file):
+nc 172.16.82.106 9001 > newfile.txt
+```
+## Netcat Relay - LISTENER - LISTENER **
+```
+SEND  RELAY  RECEIVE
+ IH -> BH1 <-BPH1
+
+STEP1
+On Blue_Host-1 Relay:
+Making a Named Pipe:
+mknod pipe p
+ or
+ mkfifo pipe
+nc -lvp 1111 < mypipe | nc -lvp 3333 > mypipe
+
+STEP2
+On Internet_Host (send):
+nc 172.16.82.106 1111 < secret.txt
+        ^Blue_Host Public IP facing Internet_Host
+
+STEP3
+On Blue_Priv_Host-1 (receive):
+nc 192.168.1.1 3333 > newsecret.txt
+        ^Blue_Host private IP facing BPH1
+```
+
+
+## Netcat Relay - Client to Client **
+```
+On Internet_Host (send):
+nc -lvp 1111 < secret.txt
+
+On Blue_Priv_Host-1 (receive):
+nc -lvp 3333 > newsecret.txt
+
+On Blue_Host-1 Relay:
+mknod mypipe p
+nc 10.10.0.40 1111 < mypipe | nc 192.168.1.10 3333 > mypipe
+```
+## Netcat Relay - Client - Listener
+```
+    On Internet_Host (send):
+
+$ nc -lvp 1111 < secret.txt
+
+    On Blue_Priv_Host-1 (receive):
+
+$ nc 192.168.1.1 3333 > newsecret.txt
+
+    On Blue_Host-1 Relay:
+
+$ mknod mypipe p
+$ nc 10.10.0.40 1111 < mypipe | nc -lvp 3333 > mypipe
+```
+## Netcat Relay - Listener - Client
+```
+    On Internet_Host (send):
+
+$ nc 172.16.82.106 1111 < secret.txt
+
+    On Blue_Priv_Host-1 (receive):
+
+$ nc -lvp 3333 > newsecret.txt
+
+    On Blue_Host-1 Relay:
+
+$ mknod mypipe p
+$ nc -lvp 1111 < mypipe | nc 192.168.1.10 3333 > mypipe
+```
