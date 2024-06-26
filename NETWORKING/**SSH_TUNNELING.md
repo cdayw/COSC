@@ -241,3 +241,121 @@ proxychains telnet 172.16.82.106
 proxychains wget -r http://172.16.82.106
 proxychains wget -r ftp://172.16.82.106
 ```
+
+## Tunneling Activity
+![image](https://github.com/cdayw/COSC/assets/169062872/97086d70-a683-45fa-b28b-4c4e7765f571)
+## Tunneling Activity
+```
+IH> ssh student@10.50.30.99 -D 9050 -NT
+IH> Proxychains nmap 192.168.1.32/27 -Pn -T4 -p 21-23,80
+Found .39 HOST B
+
+## Change SSH command to setup local port forward
+IH> ssh student@10.50.30.99 -L 12345:192.168.1.39:22 -NT (THIS ONE STAYS UP)
+^ 12345 is opened on **IH/LocalHost**
+IH> ssh student@127.0.0.1 -p 12345
+##  ^ This will ssh to .39 via the tunnel setup on port 12345
+** ENUMERATE - Find Open ports other info
+
+IH> ssh student@127.0.0.1 -p 12345 -D 9050
+## Prepare Proxychains with 9050
+## Scan previously discovered net range
+IH> proxychains ./scan.sh or nmap 10.0.0.0/26
+Found .50 HOST C
+
+IH> ssh student@127.0.0.1 -p 12345 -L 23456:10.0.0.50:22 -NT
+This creates a tunnel via 23456 on IH ---^                   
+## Test ssh to HOST C 10.0.0.50
+IH> ssh student@127.0.0.1 -p 23456
+## Prepare proxychains/Dyanamic Port forwarding with 9050
+IH> ssh student@127.0.0.1 -p 23456 -D 9050
+** ENUMERATE - Find Open ports other info
+IH> proxychains ./scan.sh or nmap 172.16.1.0/28
+Found Host D 172.16.1.8
+
+## Ensure to close out previously setup Dynamic Port forward on 9050 before setting up another
+## If more than one is attempted will get ** BIND ERROR ** 
+IH> ssh student@127.0.0.1 -p 23456 -L 1122:172.16.1.8:22 -NT
+## Test ssh to HOST D 172.16.1.8
+IH> ssh student@127.0.0.1 -p 1122
+IH> ssh student@Local^Host -p1122 -D 9050 -NT 
+
+```
+
+Creds:
+```
+10.50.24.91
+Credentials: net{N}_studentX:passwordX
+T3 (Atropia) Float IP address is - 10.50.20.51
+
+T4 (Pineland) Float IP address is - 10.50.24.9 (Note - You can only telnet here to act as an insider, this will not be a routed path)
+```
+
+
+![image](https://github.com/cdayw/COSC/assets/169062872/38975df0-5d16-43aa-b8ab-6a75bc8866eb)
+## Tunnel Prep 
+```
+6
+Which ssh syntax would properly setup a Local tunnel to PC1 SSH port? (Max 2 Attempts)
+A. ssh -L 1111:localhost:22 cctc@10.50.1.150 -NT
+
+7
+Which ssh syntax would allow us to establish a Dynamic tunnel using the Local tunnel created in Question 6? (Max 2 Attempts)
+D. ssh -D 9050 cctc@localhost -p 1111 -NT
+
+8
+Which syntax would allow us to download the webpage of PC1 using the Local tunnel created in Question 7? (Max 2 Attempts)
+C. wget -r http://localhost:1111
+
+9
+Which syntax would allow us to download the webpage of PC2 using the Dynamic tunnel created in Question 8? (Max 2 Attempts)
+C. proxychains curl http://100.1.1.2
+
+10
+Which syntax would allow us to download the webpage of PC2 using the Dynamic tunnel created in Question 8? (Max 2 Attempts)
+B. proxychains wget -r http://100.1.1.2
+
+11
+Which ssh syntax would properly setup a Local tunnel to PC2 SSH port using PC1 as your pivot? (Max 2 Attempts)
+A. ssh cctc@10.50.1.150 -L 1111:192.168.2.1:22 -NT 
+
+12
+Which ssh syntax would properly setup a 2nd Local tunnel to PC2 SSH port using the tunnel made in Question 6 as your first tunnel? (Max 2 Attempts)
+A. ssh -L 2222:100.1.1.2:22 cctc@localhost -p 1111 -NT
+
+13
+Which ssh syntax would properly setup a 2nd Local tunnel to PC2 HTTP port using the tunnel made in Question 6 as your first tunnel? (Max 2 Attempts)
+B. ssh cctc@localhost -p 1111 -L 2222:100.1.1.2:80 -NT
+
+14
+Which ssh syntax would allow us to establish a Dynamic tunnel using the Local tunnel created in Question 12? (Max 2 Attempts)
+A. ssh -D 9050 cctc@localhost -p 2222 -NT
+
+15
+From the OPS workstation, the Admin is trying to create a Dynamic tunnel to PC2. They created the following tunnels but found that the Dynamic tunnel would not connect. Where did the Admin make the error? (Max 2 Attempts)
+1.) ssh cctc@10.50.1.150 -L 1234:100.1.1.2:22 -NT
+2.) ssh -D 9050 cctc@100.1.1.2 -p 1234 -NT 
+C. authenticated to wrong IP in line 2
+
+16
+From the OPS workstation, the Admin is trying to telnet through the tunnels to PC3. The Admin created the following tunnels but found that the telnet connection would not connect. Where did the Admin make the error? (Max 2 Attempts)
+1.) ssh cctc@10.50.1.150 -L 1234:192.168.2.1:22 -NT
+2.) ssh -L 4321:192.168.2.2:23 cctc@localhost -p 1234 -NT
+3.) telnet localhost 4321
+A. targeted wrong IP in line 1
+
+17
+Which ssh syntax would properly setup a 3rd Local tunnel to PC3 TELNET port using the tunnels made in Question 6 and Question 12? (Max 2 Attempts)
+D. ssh -p 2222 cctc@localhost -L 3333:192.168.2.2:23 -NT
+
+18
+Which syntax would allow us to telnet to PC3 using the tunnel made in Question 17? (Max 2 Attempts)
+B. telnet localhost 3333
+
+19
+Which syntax would properly setup a Remote tunnel from PC3 back to PC2 using PC3 SSH port as the target? (Max 2 Attempts)
+C. ssh -R 4444:localhost:22 cctc@192.168.2.1 -NT
+
+20
+Which syntax would properly setup a Local tunnel to map to the tunnel made in Question 19 using the tunnel made in Question 6 and Question 12? (Max 2 Attempts)
+A. ssh cctc@localhost -p 2222 -L 5555:localhost:4444 -NT 
