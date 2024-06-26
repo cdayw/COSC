@@ -49,3 +49,22 @@ proxychains ./scan.sh
 Cortina = 10.3.0.1
 proxychains wget -r http://{cortina_ip}
 ```
+proxychains ./scan.sh
+10.4.0.1
+Setup New tunnel to next pivot point
+internet_host$ ssh netX_studentX@{T3_float_ip} -L NssXX:{next_pivot_ip}:22 -NT
+ssh net1_student5@10.50.20.51 -L 10501:10.4.0.1:22 -NT
+
+Setup up Dynamic port forwarding with 10501
+internet_host$ ssh netX_studentX@localhost -p NssXX -D 9050 -NT
+ssh net1_student5@127.0.0.1 -D 9050  -p 10501 -NT
+
+## Identify the flag on Mojave's HTTP Server
+```
+Set up tunnel to 10.4.0.0
+ssh net1_student5@10.50.20.51 -L 10501:10.4.0.1:22 -NT
+
+Set up Dynamic Port Forwarding
+ssh net1_student5@127.0.0.1 -D 9050 -p 10501 -NT
+
+proxychains wget -r http://10.5.0.1
