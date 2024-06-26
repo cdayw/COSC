@@ -16,7 +16,7 @@ ss -ntlp
 ```
 Host Discovery
   Ruby Ping Sweep (if ping available)
-for i in {1..254}; do (ping -c 1 192.168.65.$i | grep "bytes from" &) ; done
+for i in {1..254}; do (ping -c 1 x.x.x.$i | grep "bytes from" &) ; done
   NMAP scan if no ping
 
 PORT Discovery
