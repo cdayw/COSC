@@ -359,3 +359,23 @@ C. ssh -R 4444:localhost:22 cctc@192.168.2.1 -NT
 20
 Which syntax would properly setup a Local tunnel to map to the tunnel made in Question 19 using the tunnel made in Question 6 and Question 12? (Max 2 Attempts)
 A. ssh cctc@localhost -p 2222 -L 5555:localhost:4444 -NT 
+```
+
+## Tunnel Practice 2
+![image](https://github.com/cdayw/COSC/assets/169062872/75bd8b52-4694-4d8c-8170-8f68e37e7817)
+```
+Build Dynamic tunnels
+
+IH> Telnet 10.50.29.19
+A> ssh student@10.50.23.21 -R 11602:LocalHost:22 -NT
+IH> ssh student@10.50.29.19 -D 9050 -p11602 -NT
+
+IH> ssh student@127.0.0.1 - p 11602 -L 11603:10.1.2.18:2222 -NT 
+IH> ssh student@127.0.0.1 -D 9050 -p 11603 -NT 
+
+IH> student@localhost -p 11603 -L 11604:172.16.10.121:2323 -NT 
+IH> student@localhost -D 9050 -p 11604 -NT
+
+IH> student@localhost -p11604 11605:192.168.10.69:22 -NT
+IH>student@localhost -D 9050 -p 11605 -NT
+```
