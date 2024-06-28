@@ -379,3 +379,17 @@ IH> student@localhost -D 9050 -p 11604 -NT
 IH> student@localhost -p11604 11605:192.168.10.69:22 -NT
 IH>student@localhost -D 9050 -p 11605 -NT
 ```
+
+## Tunnel Practice 2
+![image](https://github.com/cdayw/COSC/assets/169062872/6ec9db34-4313-4ea2-9c06-dc7e5c818a1d)
+```
+IH> ssh user@10.50.29.89 -p 1234 -D 9050 -NT
+IH> ssh user@10.50.29.89 -p 1234 -L 11601:172.17.17.28:23
+IH> telnet localhost 11601
+Host B >ssh user@172.17.17.17 -R 11698:localhost:4321
+IH> ssh user@10.50.29.89 -p 1234 -L 11603:localhost:11698
+IH> ssh user@localhost -p 11603 -L 11604:192.168.30.150:1212
+IH> ssh user@localhost -p 11604 -D 9050
+IH> ssh user@localhost -p 11604 -L 11605:10.10.12.121:2932
+IH> ssh user@localhost -p 11605 -D 9050
+```
