@@ -38,6 +38,6 @@ IH> ssh-06> ssh net1_student5@192.168.0.40 -p 5555 -R 10511:localhost:22
 IH> ssh net1_student5@localhost -p 10503 -L 10540:localhost:10511
 IH> ssh net1_comrade5@localhost -D 9050 -p 10540
 IH> ssh net1_student5@localhost -p 10502 -L 10503:192.168.0.40:5555
-
-
 ```
+![image](https://github.com/cdayw/COSC/assets/169062872/2c7e5727-20f5-478a-9038-418f3427b413)
+
