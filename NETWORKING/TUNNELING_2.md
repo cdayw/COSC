@@ -32,7 +32,7 @@ IH> ssh net1_comrade5@localhost -R 10588:192.168.0.40:22
 IH> telnet 10.50.27.147
 ssh-01> ssh student@10.50.37.63 -R 10501:localhost:22
 IH> ssh net1_student5@localhost -p 10501 -L 10502:192.168.0.40:5555
-IH> ssh net1_student5@localhost -p 10503 -L 10504:172.16.0.60:23
+IH> ssh net1_student5@localhost -p 10502 -L 10503:172.16.0.60:23
 IH> telnet localhost 10504
 IH> ssh-06> ssh net1_student5@192.168.0.40 -p 5555 -R 10511:localhost:22
 IH> ssh net1_student5@localhost -p 10503 -L 10540:localhost:10511
