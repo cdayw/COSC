@@ -380,16 +380,34 @@ IH> student@localhost -p11604 11605:192.168.10.69:22 -NT
 IH>student@localhost -D 9050 -p 11605 -NT
 ```
 
-## Tunnel Practice 2
+## Tunnel Practice 3
 ![image](https://github.com/cdayw/COSC/assets/169062872/6ec9db34-4313-4ea2-9c06-dc7e5c818a1d)
 ```
 IH> ssh user@10.50.29.89 -p 1234 -D 9050 -NT
 IH> ssh user@10.50.29.89 -p 1234 -L 11601:172.17.17.28:23
 IH> telnet localhost 11601
-Host B >ssh user@172.17.17.17 -R 11698:localhost:4321
+Host B>ssh user@172.17.17.17 -R 11698:localhost:4321
 IH> ssh user@10.50.29.89 -p 1234 -L 11603:localhost:11698
 IH> ssh user@localhost -p 11603 -L 11604:192.168.30.150:1212
 IH> ssh user@localhost -p 11604 -D 9050
 IH> ssh user@localhost -p 11604 -L 11605:10.10.12.121:2932
 IH> ssh user@localhost -p 11605 -D 9050
+```
+
+## Tunnel Practice 4
+![image](https://github.com/cdayw/COSC/assets/169062872/0550ab5f-64f8-4354-8b50-1692bb643931)
+
+```
+IH> telnet 10.50.22.42                                                TELNET 10.50.22.42
+HOST A> ssh user@10.50.20.51 -R 10501:localhost:8462                  REMOTE
+IH> ssh user@localhost -p 10501 -D 9050                               DYNAMIC
+IH> ssh user@localhost -p 10501 -L 10502:192.168.100.60:22            LOCAL
+IH> ssh user@localhost -p 10502 -D 9050                               DYNAMIC
+IH> ssh user@localhost -p 10502 -L 10503:10.90.50.140:6481            LOCAL
+IH> ssh user@localhost -p 10503 -D 9050                               DYNAMIC
+IH> ssh user@localhost -p 10503 -L 10504:172.20.21.5:23               LOCAL TELNET
+IH> telnet 172.20.21.5 -p 10504                                       TELNET > 172.20.21.5
+HOST D> ssh user@172.20.21.4 -R 10505:localhost:22                    REMOTE > 172.20.21.4
+IH> ssh user@localhost -p 10504 -L 10506:localhost:10505              BRIDGE > 172.20.21.5
+IH> ssh user@local host -p 10506 -D 9050
 ```
