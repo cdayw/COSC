@@ -274,4 +274,3 @@ sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
 
 ```
 
-05e5fb96e2a117e01fc1227f1c4d664c
