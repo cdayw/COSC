@@ -156,7 +156,8 @@ Rule Match options
 
 ip [ saddr | daddr { ip | ip1-ip2 | ip/CIDR | ip1, ip2, ip3 } ]
 tcp flags { syn, ack, psh, rst, fin }
-tcp [ sport | dport { port1 | port1-port2 | port1, port2, port3 } ]
+tcp [ sport | dport { port1 | port1-port2 | port1, psudo iptables -A OUTPUT -p tcp -m multiport --ports 22,23,3389 -j ACCEPT
+ort2, port3 } ]
 udp [ sport| dport { port1 | port1-port2 | port1, port2, port3 } ]
 icmp [ type | code { type# | code# } ]
 
@@ -233,4 +234,44 @@ nft add rule ip MANGLE OUTPUT oif eth0 ip dscp set 26
 
 ## IPTABLES - Filtering T1
 ```
-sudo iptables -A INPUT -p
+Allow New and Established traffic to/from via SSH, TELNET, and RDP
+sudo iptables -A INPUT -p tcp -m multiport --ports 22,23,3389 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m multiport --ports 22,23,3389 -j ACCEPT
+
+Change the Default Policy in the Filter Table for the INPUT, OUTPUT, and FORWARD chains to DROP
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT DROP
+sudo iptables -P FORWARD DROP
+
+Allow ping (ICMP) requests (and reply) to and from the Pivot.
+sudo iptables -A INPUT -p icmp --icmp-type 8 -s 10.10.0.40 -j ACCEPT
+sudo iptables -A INPUT -p icmp --icmp-type 8 -d 10.10.0.40 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --icmp-type 8 -s 10.10.0.40 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --icmp-type 8 -d 10.10.0.40 -j ACCEPT
+
+sudo iptables -A INPUT -p icmp --icmp-type 0 -s 10.10.0.40 -j ACCEPT
+sudo iptables -A INPUT -p icmp --icmp-type 0 -d 10.10.0.40 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --icmp-type 0 -s 10.10.0.40 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --icmp-type 0 -d 10.10.0.40 -j ACCEPT
+
+Allow ports 6579 and 4444 for both udp and tcp traffic
+sudo iptables -A INPUT -p tcp -m multiport --ports 6579,4444 -j ACCEPT
+sudo iptables -A INPUT -p udp -m multiport --ports 6579,4444 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m multiport --ports 6579,4444 -j ACCEPT
+sudo iptables -A OUTPUT -p udp -m multiport --ports 6579,4444 -j ACCEPT
+
+Allow New and Established traffic to/from via HTTP
+sudo iptables -A INPUT -p tcp --sport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+```
+
+## FILTERING T2
+```
+
+
+
+```
+
+05e5fb96e2a117e01fc1227f1c4d664c
