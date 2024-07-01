@@ -71,9 +71,166 @@ Chains assigned to each Table
 -d - Specifies the destination IP
 -j - Specifies the jump target action
 
+-m state --state NEW,ESTABLISHED,RELATED,UNTRACKED,INVALID
+-m mac [ --mac-source | --mac-destination ] [mac]
+-p [tcp|udp] -m multiport [ --dports | --sports | --ports { port1 | port1:port15 } ]
+-m bpf --bytecode [ 'bytecode' ]
+-m iprange [ --src-range | --dst-range { ip1-ip2 } ]
+
+    ACCEPT - Allow the packet
+    REJECT - Deny the packet (send an ICMP reponse)
+    DROP - Deny the packet (send no response)
+-j [ ACCEPT | REJECT | DROP ]
+
 iptables -t [table] -A [chain] [rules] -j [action]
 
     Table: filter*, nat, mangle
 
     Chain: INPUT, OUTPUT, PREROUTING, POSTROUTING, FORWARD
 ```
+
+## Mangle examples with iptables
+```
+iptables -t mangle -A POSTROUTING -o eth0 -j TTL --ttl-set 128
+iptables -t mangle -A POSTROUTING -o eth0 -j DSCP --set-dscp 26
+```
+
+
+# NFTABLES
+```
+ip - IPv4 packets
+ip6 - IPv6 packets
+inet - IPv4 and IPv6 packets
+arp - layer 2
+bridge - processing traffic/packets traversing bridges.
+netdev - allows for user classification of packets - nftables passes up to the networking stack (no counterpart in iptables)
+
+NFTables hooks
+    ingress - netdev only
+    prerouting
+    input
+    forward
+    output
+    postrouting
+
+NFTables Chain-types
+
+There are three chain types:
+    filter - to filter packets - can be used with arp, bridge, ip, ip6, and inet families
+    route - to reroute packets - can be used with ip and ipv6 families only
+    nat - used for Network Address Translation - used with ip and ip6 table families only
+
+nft add table [family] [table]
+
+    [family] = ip*, ip6, inet, arp, bridge and netdev.
+
+    [table] = user provided name for the table.
+
+nft add chain [family] [table] [chain] { type [type] hook [hook]
+    priority [priority] \; policy [policy] \;}
+
+* [chain] = User defined name for the chain.
+* [type] =  can be filter, route or nat.
+* [hook] = prerouting, ingress, input, forward, output or
+         postrouting.
+* [priority] = user provided integer. Lower number = higher
+             priority. default = 0. Use "--" before
+             negative numbers.
+* ; [policy] ; = set policy for the chain. Can be
+              accept (default) or drop.
+
+ Use "\" to escape the ";" in bash
+
+
+Create a rule in the Chain
+
+nft add rule [family] [table] [chain] [matches (matches)] [statement]
+* [matches] = typically protocol headers(i.e. ip, ip6, tcp,
+            udp, icmp, ether, etc)
+* (matches) = these are specific to the [matches] field.
+* [statement] = action performed when packet is matched. Some
+              examples are: log, accept, drop, reject,
+              counter, nat (dnat, snat, masquerade)
+
+Rule Match options
+
+ip [ saddr | daddr { ip | ip1-ip2 | ip/CIDR | ip1, ip2, ip3 } ]
+tcp flags { syn, ack, psh, rst, fin }
+tcp [ sport | dport { port1 | port1-port2 | port1, port2, port3 } ]
+udp [ sport| dport { port1 | port1-port2 | port1, port2, port3 } ]
+icmp [ type | code { type# | code# } ]
+
+Rule Match options
+
+ct state { new, established, related, invalid, untracked }
+iif [iface]
+oif [iface]
+
+Modify NFTables
+
+nft { list | flush } ruleset
+nft { delete | list | flush } table [family] [table]
+nft { delete | list | flush } chain [family] [table] [chain]
+
+Modify NFTables
+
+List table with handle numbers
+
+    nft list table [family] [table] [-a]
+
+ Adds after position
+
+    nft add rule [family] [table] [chain] [position <position>] [matches] [statement]
+
+Inserts before position
+
+    nft insert rule [family] [table] [chain] [position <position>] [matches] [statement]
+
+Replaces rule at handle
+
+    nft replace rule [family] [table] [chain] [handle <handle>] [matches] [statement]
+
+ Deletes rule at handle
+
+    nft delete rule [family] [table] [chain] [handle <handle>]
+
+ Create the NAT table
+
+    nft add table ip NAT
+
+    Create the NAT chains
+
+    nft add chain ip NAT PREROUTING { type nat hook prerouting priority 0 \; }
+
+    nft add chain ip NAT POSTROUTING { type nat hook postrouting priority 0 \; }
+
+Source NAT
+
+    nft add rule ip NAT POSTROUTING ip saddr 10.10.0.40 oif eth0 snat 144.15.60.11
+
+    nft add rule ip NAT POSTROUTING oif eth0 masquerade
+
+Destination NAT
+
+    nft add rule ip NAT PREROUTING iif eth0 ip daddr 144.15.60.11 dnat 10.10.0.40
+
+    nft add rule ip NAT PREROUTING iif eth0 tcp dport { 80, 443 } dnat 10.1.0.3
+
+    nft add rule ip NAT PREROUTING iif eth0 tcp dport 80 redirect to 8080
+```
+## Mangle examples with nftables
+```
+nft add table ip MANGLE
+
+nft add chain ip MANGLE INPUT {type filter hook input priority 0 \; policy accept \;}
+
+nft add chain ip MANGLE OUTPUT {type filter hook output priority 0 \; policy accept \;}
+
+nft add rule ip MANGLE OUTPUT oif eth0 ip ttl set 128
+
+nft add rule ip MANGLE OUTPUT oif eth0 ip dscp set 26
+```
+
+## IPTABLES - Filtering T1
+```
+sudo iptables -A INPUT -p
