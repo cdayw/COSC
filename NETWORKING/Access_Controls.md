@@ -269,14 +269,66 @@ sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
 
 ## FILTERING T2
 ```
+    Create input and output base chains with:
+    Hooks
+    Priority of 0
+    Policy as Accept
 
-T3
-05e5fb96e2a117e01fc1227f1c4d664c
-T1
-467accfb25050296431008a1357eacb1
+    Allow New and Established traffic to/from via SSH, TELNET, and RDP
+
+    Change your chains to now have a policy of Drop
+
+    Allow ping (ICMP) requests (and reply) to and from the Pivot.
+
+    Allow ports 5050 and 5150 for both udp and tcp traffic to/from
+
+    Allow New and Established traffic to/from via HTTP
 
 
+sudo nft add table ip CCTC
 
+sudo nft add chain ip CCTC INPUT { type filter hook input priority 0 \; policy accept \;}
+sudo nft add chain ip CCTC OUTPUT { type filter hook output priority 0 \; policy accept \;}
 
+nft add rule ip CCTC OUTPUT tcp dport { 22, 23, 80, 3389 } ct state { new, established } accept
+nft add rule ip CCTC INPUT tcp dport { 22, 23, 80, 3389 } ct state { new, established } accept
+nft add rule ip CCTC OUTPUT tcp sport { 22, 23, 80, 3389 } ct state { new, established } accept
+nft add rule ip CCTC INPUT tcp sport { 22, 23, 80, 3389 } ct state { new, established } accept
+
+nft add rule ip CCTC INPUT udp sport { 5050, 5150 } accept
+nft add rule ip CCTC INPUT udp dport { 5050, 5150 } accept
+nft add rule ip CCTC OUTPUT udp sport { 5050, 5150 } accept
+nft add rule ip CCTC OUTPUT udp dport { 5050, 5150 } accept
+
+nft add rule ip CCTC INPUT tcp sport { 5050, 5150 } accept
+nft add rule ip CCTC INPUT tcp dport { 5050, 5150 } accept
+nft add rule ip CCTC OUTPUT tcp sport { 5050, 5150 } accept
+nft add rule ip CCTC OUTPUT tcp dport { 5050, 5150 } accept
+
+INBOUND
+nft add rule ip CCTC INPUT icmp type 8 ip daddr 10.10.0.40 accept
+nft add rule ip CCTC OUTPUT icmp type 0 ip saddr 10.10.0.40 accept
+nft add rule ip CCTC INPUT icmp type 0 ip saddr 10.10.0.40 accept
+nft add rule ip CCTC INPUT icmp type 8 ip saddr 10.10.0.40 accept
+
+OUTBOUND
+nft add rule ip CCTC OUTPUT icmp type 8 ip saddr 10.10.0.40 accept
+nft add rule ip CCTC INPUT icmp type 0 ip daddr 10.10.0.40 accept
+nft add rule ip CCTC OUTPUT icmp type 0 ip saddr 10.10.0.40 accept     
+nft add rule ip CCTC OUTPUT icmp type 8 ip daddr 10.10.0.40 accept     
+
+sudo nft add chain ip CCTC INPUT { type filter hook input priority 0 \; policy drop \;}
+sudo nft add chain ip CCTC OUTPUT { type filter hook output priority 0 \; policy drop \;}
 ```
 
+## NAT + IPTABLES 
+```
+On T1 edit the /proc/sys/net/ipv4/ip_forward file to enable IP Forwarding. Change the value from 0 to 1. On T1 change the FORWARD policy back to ACCEPT.
+
+Configure POSTROUTING chain to translate T5 IP address to T1 (Create the rule by specifying the Interface information first then Layer 3)
+iptables -t nat -A POSTROUTING -p tcp -o eth0 -j MASQUERADE
+```
+
+## NAT + NFTABLES
+```
+```
