@@ -439,3 +439,27 @@ sudo nft add rule ip NAT POSTROUTING ip saddr 192.168.3.30 oif eth0 masquerade
     Default Snort.conf command
     sudo snort -r ids.pcap -c /etc/snort/snort.conf
 ```
+## Snort Rules Practice
+```
+SSH BRUTE FORCE
+alert tcp any any -> any 22 (msg:"SSH BF"; threshold:type both, track by_src, count 3 , seconds 10; sid:1001;)  
+
+ICMP PING DEADBEEF HEX
+alert icmp any any -> any any (msg:"Cows";content:"|DEADBEEF|";sid:1000001;)
+
+ICMP itype 8, icode 0
+alert icmp any any -> 10.3.0.0/24 any (msg:"DMZ Ping";itype:8;icode:0;sid:1000002;)
+
+NULL SCAN
+alert tcp any any <> 10.3.0.0/24 any (msg:"Null Scan"; flags:0; sid:1234567;)
+
+RDP Traffic
+alert tcp any any -> 192.168.65.20 3389 (msg:"RDP Traffic"; sid:120001;)
+alert udp any any -> 192.168.65.20 3389 (msg:"RDP Traffic"; sid:120002;)
+
+NetBIOS and SMB
+alert tcp any any -> 10.0.0.0/8 445 (msg:"WannaCry"; flow: stateless; sid:1234567;)
+alert tcp any any -> 10.0.0.0/8 139 (msg:"WannaCry"; flow: stateless; sid:1234566;)
+alert udp any any -> 10.0.0.0/8 138 (msg:"WannaCry"; flow: stateless; sid:1234555;)
+alert udp any any -> 10.0.0.0/8 137 (msg:"WannaCry"; flow: stateless; sid:1234444;)
+```
