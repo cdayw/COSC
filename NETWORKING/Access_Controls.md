@@ -363,6 +363,8 @@ sudo nft add rule ip NAT POSTROUTING ip saddr 192.168.3.30 oif eth0 masquerade
 ```
 ## Construct advanced IDS (snort) rules
 ```
+    ** Use ps -elf to check what command started the SNORT daemon
+
     Common line switches
 
         -c - to specify a configuration file when running snort
@@ -433,4 +435,7 @@ sudo nft add rule ip NAT POSTROUTING ip saddr 192.168.3.30 oif eth0 masquerade
     content:"Login incorrect"; nocase; flow:established, from_server;
     threshold: type both, track by_src, count 3, seconds 30;
     classtype: bad-unknown; sid:2323; rev:6; )
+
+    Default Snort.conf command
+    sudo snort -r ids.pcap -c /etc/snort/snort.conf
 ```
