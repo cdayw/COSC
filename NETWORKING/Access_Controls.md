@@ -345,3 +345,92 @@ sudo nft add chain ip NAT POSTROUTING {type nat hook postrouting priority 0 \; }
 sudo nft list table ip NAT
 sudo nft add rule ip NAT POSTROUTING ip saddr 192.168.3.30 oif eth0 masquerade
 ```
+
+# SNORT
+## Construct advanced IDS (snort) rules
+```
+    Installation Directory
+        /etc/snort
+
+    Configuration File
+        /etc/snort/snort.conf
+
+    Rules Directory
+        /etc/snort/rules
+
+    Default Log Directory
+        /var/log/snort
+```
+## Construct advanced IDS (snort) rules
+```
+    Common line switches
+
+        -c - to specify a configuration file when running snort
+        -l - specify a log directory
+
+        -D - to run snort as a daemon
+        sudo snort -D -c /etc/snort/snort.conf -l /var/log/snort
+
+        -r - to have snort read a pcap file
+        sudo snort -c /etc/snort/rules/file.rules -r file.pcap
+```
+## Snort IDS/IPS rule - Header
+```
+[action] [protocol] [s.ip] [s.port] [direction] [d.ip] [d.port] ( match conditions ;)
+
+* Action - alert, log, pass, drop, or reject
+* Protocol - TCP, UDP, ICMP, or IP
+* Source IP address - one IP, network, [IP range], or any
+* Source Port - one, [multiple], any, or [range of ports]
+* Direction - source to destination or both
+* Destination IP address - one IP, network, [IP range], or any
+* Destination port - one, [multiple], any, or [range of ports]
+
+* msg:"text" - specifies the human-readable alert message
+* reference: - links to external source of the rule
+* sid: - used to uniquely identify Snort rules (required)
+* rev: - uniquely identify revisions of Snort rules
+* classtype: - used to describe what a successful attack would do
+* priority: - level of concern (1 - really bad, 2 - badish, 3 - informational)
+* metadata: - allows a rule writer to embed additional information about the rule
+```
+
+## Snort rule example
+```
+    Look for anonymous ftp traffic:
+
+    alert tcp any any -> any 21 (msg:"Anonymous FTP Login"; content: "anonymous";
+    sid:2121; )
+
+    This will cause the pattern matcher to start looking at byte 6 in the payload)
+
+    alert tcp any any -> any 21 (msg:"Anonymous FTP Login"; content: "anonymous";
+    offset:5; sid:2121; )
+
+    This will search the first 14 bytes of the packet looking for the word “anonymous”.
+
+    alert tcp any any -> any 21 (msg:"Anonymous FTP Login"; content: "anonymous";
+    depth:14; sid:2121; )
+
+    Deactivates the case sensitivity of a text search.
+
+    alert tcp any any -> any 21 (msg:"Anonymous FTP Login"; content: "anonymous";
+    nocase; sid:2121; )
+
+    ICMP ping sweep
+
+    alert icmp any any -> 10.10.0.40 any (msg: "NMAP ping sweep Scan";
+    dsize:0; itype:8; icode:0; sid:10000004; rev: 1; )
+
+    Look for a specific set of Hex bits (NoOP sled)
+
+    alert tcp any any -> any any (msg:"NoOp sled"; content: "|9090 9090 9090|";
+    sid:9090; rev: 1; )
+
+    Telnet brute force login attempt
+
+    alert tcp any 23 -> any any (msg:"TELNET login incorrect";
+    content:"Login incorrect"; nocase; flow:established, from_server;
+    threshold: type both, track by_src, count 3, seconds 30;
+    classtype: bad-unknown; sid:2323; rev:6; )
+```
