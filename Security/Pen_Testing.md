@@ -60,3 +60,19 @@ nmap --script=http.enum.nse x.x.x.x
 ```
 for i in {1..254}; do (ping -c 1 192.168.0.$i | grep "bytes from" &) ; done 2>/dev/null
 ```
+
+## XML Scraper
+```
+pip install lxml requests
+
+#!/usr/bin/python
+import lxml.html
+import requests
+
+page = requests.get('http://quotes.toscrape.com')
+tree = lxml.html.fromstring(page.content)
+
+authors = tree.xpath('//small[@class="author"]/text()')
+
+print ('Authors: ',authors)
+```
