@@ -52,6 +52,8 @@ ssh -S /tmp/jump dummy -O cancel -L 1231:192.168.28.100:80
 ssh -S /tmp/t1 dummy -O forward -L 5555:192.168.50.100:22
 ssh -MS /tmp/t2 user@127.0.0.1 -p 5555
               ^ creates new socket file BUT still using the singular established TCP connection
+
+nmap --script=http.enum.nse x.x.x.x
 ```
 
 ## Ping Scan
