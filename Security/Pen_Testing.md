@@ -48,10 +48,10 @@ ssh -MS /tmp/t1 student@127.0.0.1 -p 4444
 #Cancel out a previously established/incorrect tunnel
 ssh -S /tmp/jump dummy -O cancel -L 1231:192.168.28.100:80
 
-#Using previously created socket file to port forward to new pivot
+#Using previously created socket file to port forward to new pivot        
 ssh -S /tmp/t1 dummy -O forward -L 5555:192.168.50.100:22
 ssh -MS /tmp/t2 user@127.0.0.1 -p 5555
-              ^ creates new socket file 
+              ^ creates new socket file BUT still using the singular established TCP connection
 ```
 
 ## Ping Scan
