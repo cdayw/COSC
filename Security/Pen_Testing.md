@@ -9,6 +9,7 @@ CODA-503-M
 --Password
 Gx1LjlSgOgQJJMy
 
+Boxes
 Student - Password
 --Linux ops
 10.50.31.135
@@ -18,6 +19,9 @@ Student - Password
 
 --Jump
 10.50.27.155
+
+--Password
+Gx1LjlSgOgQJJMy
 
 --CTFd
 http://10.50.20.30:8000/resources
