@@ -54,6 +54,7 @@ ssh -MS /tmp/t2 user@127.0.0.1 -p 5555
               ^ creates new socket file BUT still using the singular established TCP connection
 
 nmap --script=http.enum.nse x.x.x.x
+nmap --script=http-enum x.x.x.x
 ```
 
 ## Ping Scan
