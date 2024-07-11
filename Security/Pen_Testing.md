@@ -9,6 +9,13 @@ CODA-503-M
 --Password
 Gx1LjlSgOgQJJMy
 
+Student - Password
+--Linux ops
+10.50.31.135
+ 
+--Windows
+10.50.24.133
+
 --Jump
 10.50.27.155
 
