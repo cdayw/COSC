@@ -82,3 +82,62 @@ authors = tree.xpath('//small[@class="author"]/text()')
 
 print ('Authors: ',authors)
 ```
+## OPNOTES
+```
+ 14 LinOPS> ssh -S /tmp/jump dummy -O forward -D 9050
+ 15 LinOPS> proxychains nmap -Pn -T4 192.168.28.97,98,99,100,105,111,120
+ 16 OUTPUT:
+ 17 All 1000 scanned ports on 192.168.28.97 are closed
+ 18 
+ 19 Nmap scan report for 192.168.28.98
+ 20 Host is up (0.00051s latency).
+ 21 Not shown: 999 closed ports
+ 22 PORT   STATE SERVICE
+ 23 53/tcp open  domain
+ 24 
+ 25 Nmap scan report for 192.168.28.99
+ 26 Host is up (0.00058s latency).
+ 27 Not shown: 999 closed ports
+ 28 PORT   STATE SERVICE
+ 29 53/tcp open  domain
+ 30 
+ 31 Nmap scan report for 192.168.28.100
+ 32 Host is up (0.00057s latency).
+ 33 Not shown: 998 closed ports
+ 34 PORT     STATE SERVICE
+ 35 80/tcp   open  http
+ 36 2222/tcp open  EtherNetIP-1
+ 37 
+ 38 Nmap scan report for 192.168.28.105
+ 39 Host is up (0.00052s latency).
+ 40 Not shown: 997 closed ports
+ 41 PORT     STATE SERVICE
+ 42 21/tcp   open  ftp
+ 43 23/tcp   open  telnet
+ 44 2222/tcp open  EtherNetIP-1
+ 45 
+ 46 Nmap scan report for 192.168.28.111
+ 47 Host is up (0.00055s latency).
+ 48 Not shown: 997 closed ports
+ 49 PORT     STATE SERVICE
+ 50 80/tcp   open  http
+ 51 2222/tcp open  EtherNetIP-1
+ 52 8080/tcp open  http-proxy
+ 53 
+ 54 Nmap scan report for 192.168.28.120
+ 55 Host is up (0.00053s latency).
+ 56 Not shown: 999 closed ports
+ 57 PORT     STATE SERVICE
+ 58 4242/tcp open  vrml-multi-use
+ 59 
+ 60 LinOPS > ssh -S /tmp/jump dummy -O forward -L 4141:192.168.28.100:80 -L 212    1:192.168.28.111:80
+ 61 LinOPS > firefox localhost:2001
+ 62 
+ 63 LinOPS > proxychains ssh student@192.168.28.120 -p 4242
+ 64 DONOVIA05> ip a
+ 65 OUTPUT: 192.168.28.120/27
+ 66 
+ 67 LinOPS> ssh -S /tmp/jump dummy -O forward -L 6666:192.168.28.120:4242
+ 68 LinOPS> ssh -MS /tmp/t1 student@127.0.0.1 -p 6666
+ 69 LinOPS> ssh -S /tmp/t1 fug -O forward -D 9050   --> DYNAMIC
+```
