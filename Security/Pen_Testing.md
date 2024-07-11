@@ -80,5 +80,11 @@ tree = lxml.html.fromstring(page.content)
 
 authors = tree.xpath('//small[@class="author"]/text()')
 
+
+PassTemporary
+loginfirst
+logout null bit
+houseBeatFliesLOW
+YourTempPassword
 print ('Authors: ',authors)
 ```
