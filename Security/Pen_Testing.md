@@ -61,10 +61,11 @@ nmap --script=http.enum.nse x.x.x.x
 for i in {1..254}; do (ping -c 1 192.168.0.$i | grep "bytes from" &) ; done 2>/dev/null
 ```
 
-## XML Scraper
+## XML Scraper + script
 ```
 pip install lxml requests
-
+```
+```
 #!/usr/bin/python
 import lxml.html
 import requests
