@@ -36,5 +36,8 @@ ssh -MS student@x.x.x.x
 allows to use the same tcp connection for multiple boxes
 
 ssh -S /tmp/jump dummy -O forward -D 9050
-
+```
+## Ping Scan
+```
+for i in {1..254}; do (ping -c 1 192.168.0.$i | grep "bytes from" &) ; done 2>/dev/null
 ```
