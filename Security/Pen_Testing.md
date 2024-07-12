@@ -30,7 +30,7 @@ http://10.50.20.30:8000/resources
 ## ssh command
 ```
 #MasterSocket
-ssh -MS student@x.x.x.x
+ssh -MS /tmp/jump student@x.x.x.x
 -M = Multiplexing
 -S = Socket file
 allows to use the same tcp connection for multiple boxes
