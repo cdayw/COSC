@@ -115,4 +115,35 @@ LINOPS>  proxychains nmap -Pn -T4 192.168.28.111 --open --scri    pt=http-enum
  25   }
  26   return 13519;
  27 .............................................
+    ......................
+ 30       iVar3 = FUN_00401060();
+ 31       if (iVar3 == 146) {
+ 32         FUN_00401320((wchar_t *)s_Success!_004200b8);
+ 33         Sleep(5000);
+ 34         
+ 35           RegOpenKeyExA((HKEY)0x80000001,s_SOFTWARE\MICROSOFT\    KEYED3_00420048,0,983103,&local_20c);
+ 36   RegQueryValueExA(local_20c,(LPCSTR)0x0,(LPDWORD)0x0,&local_2    18,local_208,&local_214);
+ 37   RegCloseKey(local_20c);
+ 38   local_210 = _fopen(s_C:\Users\Public\Documents\secret_004200    68,&DAT_00420064);
+ 39   FID_conflict:_fwprintf(local_210,(wchar_t *)&DAT_00420090,lo    cal_108);
+ 40   _fclose(local_210);
+ 41   sVar1 = _strlen(local_108);
+ 42   if (sVar1 != 0) {
+ 43     _strcmp((char *)local_208,local_108);
+ 44   }
+ 45   ......................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```
