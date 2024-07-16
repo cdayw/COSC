@@ -85,3 +85,7 @@ mem2:
     mov rax, 0      //store 0 in rax
     ret             //return out of code
 ```
+## Methodology
+````
+Ghidra
+Strings
