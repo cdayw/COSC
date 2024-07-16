@@ -16,6 +16,7 @@ Student - Password
 10.50.31.135
  
 --Windows
+xfreerdp /v:10.50.24.133 /u:student /dynamic-resolution +glyph-cache +clipboard
 10.50.24.133
 
 --Jump
