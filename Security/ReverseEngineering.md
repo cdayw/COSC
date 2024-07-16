@@ -86,6 +86,33 @@ mem2:
     ret             //return out of code
 ```
 ## Methodology
-````
+```
 Ghidra
 Strings
+
+LINOPS>  proxychains nmap -Pn -T4 192.168.28.111 --open --scri    pt=http-enum
+  4 LINOPS> ssh -S /tmp/jump dum -O forward -L 5150:192.168.28.111    :80 -L 5151:192.168.28.111:8080 -L 5152:192.168.28.111:2222
+  5 
+  6 DOWNLOAD FILES FROM WEBSERVER
+  7 LINOPS> scp entry* student@10.50.24.133:C:
+  8 
+  9 ..........................................
+ 10 WINOPS> strings entry.c
+ 11   iVar2 = FUN_004010a0(local_1c);
+ 12   if (iVar2 == 13519) {
+ 13     FUN_00401150((wchar_t *)s_Success!_0041c010);
+ 14     Sleep(5000);
+ 15   }
+ 16     
+ 17     iVar1 = FUN_00404a5c(param_1);
+ 18   local_8 = 2;
+ 19   while( true ) {
+ 20     if (11 < local_8) {
+ 21       return 12;
+ 22     }
+ 23     if (local_8 * 46 == iVar1) break;
+ 24     local_8 = local_8 + 1;
+ 25   }
+ 26   return 13519;
+ 27 .............................................
+```
