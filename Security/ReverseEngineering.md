@@ -132,6 +132,5 @@ LINOPS>  proxychains nmap -Pn -T4 192.168.28.111 --open --scri    pt=http-enum
  43     _strcmp((char *)local_208,local_108);
  44   }
  45   ......................
-
-
+```
 ```
