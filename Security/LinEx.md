@@ -1,4 +1,34 @@
 # Linux Exploitation
+# https://sec.cybbh.io/public/security/latest/lessons/lesson-10-linux-exploit_sg.html#_discuss_what_is_privilege_escalation
+## Stack Info
+```
+--Stack Number
+  5
+
+--Username
+CODA-503-M
+
+--Password
+Gx1LjlSgOgQJJMy
+
+Boxes
+Student - Password
+--Linux ops
+10.50.31.135
+ 
+--Windows
+xfreerdp /v:10.50.24.133 /u:student /dynamic-resolution +glyph-cache +clipboard
+10.50.24.133
+
+--Jump
+10.50.27.155
+
+--Password
+Gx1LjlSgOgQJJMy
+
+--CTFd
+http://10.50.20.30:8000/resources
+```
 ## Privilege Escalation
 ## https://gtfobins.github.io/ - break out of restricted shells
 ```
@@ -59,5 +89,9 @@ ss -antu
 unset HISTFILE
 
 grep -v "192.168.0.55" /var/log/secure > /tmp/secure.clean; mv /tmp/secure.clean /var/log/secure; touch -t 02180455 /var/log/secure
-# Removes the IP address 192.168.0.55 from /var/log/secure and places it in a new file called /tmp/secure.clean, moves the new file over the original file, and alters the timestamp in an attempt to make it look normal.
+
+# Removes the IP address 192.168.0.55 from /var/log/secure and places it in a new file
+called /tmp/secure.clean, moves the new file over the original file, and alters the timestamp in an attempt to make it look normal.
+
+
 ```
