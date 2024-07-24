@@ -86,12 +86,14 @@ ss -antu
 ```
 # Covering Tracks 
 ```
+/var/log/syslog OR /var/log/messages
+/var/log/secure OR /var/log/auth.log
+
+ps -p 1
+systemd = systemd
+init = systemV
+
 unset HISTFILE
 
 grep -v "192.168.0.55" /var/log/secure > /tmp/secure.clean; mv /tmp/secure.clean /var/log/secure; touch -t 02180455 /var/log/secure
-
-# Removes the IP address 192.168.0.55 from /var/log/secure and places it in a new file
-called /tmp/secure.clean, moves the new file over the original file, and alters the timestamp in an attempt to make it look normal.
-
-
 ```
