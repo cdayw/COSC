@@ -96,4 +96,32 @@ init = systemV
 unset HISTFILE
 
 grep -v "192.168.0.55" /var/log/secure > /tmp/secure.clean; mv /tmp/secure.clean /var/log/secure; touch -t 02180455 /var/log/secure
+
+#SED Replace
+cat auth.log > auth.log2; sed -i 's/10.16.10.93/136.132.1.1/g' auth.log2; cat auth.log2 > auth.log
+
+#GERP REMOVE
+
+#GREP (Remove)
+egrep -v '10:49*| 15:15:15' auth.log > auth.log2; cat auth.log2 > auth.log; rm auth.log2
+
+
+# Timestomp
+    Access: updated when opened or used (grep, ls, cat, etc)
+
+    Modify: update content of file or saved
+
+    Change: file attribute change, file modified, moved, owner, permission
+
+touch -c -t 201603051015 1.txt   # Explicit
+touch -r 3.txt 1.txt             # Reference
+```
+# Rsyslog
+```
+    Newer Rsyslog references /etc/rsyslog.d/* for settings/rules
+
+    Older version only uses /etc/rsyslog.conf
+
+    Find out
+    grep "IncludeConfig" /etc/rsyslog.conf
 ```
