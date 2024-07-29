@@ -1,7 +1,7 @@
 # OP NOTES
 ```
 10.50.34.63
-
+.
 nmap -Pn -T4 10.50.34.63 --http-enum 
 OUTPUT :
 22/tcp open  ssh
