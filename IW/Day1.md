@@ -157,7 +157,7 @@ LSA (1) Examine the Information Environment
 
   Assessment of information in joint operations are conducted in accordance with the Operation Assessment Process
 
-LSA (2) Organization of OIE
+LSA (2) Describe how the Join Force Applies Informational Power, Organization of OIE
   Information Forces, the building blocks of OIE units, are those Active Component and Reserve Component forces specifically
   organized, trained, and equipped to create and/or support the creation of effects on the IE
   Information Forces are the building blocks of OIE units.
@@ -167,17 +167,6 @@ LSA (2) Organization of OIE
   information
 
     
-
-
-
-
-
-
-
-LSA (2) Describe how the Join Force Applies INformational Power
-
-
-
 
 
 
