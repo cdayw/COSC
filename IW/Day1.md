@@ -197,10 +197,11 @@ LSA (2) Describe how the Join Force Applies Informational Power, Organization of
   Key Leader Engagement
   Most operations require commands and othe rleaders to conduct KLEs with key local and regional leaders to affect
   their attitude, gain their support, and cultivate them as sources of information.
+```
 
+## Notes
 
-
-
+```
 The supported Commander has the authority to exercise general direction of supporting effort
 True
 
