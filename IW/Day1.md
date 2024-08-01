@@ -166,10 +166,100 @@ LSA (2) Describe how the Join Force Applies Informational Power, Organization of
   There are multiple organizations inside and outside DOD that are relevant to the joint force;s management and application of
   information
 
-    
+  Military Information Support Operations
+  MISO are pllaned operations to convey selected information and indicators to foreign audience to influence their emotionsm motives
+  objective reasoniong
+
+  MILDEC Military Deception
+  Commanders Conduct MILDEC to mislead enemy decision makers and commanders and cause them to take or not take specific actions.
+
+  Combat Camera
+  COMCAM is an essential battlefield information resource that supports strategic, tactical, and operational mission objectives.
+  As the primary suppliers of operational imagery to support the battlefield.
+
+  CyberOps
+  Employ cyberspace capabilities to achieve objectives in or through cyberspace
+
+  SpaceOps
+  The cornerstone responsiblities of military space forces are to preserve freedom of action, enable joint lethality and effectiveness, and provide national
+  leadership with independent actions
+
+  OPSEC
+  Asses the resk to preserving essential secrecy by indentifying the crucial information and indicators that must be protected
+
+  Special Technical Operations
+  Commanders should deconflict and synchronize other activities with STO.
+  STO actions officers at CCMD or service compent HQs can provide miltiary and civilian leadership with detailed info
+
+  ESO Electomagnetic Spectrum Ops
+  JEMSO actions to exploit, attack, protect, and mange the electromagnetic environment.
+
+  Key Leader Engagement
+  Most operations require commands and othe rleaders to conduct KLEs with key local and regional leaders to affect
+  their attitude, gain their support, and cultivate them as sources of information.
 
 
 
+
+The supported Commander has the authority to exercise general direction of supporting effort
+True
+
+What are the 3 layers of CyberSpace
+Physical Network Layer, Logical Network Layer, Cyber Persona Layer
+
+The SecDEF _________ forces to combatent commanders
+assigns, allocates, apportions,
+
+The _______ of 1947 Created the National Military Establishment and prescibed a weak SECDEF
+National Security Act
+
+The Multi-Domain Effect battalion provides ___________ target acquisition and products
+SIGINT GEOINT OSINT
+
+____ Operate across all geographic regions and typically provide support to other combatent commanders
+Functional Combatent Commands 
+
+What are the five operational domains 
+Air Land Maritime Space CyberSpace
+
+The Space Domain is the area above the altitude where atmospheric effects are negligible
+TRUE
+
+The _____ aspects reflect the way that individuals informations systems and groups communicate and exchange information
+Informational
+
+What are the 3 aspects of the information environment
+Pyhsical Informational Human
+
+OIE is conducted in support of JFC's operations campaign obj or in support of other components of joint forces
+TRUE
+
+_____ Organizations and personnel focus on OIE core activity of informing domestic international and internal audiences
+PUBLIC AFFAIRS
+
+____ actions establish maintain influence or exploit relations among military forces and native people
+Civil Military Operations
+
+The Supporting Commander determines timing and duration of supporting action
+FALSE
+
+The ____ of 1986 made the CJCS the sole military advisor to the POTUS and NSC
+Goldwater-Nichols ACT
+
+_____ Operations are military actions conducted by joint forces and service forces is specified command relationships
+JOINT
+
+Cyberspace domains are not dependent on maritime air land and sea domains
+FALSE
+
+The Supported Commander has the authhority to exercise general direction of supporting effort
+True
+
+The ___ aspects are the contacts among and between people the environment that shapes behavior and decision making
+HUMAN
+
+The Supporting Commander Determines timing and duration of suporting action
+FALSE
 
 ```
 
