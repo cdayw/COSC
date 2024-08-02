@@ -274,6 +274,10 @@ DODIN operations mission is to secure, configure, operate extend maintain and su
 create and preserve the confidentiality, availability, and integrity of the DODIN
 
 There is no stateless maneuver space in cyberspace
+
+OCO projects power in and through gray and red cyberspace
+
+
 ```
 
 
