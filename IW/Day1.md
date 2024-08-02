@@ -270,7 +270,10 @@ FALSE
 ```
 D4M deny degrade disrupt destroy manipulate
 
+DODIN operations mission is to secure, configure, operate extend maintain and sustain DOD cyberspace to
+create and preserve the confidentiality, availability, and integrity of the DODIN
 
+There is no stateless maneuver space in cyberspace
 ```
 
 
