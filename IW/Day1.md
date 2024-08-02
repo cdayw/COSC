@@ -266,6 +266,13 @@ FALSE
 
 
 
+## Day 2
+```
+D4M deny degrade disrupt destroy manipulate
+
+
+```
+
 
 
 
