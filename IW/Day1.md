@@ -11,7 +11,7 @@ LSA (1) Five Operational Domains
       +  Physical Network Layer
         + Logical Network Layer
           + Cyber-persona Layer
-
+https://github.com/gonzolicouss
 
 LSA (2) Explain the Joint All-Domain Operaitons Concept
   JADO is the integration of all service component and functional operational structures at local and regional echelons to
